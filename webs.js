@@ -11,42 +11,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
     
-    // Get Form Values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const formMessage = document.getElementById('formMessage');
-    
-    // Simple Validation
-    if (name === "" || email === "" || message === "") {
-        formMessage.textContent = "Please fill in all fields.";
-        formMessage.style.color = "#ff6b6b";
-        formMessage.classList.remove("hidden");
-        return;
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                const formData = new FormData(this);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    message: formData.get('message')
+                };
+                
+                // Use the same endpoint as your working form
+                const response = await fetch('/api/form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    alert('Error: ' + (result.message || 'Failed to send message'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Network error. Please try again.');
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
     }
-    
-    if (!validateEmail(email)) {
-        formMessage.textContent = "Please enter a valid email address.";
-        formMessage.style.color = "#ff6b6b";
-        formMessage.classList.remove("hidden");
-        return;
-    }
-    
-    // Simulate successful form submission
-    formMessage.innerHTML = `<i class="fas fa-check-circle" style="color: #06d1ec; margin-right: 10px;"></i> Thank you for your message, ${name}! We will get back to you soon.`;
-    formMessage.style.color = "#ffffff";
-    formMessage.classList.remove("hidden");
-    
-    // Clear the form
-    document.getElementById('contactForm').reset();
-    
-    // Hide message after 5 seconds
-    setTimeout(() => {
-        formMessage.classList.add("hidden");
-    }, 5000);
 });
 
 // Email Validation Function

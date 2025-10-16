@@ -1,7 +1,5 @@
+// api/form.js
 export default async function handler(req, res) {
-    console.log("OK")
-      console.log("Method:", req.method);
-  console.log("Body:", req.body);
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -11,7 +9,7 @@ export default async function handler(req, res) {
   const accessKey = process.env.key;
 
   if (!accessKey) {
-    console.error("❌ WEB3FORM_KEY is not defined!");
+    console.error("❌ WEB3FORMS_KEY is not defined!");
     return res.status(500).json({ message: "Missing access key" });
   }
 
@@ -22,10 +20,11 @@ export default async function handler(req, res) {
     },
     body: JSON.stringify({
       access_key: accessKey,
-      from_name: name, // Now using full_name
-      name,
-      email,
-      message
+      from_name: name,
+      name: name,
+      email: email,
+      message: message,
+      subject: `New message from ${name}` // Add a default subject
     })
   });
 
