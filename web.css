@@ -106,7 +106,7 @@ body {
     position: relative;
     overflow: hidden;
     background: linear-gradient(rgba(15,13,13,0.7), rgba(15,13,13,0.7)), 
-                url('/image\ copy\ 54.png') no-repeat center center/cover;
+                url('Images/image copy 54.png') no-repeat center center/cover;
 }
 
 .hero-content {
