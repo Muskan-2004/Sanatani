@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanatani - Temple Pilgrimage & Hotel Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #d4af37;
+            --primary-dark: #b8941f;
+            --secondary-color: #8b4513;
+            --accent-color: #ff6b6b;
+            --text-dark: #f9f9f9;
+            --text-light: #f9f9f9;
+            --bg-light: #1a1a1a;
+            --bg-dark: #0a0a0a;
+            --card-bg: #2a2a2a;
+            --border-color: #444;
+            --shadow: 0 5px 15px rgba(0,0,0,0.3);
+            --shadow-hover: 0 15px 30px rgba(0,0,0,0.5);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section-header p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline::before {
+            background: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10,10,10,0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 5%;
+            background: rgba(10,10,10,0.98);
+        }
+        
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .navbar ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .navbar ul li a i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://media.istockphoto.com/id/503016934/photo/entrance-of-luxury-hotel.jpg?s=612x612&w=0&k=20&c=DXFzucB2xWGf3PI6_yjhLKDvrFcGlOpOjXh6KDI8rqU=') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Temple Selection Section */
+        .temple-selection {
+            background: var(--bg-dark);
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .temple-selector, .booking-form {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .temple-selector h3, .booking-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: #333;
+            color: var(--text-light);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .temple-checklist {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .temple-option {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .temple-option:hover {
+            background: #333;
+            border-color: var(--primary-color);
+        }
+
+        .temple-option input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: var(--primary-color);
+        }
+
+        .temple-option label {
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            color: var(--text-light);
+        }
+
+        /* Booking Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: #333;
+            color: var(--text-light);
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Hotel Recommendations */
+        .hotel-recommendations {
+            background: var(--bg-light);
+        }
+
+        .hotel-filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background: #333;
+            color: var(--text-light);
+            min-width: 150px;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-range input {
+            width: 80px;
+        }
+
+        .amenities-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .amenity-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+        }
+
+        .amenity-checkbox input {
+            margin: 0;
+            transform: scale(0.9);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .filter-actions button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .apply-filters {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .apply-filters:hover {
+            background: var(--primary-dark);
+        }
+
+        .reset-filters {
+            background: #444;
+            color: white;
+        }
+
+        .reset-filters:hover {
+            background: #555;
+        }
+
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hotel-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hotel-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .hotel-card:hover .hotel-image img {
+            transform: scale(1.1);
+        }
+
+        .hotel-category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hotel-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hotel-location {
+            color: #aaa;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .hotel-location i {
+            color: var(--primary-color);
+        }
+
+        .hotel-rating {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hotel-rating i {
+            color: #ffc107;
+        }
+
+        .hotel-rating span {
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .hotel-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .hotel-price span {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: normal;
+        }
+
+        .hotel-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #ccc;
+            background: #333;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .amenity i {
+            color: var(--primary-color);
+            font-size: 0.7rem;
+        }
+
+        .book-now-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .book-now-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .book-now-btn:hover::before {
+            left: 0;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .no-hotels {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #aaa;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Pilgrim Gallery Section */
+        .pilgrim-gallery {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .gallery-slider {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+        }
+
+        .slide-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .slide-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #444;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-dot.active {
+            background: var(--primary-color);
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .gallery-arrow:hover {
+            background: var(--primary-color);
+        }
+
+        .gallery-arrow.prev {
+            left: 20px;
+        }
+
+        .gallery-arrow.next {
+            right: 20px;
+        }
+
+        /* Essential Services Section */
+        .essential-services {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .service-card p {
+            color: #aaa;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--bg-dark);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: #333;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            flex: 1;
+        }
+
+        .faq-toggle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hotel-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .navbar ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10,10,10,0.98);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .gallery-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .temple-selector, .booking-form {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-slide img {
+                height: 400px;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.svg" alt="Sanatani Logo">SANATANI
+        </div>
+        <ul id="navMenu">
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="#temples"><i class="fas fa-temple"></i> Temples</a></li>
+            <li><a href="#book"><i class="fas fa-hotel"></i> Book Pilgrimage</a></li>
+            <li><a href="#gallery"><i class="fas fa-images"></i> Pilgrim Gallery</a></li>
+            <li><a href="#faq"><i class="fas fa-question"></i> FAQ</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Divine Journeys, Sacred Stays</h1>
+            <p>Plan your perfect pilgrimage with temple visits and comfortable accommodations across India's most sacred destinations</p>
+            <div class="hero-btns">
+                <a href="#book" class="btn">Book Your Pilgrimage</a>
+                <a href="#temples" class="btn btn-outline">Find Hotels</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Essential Services Section -->
+    <section class="section essential-services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Essential Services</h2>
+                <p>We provide comprehensive solutions for your spiritual journey</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Pilgrimage Planning</h3>
+                    <p>Customized pilgrimage routes based on your preferences, time, and budget with optimized temple sequences.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Special Darshan Passes</h3>
+                    <p>Arrange special darshan passes to avoid long queues at popular temples for a seamless spiritual experience.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Expert Guides</h3>
+                    <p>Knowledgeable guides well-versed in temple histories, rituals, and spiritual significance.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Satvik Meal Plans</h3>
+                    <p>Curated vegetarian meal options that adhere to pilgrimage traditions and dietary requirements.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3>Ritual Arrangements</h3>
+                    <p>Facilitate special pujas, abhishekams, and other rituals at temples with proper priest coordination.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock assistance during your pilgrimage for any emergencies or guidance needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temple Selection Section -->
+    <section class="section temple-selection" id="book">
+        <div class="container">
+            <div class="section-header">
+                <h2>Plan Your Pilgrimage</h2>
+                <p>Select temples you wish to visit and we'll arrange your travel and stay</p>
+            </div>
+
+            <div class="booking-container">
+                <div class="temple-selector" data-aos="fade-right" data-aos-duration="800">
+                    <h3>Choose Your Sacred Destinations</h3>
+                    <div class="search-box">
+                        <input type="text" id="templeSearch" placeholder="Search temples...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    
+                    <div class="temple-checklist">
+                        <div class="temple-option">
+                            <input type="checkbox" id="kashi" value="Kashi Vishwanath Temple, Varanasi">
+                            <label for="kashi">Kashi Vishwanath Temple, Varanasi</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="kedarnath" value="Kedarnath Temple, Uttarakhand">
+                            <label for="kedarnath">Kedarnath Temple, Uttarakhand</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="badrinath" value="Badrinath Temple, Uttarakhand">
+                            <label for="badrinath">Badrinath Temple, Uttarakhand</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="somnath" value="Somnath Temple, Gujarat">
+                            <label for="somnath">Somnath Temple, Gujarat</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="rameshwaram" value="Ramanathaswamy Temple, Rameswaram">
+                            <label for="rameshwaram">Ramanathaswamy Temple, Rameswaram</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="tirupati" value="Tirupati Balaji, Andhra Pradesh">
+                            <label for="tirupati">Tirupati Balaji, Andhra Pradesh</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="vaishnodevi" value="Vaishno Devi Temple, Jammu">
+                            <label for="vaishnodevi">Vaishno Devi Temple, Jammu</label>
+                        </div>
+                        <div class="temple-option">
+                            <input type="checkbox" id="golden" value="Golden Temple, Amritsar">
+                            <label for="golden">Golden Temple, Amritsar</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-form" data-aos="fade-left" data-aos-duration="800">
+                    <h3>Your Pilgrimage Details</h3>
+                    <form id="pilgrimageForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkin">Check-in</label>
+                                <input type="date" id="checkin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout">Check-out</label>
+                                <input type="date" id="checkout" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Number of People</label>
+                            <select id="guests" required>
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5+">5+ People</option>
+                                <option value="group">Group (10+)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hotel">Preferred Hotel Category</label>
+                            <select id="hotel" required>
+                                <option value="budget">Budget (₹800-₹1500)</option>
+                                <option value="standard" selected>Standard (₹1500-₹3000)</option>
+                                <option value="premium">Premium (₹3000-₹6000)</option>
+                                <option value="luxury">Luxury (₹6000+)</option>
+                                <option value="dharamshala">Dharamshala/Ashram</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="transport">Transport Preference</label>
+                            <select id="transport" required>
+                                <option value="none">Arrange My Own</option>
+                                <option value="train">Train</option>
+                                <option value="bus" selected>Bus</option>
+                                <option value="flight">Flight</option>
+                                <option value="car">Private Car</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Submit Pilgrimage Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotel Recommendations Section -->
+    <section class="section hotel-recommendations" id="temples">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recommended Hotels Near Sacred Temples</h2>
+                <p>Comfortable stays for your spiritual journey</p>
+            </div>
+            
+            <div class="hotel-filters">
+                <div class="filter-group">
+                    <label for="cityFilter">City</label>
+                    <select id="cityFilter">
+                        <option value="all">All Cities</option>
+                        <option value="varanasi">Varanasi</option>
+                        <option value="haridwar">Haridwar</option>
+                        <option value="amritsar">Amritsar</option>
+                        <option value="tirupati">Tirupati</option>
+                        <option value="jammu">Jammu</option>
+                        <option value="gangtok">Gangtok</option>
+                        <option value="puri">Puri</option>
+                        <option value="ujjain">Ujjain</option>
+                        <option value="dwarka">Dwarka</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="categoryFilter">Hotel Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="budget">Budget</option>
+                        <option value="standard">Standard</option>
+                        <option value="premium">Premium</option>
+                        <option value="luxury">Luxury</option>
+                        <option value="dharamshala">Dharamshala</option>
+                        <option value="boutique">Boutique</option>
+                        <option value="heritage">Heritage</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priceRange">Price Range (₹)</label>
+                    <div class="price-range">
+                        <input type="number" id="minPrice" placeholder="Min" min="0" value="0">
+                        <span>-</span>
+                        <input type="number" id="maxPrice" placeholder="Max" min="0" value="20000">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="ratingFilter">Minimum Rating</label>
+                    <select id="ratingFilter">
+                        <option value="0">Any Rating</option>
+                        <option value="3">3+ Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="4.5">4.5+ Stars</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Amenities</label>
+                    <div class="amenities-filter">
+                        <div class="amenity-checkbox">
+                            <input type="checkbox" id="wifi" value="wifi">
+                            <label for="wifi">WiFi</label>
+                        </div>
+                        <div class="amenity-checkbox">
+                            <input type="checkbox" id="parking" value="parking">
+                            <label for="parking">Parking</label>
+                        </div>
+                        <div class="amenity-checkbox">
+                            <input type="checkbox" id="restaurant" value="restaurant">
+                            <label for="restaurant">Restaurant</label>
+                        </div>
+                        <div class="amenity-checkbox">
+                            <input type="checkbox" id="pool" value="pool">
+                            <label for="pool">Pool</label>
+                        </div>
+                        <div class="amenity-checkbox">
+                            <input type="checkbox" id="spa" value="spa">
+                            <label for="spa">Spa</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="apply-filters" id="applyFilters">Apply Filters</button>
+                    <button class="reset-filters" id="resetFilters">Reset</button>
+                </div>
+            </div>
+            
+            <div class="hotels-grid" id="hotelsGrid">
+                <!-- Hotel cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilgrim Gallery Section -->
+    <section class="pilgrim-gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pilgrim Experiences</h2>
+                <p>See the transformative journeys of our pilgrims across sacred destinations</p>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-slider">
+                    <div class="gallery-track" id="galleryTrack">
+                        <div class="gallery-slide">
+                            <img src="https://www.exoticmiles.com/wp-content/uploads/2024/03/chardham-yatra-2024.jpg" alt="Pilgrims at Temple">
+                            <div class="slide-content">
+                                <h3>Char Dham Yatra Experience</h3>
+                                <p>Join thousands of devotees on the sacred journey to Yamunotri, Gangotri, Kedarnath, and Badrinath in the majestic Himalayas.</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://hashtagmagazine.in/wp-content/uploads/2022/08/Varanasi-The-Holy-City-Of-India-Hashtag-Magazine.png" alt="Varanasi Ghats">
+                            <div class="slide-content">
+                                <h3>Spiritual Awakening in Varanasi</h3>
+                                <p>Experience the divine energy of the world's oldest living city with Ganga Aarti and temple visits.</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://sribalajitravel.com/images/one_day_package.jpg" alt="Tirupati Devotees">
+                            <div class="slide-content">
+                                <h3>Divine Darshan at Tirupati</h3>
+                                <p>Witness the devotion of millions at one of the world's most visited religious places.</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://nomadicsamuel.com/wp-content/uploads/i-snapped-this-photo-of-the-golden-temple-from-a-distance-during-sunset.jpeg" alt="Golden Temple">
+                            <div class="slide-content">
+                                <h3>Peaceful Moments at Golden Temple</h3>
+                                <p>Experience the serene atmosphere and community service at Harmandir Sahib in Amritsar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="gallery-arrow prev" id="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-arrow next" id="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="gallery-nav" id="galleryNav">
+                    <div class="gallery-dot active" data-slide="0"></div>
+                    <div class="gallery-dot" data-slide="1"></div>
+                    <div class="gallery-dot" data-slide="2"></div>
+                    <div class="gallery-dot" data-slide="3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our pilgrimage services</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How far in advance should I book my pilgrimage?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend booking at least 2-3 months in advance, especially for popular pilgrimage seasons and festivals. For Char Dham Yatra, booking 4-6 months ahead is advisable due to high demand and limited accommodation options.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is included in the pilgrimage package?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our standard packages include accommodation, temple entry arrangements, transportation between destinations, and the services of a pilgrimage guide. Meals, flight/train tickets, and personal expenses are typically additional unless specified in custom packages.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are the accommodations near the temples?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we prioritize accommodations within walking distance or short commute from the temples. For remote locations like Kedarnath, we arrange the closest possible stays with convenient access to temple transportation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I customize my pilgrimage itinerary?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We specialize in creating personalized pilgrimage experiences. You can select specific temples, adjust the duration, choose accommodation preferences, and include special rituals or ceremonies as per your requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What safety measures do you have in place?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We partner with verified hotels and transport providers, provide 24/7 customer support, offer emergency assistance, and ensure all our guides are trained in first aid and emergency procedures. We also maintain regular communication with local authorities in pilgrimage destinations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Sanatani</h3>
+                <p>Your trusted partner for spiritual journeys across India's most sacred destinations.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#book">Book Pilgrimage</a>
+                <a href="#temples">Find Hotels</a>
+                <a href="#gallery">Pilgrim Gallery</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-column">
+                <h3>Popular Destinations</h3>
+                <a href="#">Varanasi</a>
+                <a href="#">Haridwar</a>
+                <a href="#">Amritsar</a>
+                <a href="#">Tirupati</a>
+                <a href="#">Rameswaram</a>
+                <a href="#">Kedarnath</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Street, Varanasi, India</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@sanatani.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Sun: 7:00 AM - 9:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Sanatani. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for spiritual journeys</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Hotel Data
+        const hotels = [
+            {
+                id: 1,
+                name: "Brijrama Palace",
+                location: "Varanasi",
+                category: "luxury",
+                price: 12000,
+                per: "night",
+                image: "https://www.veloso.com/media/9963258/brijrama-palace-17.jpeg?width=1200&height=630&mode=crop&anchor=%27center%27&format=jpg",
+                amenities: ["Free WiFi", "Swimming Pool", "Spa", "Restaurant", "Parking"],
+                nearby: "Kashi Vishwanath Temple (0.5 km)",
+                rating: 4.8
+            },
+            {
+                id: 2,
+                name: "Hotel Ganga View",
+                location: "Haridwar",
+                category: "standard",
+                price: 2500,
+                per: "night",
+                image: "https://media.licdn.com/dms/image/v2/C4D1BAQGFImbj8HOZng/company-background_10000/company-background_10000/0/1583106652909?e=2147483647&v=beta&t=r7WLJ4C7xlE4Vz_z5Wr25h9MS9uvVw25IskhJ7ye3iU",
+                amenities: ["Free WiFi", "Restaurant", "River View", "Parking"],
+                nearby: "Har Ki Pauri (0.2 km)",
+                rating: 4.2
+            },
+            {
+                id: 3,
+                name: "Taj Golden Temple",
+                location: "Amritsar",
+                category: "premium",
+                price: 4500,
+                per: "night",
+                image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/85011621.jpg?k=8eced7857d8410e1434cab76a76047561ec49ff5e9c5d66ce7d596fee704ab70&o=&hp=1r",
+                amenities: ["Free WiFi", "Breakfast", "Spa", "24/7 Room Service", "Parking"],
+                nearby: "Golden Temple (0.3 km)",
+                rating: 4.6
+            },
+            {
+                id: 4,
+                name: "TTD Guest House",
+                location: "Tirupati",
+                category: "budget",
+                price: 800,
+                per: "night",
+                image: "https://content.jdmagicbox.com/comp/east_godavari/u3/9999px883.x883.190402100032.k3u3/catalogue/t-t-d-guest-house-east-godavari-guest-house-bwgqalzj9t.jpg",
+                amenities: ["Free Parking", "Pilgrimage Assistance"],
+                nearby: "Tirupati Balaji (1 km)",
+                rating: 3.9
+            },
+            {
+                id: 5,
+                name: "Mayfair Gangtok",
+                location: "Gangtok",
+                category: "luxury",
+                price: 8500,
+                per: "night",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/0a/e1/af/caption.jpg?w=900&h=500&s=1",
+                amenities: ["Free WiFi", "Spa", "Mountain View", "Restaurant", "Pool", "Parking"],
+                nearby: "Rumtek Monastery (5 km)",
+                rating: 4.7
+            },
+            {
+                id: 6,
+                name: "Vaishno Devi Dham",
+                location: "Jammu",
+                category: "dharamshala",
+                price: 500,
+                per: "night",
+                image: "https://content.jdmagicbox.com/comp/jammu/r3/9999px191.x191.150427164926.t3r3/catalogue/vaishno-dham-dharamshala-trikuta-nagar-jammu-dharamshalas-bjtxvo5ase.jpg",
+                amenities: ["Simple Accommodation", "Pilgrimage Assistance"],
+                nearby: "Vaishno Devi Base Camp (0.1 km)",
+                rating: 3.8
+            },
+            {
+                id: 7,
+                name: "The Fern Residency",
+                location: "Varanasi",
+                category: "premium",
+                price: 3800,
+                per: "night",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/8e/ce/79/getlstd-property-photo.jpg?w=900&h=500&s=1",
+                amenities: ["Free WiFi", "Swimming Pool", "Restaurant", "Parking"],
+                nearby: "Sankat Mochan Temple (2 km)",
+                rating: 4.3
+            },
+            {
+                id: 8,
+                name: "Haveli Hari Ganga",
+                location: "Haridwar",
+                category: "luxury",
+                price: 9500,
+                per: "night",
+                image: "https://www.haridwarrishikeshtourism.com/haridwar-hotels/hotel-haveli-hari-ganga-haridwar.jpg",
+                amenities: ["Free WiFi", "Spa", "Yoga Classes", "River View", "Restaurant", "Parking"],
+                nearby: "Mansa Devi Temple (3 km)",
+                rating: 4.9
+            },
+            {
+                id: 9,
+                name: "Shree Krishna Heritage",
+                location: "Dwarka",
+                category: "heritage",
+                price: 3200,
+                per: "night",
+                image: "https://dyimg1.realestateindia.com/proj_images/project43026/proj_img-43026-52715_8-770x400.jpg",
+                amenities: ["Free WiFi", "Restaurant", "Cultural Events", "Parking"],
+                nearby: "Dwarkadhish Temple (0.8 km)",
+                rating: 4.4
+            },
+            {
+                id: 10,
+                name: "Maa Sharda Dham",
+                location: "Puri",
+                category: "boutique",
+                price: 2800,
+                per: "night",
+                image: "https://media-cdn.tripadvisor.com/media/photo-s/2b/44/0c/c5/front-facade.jpg",
+                amenities: ["Free WiFi", "Beach Access", "Restaurant", "Parking"],
+                nearby: "Jagannath Temple (1.2 km)",
+                rating: 4.1
+            },
+            {
+                id: 11,
+                name: "Mahakaleshwar Guest House",
+                location: "Ujjain",
+                category: "budget",
+                price: 1200,
+                per: "night",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/66/e5/25/excellent-stayvery-hygienic.jpg?w=900&h=500&s=1",
+                amenities: ["Basic Amenities", "Temple Guidance", "Parking"],
+                nearby: "Mahakaleshwar Temple (0.5 km)",
+                rating: 3.7
+            },
+            {
+                id: 12,
+                name: "Divine Stay",
+                location: "Tirupati",
+                category: "standard",
+                price: 1800,
+                per: "night",
+                image: "https://gos3.ibcdn.com/c57fc7e7-00b8-4086-a8b1-d2b81ac1ace9.jpg",
+                amenities: ["Free WiFi", "Breakfast", "Parking"],
+                nearby: "Tirupati Balaji (2 km)",
+                rating: 4.0
+            }
+        ];
+
+        // DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize date pickers
+            initDatePickers();
+            
+            // Render hotel listings
+            renderHotels(hotels);
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Initialize gallery slider
+            initGallerySlider();
+            
+            // Initialize FAQ accordion
+            initFAQAccordion();
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+
+        function initDatePickers() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const checkinInput = document.getElementById('checkin');
+            const checkoutInput = document.getElementById('checkout');
+            
+            // Format dates as YYYY-MM-DD
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            
+            checkinInput.min = formatDate(today);
+            checkinInput.value = formatDate(tomorrow);
+            
+            const nextDay = new Date(tomorrow);
+            nextDay.setDate(nextDay.getDate() + 2);
+            checkoutInput.min = formatDate(tomorrow);
+            checkoutInput.value = formatDate(nextDay);
+            
+            // Update checkout min date when checkin changes
+            checkinInput.addEventListener('change', function() {
+                const checkoutDate = new Date(this.value);
+                checkoutDate.setDate(checkoutDate.getDate() + 1);
+                checkoutInput.min = this.value;
+                
+                if (new Date(checkoutInput.value) < new Date(this.value)) {
+                    checkoutInput.value = formatDate(checkoutDate);
+                }
+            });
+        }
+
+        function renderHotels(hotelsToRender) {
+            const hotelsGrid = document.getElementById('hotelsGrid');
+            hotelsGrid.innerHTML = '';
+            
+            if (hotelsToRender.length === 0) {
+                hotelsGrid.innerHTML = '<p class="no-hotels">No hotels match your filters. Please try different criteria.</p>';
+                return;
+            }
+            
+            hotelsToRender.forEach(hotel => {
+                const hotelCard = document.createElement('div');
+                hotelCard.className = 'hotel-card';
+                hotelCard.setAttribute('data-aos', 'fade-up');
+                
+                hotelCard.innerHTML = `
+                    <div class="hotel-image">
+                        <img src="${hotel.image}" alt="${hotel.name}">
+                        <div class="hotel-category-tag">${getCategoryLabel(hotel.category)}</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3 class="hotel-name">${hotel.name}</h3>
+                        <p class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${hotel.location} • ${hotel.nearby}
+                        </p>
+                        <div class="hotel-rating">
+                            ${renderRatingStars(hotel.rating)}
+                            <span>${hotel.rating}</span>
+                        </div>
+                        <p class="hotel-price">₹${hotel.price.toLocaleString('en-IN')} <span>per ${hotel.per}</span></p>
+                        <div class="hotel-amenities">
+                            ${hotel.amenities.map(amenity => `
+                                <span class="amenity">
+                                    <i class="fas fa-check"></i> ${amenity}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <button class="book-now-btn" data-hotel-id="${hotel.id}">
+                            Book Now
+                        </button>
+                    </div>
+                `;
+                
+                hotelsGrid.appendChild(hotelCard);
+            });
+            
+            // Refresh AOS for new elements
+            AOS.refresh();
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'budget': 'Budget',
+                'standard': 'Standard',
+                'premium': 'Premium',
+                'luxury': 'Luxury',
+                'dharamshala': 'Dharamshala',
+                'boutique': 'Boutique',
+                'heritage': 'Heritage'
+            };
+            return labels[category] || category;
+        }
+
+        function renderRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let starsHtml = '';
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            return starsHtml;
+        }
+
+        function setupEventListeners() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.innerHTML = navMenu.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // Temple search functionality
+            const templeSearch = document.getElementById('templeSearch');
+            templeSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const templeOptions = document.querySelectorAll('.temple-option');
+                
+                templeOptions.forEach(option => {
+                    const label = option.querySelector('label').textContent.toLowerCase();
+                    option.style.display = label.includes(searchTerm) ? 'flex' : 'none';
+                });
+            });
+
+            // Apply filters button
+            const applyFiltersBtn = document.getElementById('applyFilters');
+            applyFiltersBtn.addEventListener('click', applyHotelFilters);
+
+            // Reset filters button
+            const resetFiltersBtn = document.getElementById('resetFilters');
+            resetFiltersBtn.addEventListener('click', resetHotelFilters);
+
+            // Pilgrimage form submission
+            const pilgrimageForm = document.getElementById('pilgrimageForm');
+            pilgrimageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get selected temples
+                const selectedTemples = Array.from(document.querySelectorAll('.temple-option input:checked'))
+                    .map(checkbox => checkbox.value);
+                
+                if (selectedTemples.length === 0) {
+                    alert('Please select at least one temple to visit');
+                    return;
+                }
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    checkin: document.getElementById('checkin').value,
+                    checkout: document.getElementById('checkout').value,
+                    guests: document.getElementById('guests').value,
+                    hotelCategory: document.getElementById('hotel').value,
+                    transport: document.getElementById('transport').value,
+                    temples: selectedTemples
+                };
+                
+                // In a real app, you would send this to your backend
+                console.log('Pilgrimage booking request:', formData);
+                showBookingConfirmation(formData);
+                
+                // Reset form
+                this.reset();
+                document.querySelectorAll('.temple-option input').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Re-initialize dates
+                initDatePickers();
+            });
+
+            // Book Now buttons (delegated event)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('book-now-btn')) {
+                    e.preventDefault();
+                    const hotelId = e.target.getAttribute('data-hotel-id');
+                    const hotel = hotels.find(h => h.id == hotelId);
+                    
+                    if (hotel) {
+                        alert(`You are booking: ${hotel.name}\nPrice: ₹${hotel.price.toLocaleString('en-IN')} per ${hotel.per}\n\nPlease fill out the pilgrimage form above to complete your booking.`);
+                        // Scroll to booking form
+                        document.querySelector('#book').scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+
+        function applyHotelFilters() {
+            const city = document.getElementById('cityFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPrice').value) || 20000;
+            const minRating = parseFloat(document.getElementById('ratingFilter').value) || 0;
+            
+            // Get selected amenities
+            const selectedAmenities = [];
+            document.querySelectorAll('.amenity-checkbox input:checked').forEach(checkbox => {
+                selectedAmenities.push(checkbox.value);
+            });
+            
+            let filteredHotels = hotels;
+            
+            // Filter by city
+            if (city !== 'all') {
+                filteredHotels = filteredHotels.filter(hotel => 
+                    hotel.location.toLowerCase().includes(city)
+                );
+            }
+            
+            // Filter by category
+            if (category !== 'all') {
+                filteredHotels = filteredHotels.filter(hotel => 
+                    hotel.category === category
+                );
+            }
+            
+            // Filter by price range
+            filteredHotels = filteredHotels.filter(hotel => 
+                hotel.price >= minPrice && hotel.price <= maxPrice
+            );
+            
+            // Filter by rating
+            filteredHotels = filteredHotels.filter(hotel => 
+                hotel.rating >= minRating
+            );
+            
+            // Filter by amenities
+            if (selectedAmenities.length > 0) {
+                filteredHotels = filteredHotels.filter(hotel => {
+                    return selectedAmenities.every(amenity => 
+                        hotel.amenities.some(hotelAmenity => 
+                            hotelAmenity.toLowerCase().includes(amenity)
+                        )
+                    );
+                });
+            }
+            
+            renderHotels(filteredHotels);
+        }
+
+        function resetHotelFilters() {
+            document.getElementById('cityFilter').value = 'all';
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('minPrice').value = '0';
+            document.getElementById('maxPrice').value = '20000';
+            document.getElementById('ratingFilter').value = '0';
+            
+            document.querySelectorAll('.amenity-checkbox input').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            renderHotels(hotels);
+        }
+
+        function showBookingConfirmation(formData) {
+            const templeList = formData.temples.map(temple => `• ${temple}`).join('\n');
+            
+            const confirmationMessage = `Thank you for your pilgrimage request, ${formData.name}!
+            
+Your booking details:
+------------------------------
+Temples to visit:
+${templeList}
+
+Travel Dates: ${formData.checkin} to ${formData.checkout}
+Number of Pilgrims: ${formData.guests}
+Hotel Preference: ${getCategoryLabel(formData.hotelCategory)}
+Transport: ${formData.transport}
+
+We'll contact you shortly at ${formData.email} or ${formData.phone} to confirm your booking.`;
+
+            alert(confirmationMessage);
+        }
+
+        function initGallerySlider() {
+            const track = document.getElementById('galleryTrack');
+            const dots = document.querySelectorAll('.gallery-dot');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            let currentSlide = 0;
+            
+            function goToSlide(slideIndex) {
+                track.style.transform = `translateX(-${slideIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[slideIndex].classList.add('active');
+                
+                currentSlide = slideIndex;
+            }
+            
+            // Add click events to dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                });
+            });
+            
+            // Add click events to arrows
+            prevBtn.addEventListener('click', function() {
+                let prevSlide = currentSlide - 1;
+                if (prevSlide < 0) prevSlide = dots.length - 1;
+                goToSlide(prevSlide);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= dots.length) nextSlide = 0;
+                goToSlide(nextSlide);
+            });
+            
+            // Auto slide every 5 seconds
+            setInterval(() => {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= dots.length) nextSlide = 0;
+                goToSlide(nextSlide);
+            }, 5000);
+        }
+
+        function initFAQAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

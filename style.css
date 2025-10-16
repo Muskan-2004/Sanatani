@@ -1,0 +1,369 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0d0d;
+            color: white;
+        }
+        .container {
+            width: 500px; /* Set the desired width */
+            height: 300px; /* Set the desired height */
+            background-size: 300px; /* Adjust the image size to cover the container */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent image repetition */
+            animation: slideshow 10s infinite; /* Adjust time as needed */
+          }
+        .navbar{
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-image: url(/image\ copy\ 45.png);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .navbar .logo i {
+            margin-right: 8px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        .navbar ul li {
+            padding: 0 15px;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #f4a261;
+        }
+
+        .mandir-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Two columns */
+            gap: 20px; /* Space between images */
+            padding: 20px;
+            justify-content: center;
+        }
+        
+        .mandir-gallery figure {
+            text-align: center;
+        }
+        
+        .mandir-gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+            
+        
+        
+        .mandir-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(149, 144, 144, 0.897);
+        }
+        
+        .about {
+            text-align: center;
+            padding: 120px 20px;
+            background:transparent;
+            color: #3a3a3a;
+            font-family: 'Georgia', serif;
+            animation: fadeIn 2s ease-in-out, slideshow 30s infinite;
+            background-size: cover;
+            background-position: center;
+          }
+        
+          @keyframes slideshow {
+            0% { background-image: url('image copy 54.png'); }
+            20% { background-image: url('image copy 53.png'); }
+            40% { background-image: url('image copy 52.png'); }
+            60% { background-image: url('image copy 51.png'); }
+            80% { background-image: url('image copy 50.png'); }
+            100% { background-image: url('image copy 49.png'); }
+        }
+        
+        
+          .about-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #0c0c0c;
+            margin-bottom: 30px;
+          }
+        
+          .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+          }
+        
+          .about-quote {
+            font-size: 24px;
+            line-height: 1.8;
+            color: #f1ecec;
+            font-style: italic;
+          }
+        
+          .highlight {
+            color: #1038eb;
+            font-weight: bold;
+          }
+        
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        .footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #f4a261;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .mandir-gallery figcaption {
+            font-size: 20px; /* Adjust the size as needed */
+            color: rgb(23, 106, 189);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5px;
+            font-family: Georgia, serif;
+        }
+        #descp1 {
+            background-color: rgba(17, 16, 16, 0.578);
+            color: white;
+            height: 400px;
+            width: 700px;
+            border-radius: 15px;
+            position: absolute;
+            transition: transform 0.7s ease;
+            transform: translateX(-100%);
+            z-index: 1000;
+            border: 2px solid rgba(21, 20, 20, 0.473);
+            padding: 20px;
+            
+        }
+        .services {
+            padding: 60px 20px;
+            background-color: #1a1a1a;
+            text-align: center;
+            background-image: url(/image\ copy\ 44.png);
+            backdrop-filter: blur(10px);
+            background-repeat: no-repeat;
+        }
+        .services h1 {
+            margin-bottom: 40px;
+            color: #ee730e;
+            font-size: 2.5em;
+        }
+        .service-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .card h3 {
+            color: #f97b14;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #ccc;
+        }
+        .footer {
+        background-color: #111;
+        color: white;
+        padding: 40px 0;
+    }
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        background-image: url("/image\ copy\ 46.png");
+        background-size: cover;
+        
+
+    }
+    .footer-logo {
+        display: flex;
+        align-items: center;
+    }
+    .footer-logo img {
+        height: 60px;
+        margin-right: 10px;
+    }
+    .footer-links h3, .footer-social h3, .footer-contact h3 {
+        margin-bottom: 10px;
+        
+        
+    }
+
+    .footer-social a {
+        color: #f4a261;
+        font-size: 24px;
+        margin-right: 15px;
+        transition: 0.3s;
+        
+    }
+    .footer-social a:hover {
+        color: #fff;
+        
+
+    }
+    .footer-contact p {
+        margin: 5px 0;
+
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        text-align: center;
+        border-top: 1px solid #333;
+        padding-top: 10px;
+    }
+    /* Contact Section */
+.contact-section {
+    padding: 60px 20px;
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+  }
+  
+  .contact-section h2 {
+    color: #f4a261;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .contact-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .contact-section a {
+    color: #f4a261;
+    text-decoration: none;
+  }
+  
+  .contact-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  form label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+  }
+  
+  form textarea {
+    resize: none;
+    height: 150px;
+  }
+  
+  button {
+    background-color: #f4a261;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #e76f51;
+  }
+  
+  /* Feedback Message Styling */
+  #formMessage {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: white;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    form {
+      width: 100%;
+    }
+    .contact-section h2 {
+      font-size: 2em;
+    }
+    .contact-section p {
+      font-size: 1em;
+    }
+  }

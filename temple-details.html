@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0d0d;
+            color: white;
+        }
+        .temple-details {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .temple-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .temple-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .temple-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .temple-info h1 {
+            color: #f4a261;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        .temple-info p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .temple-facts {
+            margin-top: 30px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .temple-facts h2 {
+            color: #f4a261;
+            margin-bottom: 15px;
+        }
+        .temple-facts ul {
+            list-style-type: none;
+        }
+        .temple-facts li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f4a261;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #e76f51;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Copy your navbar from index.html here -->
+    </nav>
+
+    <div class="temple-details" id="templeDetails">
+        <!-- Content will be loaded by JavaScript -->
+    </div>
+
+    <footer class="footer">
+        <!-- Copy your footer from index.html here -->
+    </footer>
+
+    <script>
+        // Get the temple name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const templeName = urlParams.get('temple');
+
+        // Temple data (in a real app, this would come from a database)
+        const templeDatabase = {
+            'kashi-vishwanath': {
+                title: 'Kashi Vishwanath Temple',
+                image: '/image.png',
+                description: 'The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva. Located in Varanasi, Uttar Pradesh, it stands on the western bank of the holy river Ganga and is one of the twelve Jyotirlingas, the holiest of Shiva temples.',
+                facts: [
+                    'Location: Varanasi, Uttar Pradesh',
+                    'Deity: Lord Shiva (Vishwanath)',
+                    'Architecture: Nagara style',
+                    'Built: Original structure unknown, current structure built in 1780',
+                    'Significance: One of the 12 Jyotirlingas'
+                ]
+            },
+            'somnath': {
+                title: 'Somnath Temple',
+                image: '/image copy.png',
+                description: 'The Somnath temple located in Prabhas Patan near Veraval in Saurashtra on the western coast of Gujarat, India is believed to be the first among the twelve Jyotirlinga shrines of Shiva.',
+                facts: [
+                    'Location: Veraval, Gujarat',
+                    'Deity: Lord Shiva (Somnath)',
+                    'Architecture: Chalukya style',
+                    'Built: Several times (current structure built in 1951)',
+                    'Significance: First Jyotirlinga mentioned in Shiva Purana'
+                ]
+            }
+            // Add more temples as needed
+        };
+
+        // Display temple details
+        function displayTempleDetails() {
+            const temple = templeDatabase[templeName];
+            if (temple) {
+                document.title = `${temple.title} | SANATANI`;
+                
+                const detailsContainer = document.getElementById('templeDetails');
+                detailsContainer.innerHTML = `
+                    <div class="temple-image">
+                        <img src="${temple.image}" alt="${temple.title}">
+                    </div>
+                    <div class="temple-info">
+                        <h1>${temple.title}</h1>
+                        <p>${temple.description}</p>
+                        
+                        <div class="temple-facts">
+                            <h2>Key Facts</h2>
+                            <ul>
+                                ${temple.facts.map(fact => `<li>${fact}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <a href="mandir.html" class="back-button">Back to Gallery</a>
+                    </div>
+                `;
+            } else {
+                document.getElementById('templeDetails').innerHTML = `
+                    <div style="width:100%; text-align:center; padding:50px;">
+                        <h1>Temple not found</h1>
+                        <p>The temple details you requested could not be found.</p>
+                        <a href="mandir.html" class="back-button">Back to Gallery</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize the page
+        displayTempleDetails();
+    </script>
+</body>
+</html>
