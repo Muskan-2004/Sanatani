@@ -22,7 +22,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-image: url(/image\ copy\ 45.png);
+            background-image: url(Images/image\ copy\ 45.png);
             position: sticky;
             top: 0;
             width: 100%;
@@ -97,12 +97,12 @@
           }
         
           @keyframes slideshow {
-            0% { background-image: url('image copy 54.png'); }
-            20% { background-image: url('image copy 53.png'); }
-            40% { background-image: url('image copy 52.png'); }
-            60% { background-image: url('image copy 51.png'); }
-            80% { background-image: url('image copy 50.png'); }
-            100% { background-image: url('image copy 49.png'); }
+            0% { background-image: url('Images/image copy 54.png'); }
+            20% { background-image: url('Images/image copy 53.png'); }
+            40% { background-image: url('Images/image copy 52.png'); }
+            60% { background-image: url('Images/image copy 51.png'); }
+            80% { background-image: url('Images/image copy 50.png'); }
+            100% { background-image: url('Images/image copy 49.png'); }
         }
         
         
@@ -184,7 +184,7 @@
             padding: 60px 20px;
             background-color: #1a1a1a;
             text-align: center;
-            background-image: url(/image\ copy\ 44.png);
+            background-image: url("Images/image\ copy\ 44.png");
             backdrop-filter: blur(10px);
             background-repeat: no-repeat;
         }
@@ -228,7 +228,7 @@
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        background-image: url("/image\ copy\ 46.png");
+        background-image: url("Images//image\ copy\ 46.png");
         background-size: cover;
         
 
