@@ -184,9 +184,12 @@
             padding: 60px 20px;
             background-color: #1a1a1a;
             text-align: center;
-            background-image: url("Images/image\ copy\ 44.png");
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(2px);
             background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+
         }
         .services h1 {
             margin-bottom: 40px;
@@ -367,3 +370,11 @@
       font-size: 1em;
     }
   }
+.services-image {
+    width: 60px;
+    height: auto;
+    margin-bottom: 5px;
+    display: block;
+    margin-inline: auto;
+}
+

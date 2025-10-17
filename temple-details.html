@@ -98,21 +98,234 @@
 
         // Temple data (in a real app, this would come from a database)
         const templeDatabase = {
-            'kashi-vishwanath': {
-                title: 'Kashi Vishwanath Temple',
-                image: '/image.png',
-                description: 'The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva. Located in Varanasi, Uttar Pradesh, it stands on the western bank of the holy river Ganga and is one of the twelve Jyotirlingas, the holiest of Shiva temples.',
+            'kedarnath': {
+                title: 'Kedarnath Temple',
+                image: 'images/kedarnath.jpg',
+                description: 'Kedarnath Temple is a Hindu temple dedicated to Lord Shiva. Located on the Garhwal Himalayan range near the Mandakini river in Kedarnath, Uttarakhand, it is one of the most sacred pilgrimage sites for Hindus and one of the twelve Jyotirlingas.',
                 facts: [
-                    'Location: Varanasi, Uttar Pradesh',
-                    'Deity: Lord Shiva (Vishwanath)',
+                    'Location: Kedarnath, Uttarakhand',
+                    'Deity: Lord Shiva (Kedarnath)',
+                    'Architecture: Stone masonry',
+                    'Altitude: 3,583 m (11,755 ft)',
+                    'Significance: One of the 12 Jyotirlingas and part of Chota Char Dham',
+                    'Best time to visit: May to October'
+                ]
+            },
+            'ramanathaswamy': {
+                title: 'Ramanathaswamy Temple',
+                image: 'images/ramanathaswamy.jpg',
+                description: 'Ramanathaswamy Temple is a Hindu temple dedicated to Lord Shiva located in Rameswaram, Tamil Nadu. It is one of the twelve Jyotirlinga temples and is famous for its long corridors and sacred water tanks.',
+                facts: [
+                    'Location: Rameswaram, Tamil Nadu',
+                    'Deity: Lord Shiva (Ramanathaswamy)',
+                    'Architecture: Dravidian style',
+                    'Built: 12th century with later additions',
+                    'Significance: One of the 12 Jyotirlingas and part of Char Dham',
+                    'Famous for: Longest temple corridor in India'
+                ]
+            },
+            'badrinath': {
+                title: 'Badrinath Temple',
+                image: 'images/badrinath.jpg',
+                description: 'Badrinath Temple is a Hindu temple dedicated to Lord Vishnu located in Badrinath, Uttarakhand. It is one of the four Char Dham pilgrimage sites and one of the 108 Divya Desams dedicated to Vishnu.',
+                facts: [
+                    'Location: Badrinath, Uttarakhand',
+                    'Deity: Lord Vishnu (Badrinarayan)',
+                    'Architecture: Traditional North Indian',
+                    'Altitude: 3,133 m (10,279 ft)',
+                    'Significance: Part of Char Dham pilgrimage',
+                    'Open: April to November'
+                ]
+            },
+            'haridwar': {
+                title: 'Har Ki Pauri, Haridwar',
+                image: 'images/haridwar.jpg',
+                description: 'Har Ki Pauri is a famous ghat on the banks of the Ganges in Haridwar, Uttarakhand. This sacred place is believed to be the exit point of the Ganges from the mountains and entry into the plains.',
+                facts: [
+                    'Location: Haridwar, Uttarakhand',
+                    'Deity: Holy River Ganga',
+                    'Significance: One of seven holiest places in Hinduism',
+                    'Famous for: Ganga Aarti and Kumbh Mela',
+                    'Best time to visit: October to February'
+                ]
+            },
+            'adiyogi': {
+                title: 'Adiyogi Shiva Temple',
+                image: 'images/adiyogi.jpg',
+                description: 'Adiyogi Shiva Temple in Coimbatore, Tamil Nadu features a 112-foot tall statue of Shiva as the first yogi. It was inaugurated by Prime Minister Narendra Modi in 2017 and represents Shiva as the origin of yoga.',
+                facts: [
+                    'Location: Coimbatore, Tamil Nadu',
+                    'Deity: Lord Shiva as Adiyogi',
+                    'Statue Height: 112 feet (34 meters)',
+                    'Built: 2017',
+                    'Significance: World\'s largest bust sculpture',
+                    'Founder: Sadhguru Jaggi Vasudev'
+                ]
+            },
+            'omkareshwar': {
+                title: 'Omkareshwar Temple',
+                image: 'images/omkareshwar.jpg',
+                description: 'Omkareshwar Temple is a Hindu temple dedicated to Lord Shiva located on an island called Mandhata in the Narmada river in Khandwa district, Madhya Pradesh. It is one of the 12 Jyotirlinga shrines of Shiva.',
+                facts: [
+                    'Location: Khandwa, Madhya Pradesh',
+                    'Deity: Lord Shiva (Omkareshwar)',
                     'Architecture: Nagara style',
-                    'Built: Original structure unknown, current structure built in 1780',
-                    'Significance: One of the 12 Jyotirlingas'
+                    'Significance: One of the 12 Jyotirlingas',
+                    'Island shape: Om (ॐ) symbol'
+                ]
+            },
+            'kangra': {
+                title: 'Brajeshwari Devi Temple, Kangra',
+                image: 'images/kangra.jpg',
+                description: 'Brajeshwari Devi Temple in Kangra, Himachal Pradesh is one of the 51 Shakti Peethas dedicated to Goddess Durga. The temple has been destroyed and rebuilt several times due to earthquakes and invasions.',
+                facts: [
+                    'Location: Kangra, Himachal Pradesh',
+                    'Deity: Goddess Brajeshwari (Durga)',
+                    'Significance: One of 51 Shakti Peethas',
+                    'History: Destroyed and rebuilt multiple times',
+                    'Best time to visit: March to June'
+                ]
+            },
+            'vaishno-devi': {
+                title: 'Vaishno Devi Temple',
+                image: 'images/vaishnodevi.jpg',
+                description: 'Vaishno Devi Temple is a Hindu temple dedicated to Goddess Vaishno Devi located in the Trikuta Mountains in Katra, Jammu and Kashmir. It is one of the most visited pilgrimage sites in India.',
+                facts: [
+                    'Location: Katra, Jammu and Kashmir',
+                    'Deity: Goddess Vaishno Devi',
+                    'Altitude: 1,585 m (5,200 ft)',
+                    'Trek distance: 13 km from Katra',
+                    'Significance: One of most visited Hindu temples'
+                ]
+            },
+            'jwala-devi': {
+                title: 'Jwala Devi Temple',
+                image: 'images/jwaladevi.jpg',
+                description: 'Jwala Devi Temple is a Hindu temple dedicated to Goddess Jwala Devi, located in Kangra district, Himachal Pradesh. The temple is famous for its eternal flame that burns without any fuel.',
+                facts: [
+                    'Location: Kangra, Himachal Pradesh',
+                    'Deity: Goddess Jwala Devi (Durga)',
+                    'Significance: One of 51 Shakti Peethas',
+                    'Famous for: Eternal natural flames',
+                    'Best time to visit: March to October'
+                ]
+            },
+            'ram-mandir': {
+                title: 'Ram Mandir, Ayodhya',
+                image: 'images/rammandir.jpg',
+                description: 'Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, at the site of Ram Janmabhoomi, the birthplace of Lord Rama. The temple is being built in the Nagara style of architecture.',
+                facts: [
+                    'Location: Ayodhya, Uttar Pradesh',
+                    'Deity: Lord Rama',
+                    'Architecture: Nagara style',
+                    'Construction: Started 2020',
+                    'Significance: Birthplace of Lord Rama',
+                    'Area: 2.7 acres'
+                ]
+            },
+            'ujjain': {
+                title: 'Mahakaleshwar Temple, Ujjain',
+                image: 'images/ujjain.jpg',
+                description: 'Mahakaleshwar Temple in Ujjain, Madhya Pradesh is a Hindu temple dedicated to Lord Shiva. It is one of the twelve Jyotirlingas and is famous for its Bhasma Aarti performed with sacred ash.',
+                facts: [
+                    'Location: Ujjain, Madhya Pradesh',
+                    'Deity: Lord Shiva (Mahakaleshwar)',
+                    'Architecture: Bhumija, Maratha and Rajput styles',
+                    'Significance: One of the 12 Jyotirlingas',
+                    'Famous for: Bhasma Aarti'
+                ]
+            },
+            'vrindavan-chandrodaya': {
+                title: 'Vrindavan Chandrodaya Temple',
+                image: 'images/vrindavan.jpg',
+                description: 'Vrindavan Chandrodaya Temple in Vrindavan, Uttar Pradesh is a Hindu temple dedicated to Lord Krishna. When completed, it will be the tallest religious monument in the world.',
+                facts: [
+                    'Location: Vrindavan, Uttar Pradesh',
+                    'Deity: Lord Krishna and Radha',
+                    'Planned Height: 700 feet (213 meters)',
+                    'Architecture: Modern with traditional elements',
+                    'Significance: Will be world\'s tallest religious monument'
+                ]
+            },
+            'meenakshi-ammam': {
+                title: 'Meenakshi Amman Temple',
+                image: 'images/meenakshi.jpg',
+                description: 'Meenakshi Amman Temple is a historic Hindu temple located on the southern bank of the Vaigai River in Madurai, Tamil Nadu. It is dedicated to Goddess Meenakshi (Parvati) and Sundareshwarar (Shiva).',
+                facts: [
+                    'Location: Madurai, Tamil Nadu',
+                    'Deity: Meenakshi (Parvati) and Sundareshwarar (Shiva)',
+                    'Architecture: Dravidian style',
+                    'Built: Originally 6th century CE, current structure 16th-17th century',
+                    'Gopurams: 14 towers, tallest 52 meters'
+                ]
+            },
+            'golden-temple': {
+                title: 'Golden Temple',
+                image: 'images/goldentemple.jpg',
+                description: 'Golden Temple, also known as Sri Harmandir Sahib, is the holiest Gurdwara and most important pilgrimage site of Sikhism, located in Amritsar, Punjab. The temple is known for its stunning gold-plated architecture.',
+                facts: [
+                    'Location: Amritsar, Punjab',
+                    'Religion: Sikhism',
+                    'Architecture: Indo-Islamic with Sikh elements',
+                    'Built: 1581-1604',
+                    'Significance: Holiest Gurdwara in Sikhism',
+                    'Famous for: Langar (free community kitchen)'
+                ]
+            },
+            'virupaksha': {
+                title: 'Virupaksha Temple',
+                image: 'images/virupaksha.jpg',
+                description: 'Virupaksha Temple is located in Hampi, Karnataka, and is dedicated to Lord Shiva as Virupaksha. It is part of the Group of Monuments at Hampi, a UNESCO World Heritage Site.',
+                facts: [
+                    'Location: Hampi, Karnataka',
+                    'Deity: Lord Shiva (Virupaksha)',
+                    'Architecture: Vijayanagara style',
+                    'Built: 7th century with later additions',
+                    'Significance: UNESCO World Heritage Site',
+                    'History: Functioning continuously since 7th century'
+                ]
+            },
+            'arunachaleshwar': {
+                title: 'Arunachaleshwar Temple',
+                image: 'images/arunachaleshwar.jpg',
+                description: 'Arunachaleshwar Temple in Tiruvannamalai, Tamil Nadu is a Hindu temple dedicated to Lord Shiva. It is one of the largest temple complexes in India and represents the fire element among the five Pancha Bhoota Stalam.',
+                facts: [
+                    'Location: Tiruvannamalai, Tamil Nadu',
+                    'Deity: Lord Shiva (Arunachaleshwar)',
+                    'Architecture: Dravidian style',
+                    'Significance: Pancha Bhoota Stalam (Fire element)',
+                    'Temple area: 25 acres',
+                    'Famous for: Karthigai Deepam festival'
+                ]
+            },
+            'nilkanth': {
+                title: 'Nilkanth Mahadev Temple',
+                image: 'images/nilkanth.jpg',
+                description: 'Nilkanth Mahadev Temple is a Hindu temple dedicated to Lord Shiva located in Swarg Ashram, Rishikesh, Uttarakhand. It is believed to be the place where Lord Shiva consumed the poison during Samudra Manthan.',
+                facts: [
+                    'Location: Rishikesh, Uttarakhand',
+                    'Deity: Lord Shiva (Nilkanth)',
+                    'Altitude: 1,330 m (4,360 ft)',
+                    'Significance: Associated with Samudra Manthan legend',
+                    'Best time to visit: September to April'
+                ]
+            },
+            'amarnath': {
+                title: 'Amarnath Cave Temple',
+                image: 'images/amarnath.jpg',
+                description: 'Amarnath Cave Temple is a Hindu shrine located in Jammu and Kashmir. The cave is situated at an altitude of 3,888 m and contains a natural ice Shiva Linga which waxes and wanes with the moon.',
+                facts: [
+                    'Location: Jammu and Kashmir',
+                    'Deity: Lord Shiva (Amarnath)',
+                    'Altitude: 3,888 m (12,756 ft)',
+                    'Natural formation: Ice Shiva Linga',
+                    'Yatra period: July-August',
+                    'Trek distance: 46 km from Pahalgam'
                 ]
             },
             'somnath': {
                 title: 'Somnath Temple',
-                image: '/image copy.png',
+                image: 'images/somnath.jpg',
                 description: 'The Somnath temple located in Prabhas Patan near Veraval in Saurashtra on the western coast of Gujarat, India is believed to be the first among the twelve Jyotirlinga shrines of Shiva.',
                 facts: [
                     'Location: Veraval, Gujarat',
@@ -121,8 +334,116 @@
                     'Built: Several times (current structure built in 1951)',
                     'Significance: First Jyotirlinga mentioned in Shiva Purana'
                 ]
+            },
+            'lotus-temple': {
+                title: 'Lotus Temple',
+                image: 'images/lotustemple.jpg',
+                description: 'Lotus Temple in Delhi is a Baháʼí House of Worship notable for its flowerlike shape. It has become a prominent attraction in Delhi and is open to all regardless of religion or any other qualification.',
+                facts: [
+                    'Location: Delhi',
+                    'Religion: Baháʼí Faith',
+                    'Architecture: Expressionist style',
+                    'Built: 1986',
+                    'Significance: Mother Temple of Indian subcontinent',
+                    'Awards: Multiple architectural awards'
+                ]
+            },
+            'konark-sun': {
+                title: 'Konark Sun Temple',
+                image: 'images/konark.jpg',
+                description: 'Konark Sun Temple is a 13th-century CE Sun temple at Konark in Odisha. The temple is attributed to king Narasimhadeva I of the Eastern Ganga Dynasty and is designed as a gigantic chariot of the Sun God.',
+                facts: [
+                    'Location: Konark, Odisha',
+                    'Deity: Surya (Sun God)',
+                    'Architecture: Kalinga style',
+                    'Built: 1250 CE',
+                    'Significance: UNESCO World Heritage Site',
+                    'Design: Chariot with 24 wheels'
+                ]
+            },
+            'siddhivinayak': {
+                title: 'Shri Siddhivinayak Temple',
+                image: 'images/siddhivinayak.jpg',
+                description: 'Shri Siddhivinayak Temple in Mumbai, Maharashtra is a Hindu temple dedicated to Lord Ganesha. It is one of the most famous and wealthy temples in Mumbai, visited by thousands of devotees daily.',
+                facts: [
+                    'Location: Mumbai, Maharashtra',
+                    'Deity: Lord Ganesha (Siddhivinayak)',
+                    'Built: 1801',
+                    'Significance: One of most visited Ganesha temples',
+                    'Famous devotees: Many Bollywood celebrities'
+                ]
+            },
+            'dwarkadhish': {
+                title: 'Shree Dwarkadhish Temple',
+                image: 'images/dwarkadhish.jpg',
+                description: 'Shree Dwarkadhish Temple, also known as Jagat Mandir, is a Hindu temple dedicated to Lord Krishna located in Dwarka, Gujarat. It is one of the four Char Dham pilgrimage sites and one of the 108 Divya Desams.',
+                facts: [
+                    'Location: Dwarka, Gujarat',
+                    'Deity: Lord Krishna (Dwarkadhish)',
+                    'Architecture: Chalukya style',
+                    'Built: 15th-16th century',
+                    'Significance: One of Char Dham pilgrimage sites'
+                ]
+            },
+            'padmanabhaswamy': {
+                title: 'Shree Padmanabhaswamy Temple',
+                image: 'images/padmanabhaswamy.jpg',
+                description: 'Shree Padmanabhaswamy Temple is a Hindu temple dedicated to Lord Vishnu located in Thiruvananthapuram, Kerala. The temple is known for its history, architecture, and being one of the wealthiest temples in the world.',
+                facts: [
+                    'Location: Thiruvananthapuram, Kerala',
+                    'Deity: Lord Vishnu (Padmanabhaswamy)',
+                    'Architecture: Dravidian and Kerala styles',
+                    'Significance: One of 108 Divya Desams',
+                    'Famous for: Richest Hindu temple in the world'
+                ]
+            },
+            'tungnath': {
+                title: 'Tungnath Temple',
+                image: 'images/tungnath.jpg',
+                description: 'Tungnath Temple is a Hindu temple dedicated to Lord Shiva located in Rudraprayag district, Uttarakhand. It is the highest Shiva temple in the world and the highest of the five Panch Kedar temples.',
+                facts: [
+                    'Location: Rudraprayag, Uttarakhand',
+                    'Deity: Lord Shiva (Tungnath)',
+                    'Altitude: 3,680 m (12,073 ft)',
+                    'Significance: Highest Shiva temple in the world',
+                    'Part of: Panch Kedar pilgrimage'
+                ]
+            },
+            'mansa-devi': {
+                title: 'Mansa Devi Temple',
+                image: 'images/mansadevi.jpg',
+                description: 'Mansa Devi Temple is a Hindu temple dedicated to Goddess Mansa Devi, a form of Shakti, located in Haridwar, Uttarakhand. The temple is situated on the Bilwa Parvat of the Shivalik Hills.',
+                facts: [
+                    'Location: Haridwar, Uttarakhand',
+                    'Deity: Goddess Mansa Devi',
+                    'Access: Cable car available',
+                    'Significance: Siddh Peeth (wish-fulfilling shrine)',
+                    'Best time to visit: Navratri festivals'
+                ]
+            },
+            'digambar-jain': {
+                title: 'Digambar Jain Temple',
+                image: 'images/digambarjain.jpg',
+                description: 'Digambar Jain Temple, also known as Lal Mandir, is the oldest and best-known Jain temple in Delhi. It is located directly across the Red Fort in the historical Chandni Chowk area.',
+                facts: [
+                    'Location: Delhi',
+                    'Religion: Jainism (Digambar sect)',
+                    'Built: 1656',
+                    'Architecture: Jain temple architecture',
+                    'Significance: Oldest Jain temple in Delhi'
+                ]
+            },
+            'navgrah': {
+                title: 'Shri Navgrah Temple',
+                image: 'images/navgrah.jpg',
+                description: 'Shri Navgrah Temple in Ujjain, Madhya Pradesh is a temple dedicated to the nine planetary deities (Navagrahas) in Hinduism. It is one of the few temples where all nine planets are worshipped together.',
+                facts: [
+                    'Location: Ujjain, Madhya Pradesh',
+                    'Deity: Nine planetary deities (Navagrahas)',
+                    'Significance: Astrological importance',
+                    'Best time to visit: During planetary transitions'
+                ]
             }
-            // Add more temples as needed
         };
 
         // Display temple details
@@ -147,7 +468,7 @@
                             </ul>
                         </div>
                         
-                        <a href="mandir.html" class="back-button">Back to Gallery</a>
+                        <a href="index.html" class="back-button">Back to Gallery</a>
                     </div>
                 `;
             } else {
@@ -155,7 +476,7 @@
                     <div style="width:100%; text-align:center; padding:50px;">
                         <h1>Temple not found</h1>
                         <p>The temple details you requested could not be found.</p>
-                        <a href="mandir.html" class="back-button">Back to Gallery</a>
+                        <a href="index.html" class="back-button">Back to Gallery</a>
                     </div>
                 `;
             }
