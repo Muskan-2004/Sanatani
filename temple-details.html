@@ -14,7 +14,6 @@
             font-family: Arial, sans-serif;
             background-color: #0f0d0d;
             color: white;
-            line-height: 1.6;
         }
         .temple-details {
             max-width: 1200px;
@@ -76,103 +75,6 @@
         }
         .back-button:hover {
             background-color: #e76f51;
-        }
-        
-        /* Additional Details Section */
-        .additional-details {
-            margin-top: 30px;
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .additional-details h2 {
-            color: #f4a261;
-            margin-bottom: 15px;
-        }
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .detail-item {
-            margin-bottom: 15px;
-        }
-        .detail-item h3 {
-            color: #f4a261;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-        }
-        .detail-item p {
-            margin-bottom: 5px;
-        }
-        .timeline {
-            margin-top: 20px;
-        }
-        .timeline-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            border-left: 2px solid #f4a261;
-        }
-        .timeline-year {
-            font-weight: bold;
-            color: #f4a261;
-        }
-        
-        /* Festivals Section */
-        .festivals {
-            margin-top: 30px;
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .festivals h2 {
-            color: #f4a261;
-            margin-bottom: 15px;
-        }
-        .festival-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .festival-item {
-            background-color: #2a2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 200px;
-        }
-        .festival-item h3 {
-            color: #f4a261;
-            margin-bottom: 8px;
-        }
-        
-        /* How to Reach Section */
-        .how-to-reach {
-            margin-top: 30px;
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .how-to-reach h2 {
-            color: #f4a261;
-            margin-bottom: 15px;
-        }
-        .transport-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .transport-option {
-            background-color: #2a2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 200px;
-        }
-        .transport-option h3 {
-            color: #f4a261;
-            margin-bottom: 8px;
         }
 
         /* Slideshow Styles */
@@ -276,9 +178,6 @@
             .slideshow {
                 height: 300px;
             }
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -308,44 +207,13 @@
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJ1r6wBPmk8i4SR_a6v2L26Ipe4sfKcIk_g&s', caption: 'Temple Entrance'},
                     {src: 'https://www.solobackpacker.com/wp-content/uploads/2013/02/IMG_9090.jpg', caption: 'Ganga Aarti'}
                 ],
-                description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga. It is believed to be one of the holiest places for Hindus, where a visit is said to lead to moksha (liberation from the cycle of birth and death). The temple has been destroyed and rebuilt several times throughout history, with the current structure dating back to the 18th century.',
+                description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga.',
                 facts: [
                     'Location: Varanasi, Uttar Pradesh',
                     'Deity: Lord Shiva',
                     'Architecture: Nagara style',
                     'Built: 1780 by Ahilyabai Holkar',
                     'Significance: One of the 12 Jyotirlingas'
-                ],
-                additionalDetails: {
-                    architecture: 'The temple follows the Nagara style of architecture with a gold-plated dome and spire. The main shrine houses the Jyotirlinga of Vishwanath (Lord of the Universe). The temple complex includes several smaller shrines dedicated to various deities.',
-                    history: 'The original temple is believed to have been built in ancient times, but was destroyed multiple times by various invaders. The current structure was commissioned by Ahilyabai Holkar of Indore in 1780. The gold plating on the towers was donated by Maharaja Ranjit Singh in 1839.',
-                    significance: 'Kashi Vishwanath is considered one of the most important Jyotirlingas. It is believed that Lord Shiva himself whispers the Tarak Mantra (prayer of crossing) in the ears of people who die naturally at the Vishwanath temple.',
-                    bestTimeToVisit: 'October to March for pleasant weather. Maha Shivratri and Dev Deepawali are especially auspicious times.'
-                },
-                timeline: [
-                    {year: 'Ancient Times', event: 'Original temple believed to be established'},
-                    {year: '1194 CE', event: 'Destroyed by Qutb-ud-din Aibak'},
-                    {year: '1585 CE', event: 'Rebuilt by Todar Mal'},
-                    {year: '1669 CE', event: 'Destroyed again by Aurangzeb'},
-                    {year: '1780 CE', event: 'Current temple built by Ahilyabai Holkar'},
-                    {year: '1839 CE', event: 'Gold plating added by Maharaja Ranjit Singh'}
-                ],
-                festivals: [
-                    {name: 'Maha Shivratri', description: 'Grand celebration with special prayers and rituals'},
-                    {name: 'Shravan Maas', description: 'Entire month dedicated to Lord Shiva with daily processions'},
-                    {name: 'Dev Deepawali', description: 'Festival of lights celebrated 15 days after Diwali'},
-                    {name: 'Makar Sankranti', description: 'Holy bath in the Ganga and offerings to Lord Shiva'}
-                ],
-                howToReach: {
-                    byAir: 'Lal Bahadur Shastri International Airport in Varanasi (25 km from temple)',
-                    byTrain: 'Varanasi Junction (5 km from temple)',
-                    byRoad: 'Well-connected by road to all major cities in Uttar Pradesh and neighboring states'
-                },
-                nearbyAttractions: [
-                    'Ganga Ghats',
-                    'Sarnath',
-                    'Durga Temple',
-                    'Tulsi Manas Temple'
                 ]
             },
             'somnath': {
@@ -356,47 +224,15 @@
                     {src: 'https://heritage.home.blog/wp-content/uploads/2019/12/photo_20190929_193325.jpg', caption: 'Temple at Night'},
                     {src: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/db/85/e4/somnath-temple-view-from.jpg', caption: 'Seaside View'}
                 ],
-                description: 'The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas of Lord Shiva, rebuilt several times throughout history. Located on the western coast of Gujarat, the temple has withstood the test of time and invasions, symbolizing the eternal nature of Sanatana Dharma.',
+                description: 'The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas of Lord Shiva, rebuilt several times throughout history.',
                 facts: [
                     'Location: Veraval, Gujarat',
                     'Deity: Lord Shiva',
                     'Architecture: Chalukya style',
                     'Built: Rebuilt in 1951',
                     'Significance: First Jyotirlinga'
-                ],
-                additionalDetails: {
-                    architecture: 'The present temple, built in the Chalukya style of architecture, reflects the skill of the Sompura Salats, Gujarat\'s master masons. The temple\'s shikhara (spire) rises to 155 feet, and it has a kalasha (pot-shaped finial) at the top.',
-                    history: 'The temple is believed to have originally been built by the moon god Soma in gold, by Ravana in silver, by Krishna in wood, and by Bhimdev in stone. The current structure is the seventh reconstruction, completed in 1951 under the orders of Sardar Vallabhbhai Patel.',
-                    significance: 'Somnath means "Lord of the Moon" and is considered the first among the twelve Jyotirlingas. The temple is mentioned in ancient texts like the Rig Veda and is an important pilgrimage site.',
-                    bestTimeToVisit: 'October to March. Maha Shivratri and Kartik Purnima are particularly auspicious.'
-                },
-                timeline: [
-                    {year: 'Ancient Times', event: 'Original temple believed to exist since antiquity'},
-                    {year: '1026 CE', event: 'Looted and destroyed by Mahmud of Ghazni'},
-                    {year: '1169 CE', event: 'Rebuilt by Kumarapala'},
-                    {year: '1299 CE', event: 'Destroyed again by Alauddin Khilji\'s army'},
-                    {year: '1706 CE', event: 'Destroyed by Mughal Emperor Aurangzeb'},
-                    {year: '1951 CE', event: 'Current temple completed after independence'}
-                ],
-                festivals: [
-                    {name: 'Maha Shivratri', description: 'Grand celebrations with special abhishekam and prayers'},
-                    {name: 'Shravan Maas', description: 'Month-long celebrations with daily rituals'},
-                    {name: 'Kartik Purnima', description: 'Special prayers and celebrations'},
-                    {name: 'Diwali', description: 'Temple beautifully decorated with lights'}
-                ],
-                howToReach: {
-                    byAir: 'Diu Airport (90 km) or Porbandar Airport (120 km)',
-                    byTrain: 'Veraval Railway Station (7 km from temple)',
-                    byRoad: 'Well-connected by road to major cities in Gujarat'
-                },
-                nearbyAttractions: [
-                    'Prabhas Patan Museum',
-                    'Bhalka Tirth',
-                    'Triveni Sangam',
-                    'Geeta Mandir'
                 ]
             },
-            // Add similar enhanced details for other temples...
             'kedarnath': {
                 title: 'Kedarnath Temple',
                 image: 'Images/image copy 2 - Copy.png',
@@ -405,43 +241,418 @@
                     {src: 'https://cdn.magicdecor.in/com/2024/01/30181307/Kedarnath-Temple-in-Winter-Wallpaper-for-Wall.jpg', caption: 'Temple in Winter'},
                     {src: 'https://www.chardham-pilgrimage-tour.com/assets/images/chardham-banner2.webp', caption: 'Panoramic View'}
                 ],
-                description: 'Located in the Himalayas, Kedarnath Temple is one of the twelve Jyotirlingas and a vital part of the Char Dham Yatra. Situated at an altitude of 3,583 meters near the Mandakini River, the temple is surrounded by majestic snow-capped peaks.',
+                description: 'Located in the Himalayas, Kedarnath Temple is one of the twelve Jyotirlingas and a vital part of the Char Dham Yatra.',
                 facts: [
                     'Location: Rudraprayag, Uttarakhand',
                     'Deity: Lord Shiva',
                     'Built: 8th Century',
                     'Style: Nagara architecture',
                     'Altitude: 3,583 meters above sea level'
+                ]
+            },
+            'ramanathaswamy': {
+                title: 'Ramanathaswamy Temple',
+                image: 'Images/image copy 3.png',
+                images: [
+                    {src: 'https://www.daiwikhotels.com/wp-content/uploads/2024/07/newone.jpg', caption: 'Ramanathaswamy Temple'},
+                    {src: 'https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/The-Ramanathaswamy-Temple.jpg?itok=gBZatnn6', caption: 'Long Corridor'},
+                    {src: 'https://www.tirthayatra.org/wp-content/uploads/2025/03/Rameswaram-_-Pilgrim-Centres-1.png', caption: 'Temple Complex'}
                 ],
-                additionalDetails: {
-                    architecture: 'The temple is built from massive stone slabs over a large rectangular platform. The architecture is typical of ancient Himalayan temples with a stone garbhagriha (sanctum) and a mandapa (hall) for pilgrims to assemble.',
-                    history: 'The temple is believed to have been built by the Pandavas to atone for their sins after the Kurukshetra war. Adi Shankaracharya is credited with reviving the temple in the 8th century and establishing it as a major pilgrimage site.',
-                    significance: 'Kedarnath is one of the four sites in the Char Dham pilgrimage and one of the twelve Jyotirlingas. It is believed that worshipping here fulfills all desires and leads to salvation.',
-                    bestTimeToVisit: 'May to June and September to October. The temple remains closed during winter months (November to April).'
-                },
-                timeline: [
-                    {year: 'Mahabharata Era', event: 'Believed to be established by the Pandavas'},
-                    {year: '8th Century CE', event: 'Revived by Adi Shankaracharya'},
-                    {year: '2013 CE', event: 'Severely damaged in Uttarakhand floods but remained intact'}
+                description: 'Located on Rameswaram Island, this temple is dedicated to Lord Shiva and is one of the Char Dhams.',
+                facts: [
+                    'Location: Rameswaram, Tamil Nadu',
+                    'Deity: Lord Shiva',
+                    'Famous for: Longest temple corridor in the world',
+                    'Built: 12th Century CE'
+                ]
+            },
+            'badrinath': {
+                title: 'Badrinath Temple',
+                image: 'Images/image copy 4.png',
+                images: [
+                    {src: 'https://www.peakadventuretour.com/assets/imgs/badrinath-temple-bnr.webp', caption: 'Badrinath Temple'},
+                    {src: 'https://s7ap1.scene7.com/is/image/incredibleindia/badrinath-temple-badrinath-uttarakhand-2-attr-hero?qlt=82&ts=1726646229028', caption: 'Temple Entrance'},
+                    {src: 'https://blog.firstrek.in/wp-content/uploads/2024/02/Badrinath-tourism-with-Firstrek.jpg', caption: 'Scenic Location'}
                 ],
-                festivals: [
-                    {name: 'Maha Shivratri', description: 'Special celebrations despite harsh weather conditions'},
-                    {name: 'Opening Ceremony', description: 'Akshaya Tritiya marks the opening of the temple for the season'},
-                    {name: 'Closing Ceremony', description: 'Bhai Dooj marks the closing of the temple for winter'}
+                description: 'Dedicated to Lord Vishnu, Badrinath Temple is one of the Char Dham and Chota Char Dham pilgrimage sites.',
+                facts: [
+                    'Location: Chamoli, Uttarakhand',
+                    'Deity: Lord Vishnu',
+                    'Built: 9th Century CE',
+                    'Significance: Part of Char Dham Yatra'
+                ]
+            },
+            'haridwar': {
+                title: 'Haridwar Temple',
+                image: 'Images/image copy 5.png',
+                images: [
+                    {src: 'https://s7ap1.scene7.com/is/image/incredibleindia/har-ki-pauri-haridwar-uttarakhand-2-attr-hero?qlt=82&ts=1726645843640', caption: 'Har Ki Pauri'},
+                    {src: 'https://utsav.gov.in/public/uploads/darshan_picture/darshan_93/16615119891987332780.jpeg', caption: 'Ganga Aarti'},
+                    {src: 'https://staybook.in/_next/image?url=https%3A%2F%2Fimages.staybook.in%2Fthings-to-do%2Fspiritual-haridwar-and-rishikesh-day-tour%2F0.webp&w=1080&q=75', caption: 'Temple View'}
                 ],
-                howToReach: {
-                    byAir: 'Jolly Grant Airport in Dehradun (239 km from Gaurikund)',
-                    byTrain: 'Rishikesh Railway Station (216 km from Gaurikund)',
-                    byRoad: 'Up to Gaurikund by road, then 16 km trek to Kedarnath'
-                },
-                nearbyAttractions: [
-                    'Gaurikund',
-                    'Vasuki Tal',
-                    'Chorabari Tal',
-                    'Shankaracharya Samadhi'
+                description: 'Haridwar is one of the seven holiest places in Hinduism, located on the banks of the River Ganga.',
+                facts: [
+                    'Location: Uttarakhand, India',
+                    'Famous for: Har Ki Pauri Ghat and Ganga Aarti',
+                    'Significance: Entry point to Char Dham Yatra'
+                ]
+            },
+            'adiyogi': {
+                title: 'Adiyogi Temple',
+                image: 'Images/image copy 6.png',
+                images: [
+                    {src: 'Images/image copy 6.png', caption: 'Main Statue'},
+                    {src: 'Images/image copy 6.png', caption: 'Night View'},
+                    {src: 'Images/image copy 6.png', caption: 'Temple Grounds'}
+                ],
+                description: 'Adiyogi Shiva statue at Isha Yoga Center, Coimbatore, represents the first yogi and the origin of yoga.',
+                facts: [
+                    'Location: Coimbatore, Tamil Nadu',
+                    'Height: 112 feet',
+                    'Built: 2017 by Isha Foundation',
+                    'Significance: Symbol of yoga and meditation'
+                ]
+            },
+            'omkareshwar': {
+                title: 'Omkareshwar Temple',
+                image: 'Images/image copy 7.png',
+                images: [
+                    {src: 'Images/image copy 7.png', caption: 'Omkareshwar Temple'},
+                    {src: 'Images/image copy 7.png', caption: 'Island View'},
+                    {src: 'Images/image copy 7.png', caption: 'Temple Complex'}
+                ],
+                description: 'Omkareshwar Temple is dedicated to Lord Shiva and is one of the twelve Jyotirlingas located on the island of Mandhata.',
+                facts: [
+                    'Location: Khandwa, Madhya Pradesh',
+                    'Deity: Lord Shiva',
+                    'Built: Ancient era',
+                    'Significance: One of the 12 Jyotirlingas'
+                ]
+            },
+            'kangra': {
+                title: 'Kangra Temple',
+                image: 'Images/image copy 8.png',
+                images: [
+                    {src: 'Images/image copy 8.png', caption: 'Brajeshwari Devi Temple'},
+                    {src: 'Images/image copy 8.png', caption: 'Temple Entrance'},
+                    {src: 'Images/image copy 8.png', caption: 'Mountain View'}
+                ],
+                description: 'The Brajeshwari Devi Temple in Kangra is dedicated to Goddess Vajreshwari and is a Shakti Peetha.',
+                facts: [
+                    'Location: Kangra, Himachal Pradesh',
+                    'Deity: Goddess Vajreshwari',
+                    'Significance: One of the 51 Shakti Peethas'
+                ]
+            },
+            'vaishno-devi': {
+                title: 'Vaishno Devi Temple',
+                image: 'Images/image copy 9.png',
+                images: [
+                    {src: 'Images/image copy 9.png', caption: 'Vaishno Devi Temple'},
+                    {src: 'Images/image copy 9.png', caption: 'Cave Entrance'},
+                    {src: 'Images/image copy 9.png', caption: 'Mountain Trek'}
+                ],
+                description: 'One of the most visited pilgrimage centers, the Vaishno Devi Temple is dedicated to Goddess Vaishnavi.',
+                facts: [
+                    'Location: Trikuta Hills, Jammu & Kashmir',
+                    'Deity: Goddess Vaishno Devi',
+                    'Altitude: 5,200 feet',
+                    'Significance: One of the 108 Shakti Peethas'
+                ]
+            },
+            'jwala-devi': {
+                title: 'Jwala Devi Temple',
+                image: 'Images/image copy 10.png',
+                images: [
+                    {src: 'Images/image copy 10.png', caption: 'Jwala Devi Temple'},
+                    {src: 'Images/image copy 10.png', caption: 'Eternal Flame'},
+                    {src: 'Images/image copy 10.png', caption: 'Temple Interior'}
+                ],
+                description: 'Famous for its eternal flame, the Jwala Devi Temple is dedicated to Goddess Jwalamukhi.',
+                facts: [
+                    'Location: Kangra, Himachal Pradesh',
+                    'Deity: Goddess Jwalamukhi',
+                    'Significance: Eternal flame represents the goddess'
+                ]
+            },
+            'ram-mandir': {
+                title: 'Ram Mandir',
+                image: 'Images/image copy 11.png',
+                images: [
+                    {src: 'Images/image copy 11.png', caption: 'Ram Mandir'},
+                    {src: 'Images/image copy 11.png', caption: 'Construction View'},
+                    {src: 'Images/image copy 11.png', caption: 'Architectural Detail'}
+                ],
+                description: 'The Ram Mandir in Ayodhya is dedicated to Lord Rama and symbolizes the return of dharma.',
+                facts: [
+                    'Location: Ayodhya, Uttar Pradesh',
+                    'Deity: Lord Rama',
+                    'Completed: 2024',
+                    'Architecture: Nagara style'
+                ]
+            },
+            'ujjain': {
+                title: 'Ujjain Temple',
+                image: 'Images/image copy 12.png',
+                images: [
+                    {src: 'Images/image copy 12.png', caption: 'Mahakaleshwar Temple'},
+                    {src: 'Images/image copy 12.png', caption: 'Bhasma Aarti'},
+                    {src: 'Images/image copy 12.png', caption: 'Temple Complex'}
+                ],
+                description: 'Mahakaleshwar Temple in Ujjain is one of the twelve Jyotirlingas of Lord Shiva.',
+                facts: [
+                    'Location: Ujjain, Madhya Pradesh',
+                    'Deity: Lord Shiva (Mahakal)',
+                    'Significance: Jyotirlinga representing time (Kala)'
+                ]
+            },
+            'vrindavan-chandrodaya': {
+                title: 'Vrindavan Chandrodaya Temple',
+                image: 'Images/image copy 13.png',
+                images: [
+                    {src: 'Images/image copy 13.png', caption: 'Vrindavan Temple'},
+                    {src: 'Images/image copy 13.png', caption: 'Construction Progress'},
+                    {src: 'Images/image copy 13.png', caption: 'Architectural Design'}
+                ],
+                description: 'The tallest temple in the world dedicated to Lord Krishna, located in Vrindavan.',
+                facts: [
+                    'Location: Vrindavan, Uttar Pradesh',
+                    'Deity: Lord Krishna',
+                    'Height: 700 feet',
+                    'Under construction by ISKCON'
+                ]
+            },
+            'meenakshi-amman': {
+                title: 'Meenakshi Amman Temple',
+                image: 'Images/image copy 16.png',
+                images: [
+                    {src: 'Images/image copy 16.png', caption: 'Meenakshi Temple'},
+                    {src: 'Images/image copy 16.png', caption: 'Gopuram View'},
+                    {src: 'Images/image copy 16.png', caption: 'Temple Corridor'}
+                ],
+                description: 'Located in Madurai, this temple is dedicated to Goddess Meenakshi and Lord Sundareswarar.',
+                facts: [
+                    'Location: Madurai, Tamil Nadu',
+                    'Deities: Goddess Meenakshi & Lord Shiva',
+                    'Built: 12th-17th Century',
+                    'Famous for: 14 Gopurams (towers)'
+                ]
+            },
+            'golden-temple': {
+                title: 'Golden Temple',
+                image: 'Images/image copy 17.png',
+                images: [
+                    {src: 'Images/image copy 17.png', caption: 'Golden Temple'},
+                    {src: 'Images/image copy 17.png', caption: 'Reflection in Water'},
+                    {src: 'Images/image copy 17.png', caption: 'Night View'}
+                ],
+                description: 'The Golden Temple, also known as Harmandir Sahib, is the holiest gurdwara of Sikhism located in Amritsar.',
+                facts: [
+                    'Location: Amritsar, Punjab',
+                    'Religion: Sikhism',
+                    'Built: 1589',
+                    'Significance: Central shrine of Sikh faith'
+                ]
+            },
+            'virupaksha': {
+                title: 'Virupaksha Temple',
+                image: 'Images/image copy 18.png',
+                images: [
+                    {src: 'Images/image copy 18.png', caption: 'Virupaksha Temple'},
+                    {src: 'Images/image copy 18.png', caption: 'Ancient Architecture'},
+                    {src: 'Images/image copy 18.png', caption: 'Temple Complex'}
+                ],
+                description: 'Located in Hampi, Karnataka, the Virupaksha Temple is dedicated to Lord Shiva and is part of the Group of Monuments at Hampi.',
+                facts: [
+                    'Location: Hampi, Karnataka',
+                    'Deity: Lord Shiva',
+                    'Built: 7th Century',
+                    'UNESCO World Heritage Site'
+                ]
+            },
+            'arunachaleshwar': {
+                title: 'Arunachaleshwar Temple',
+                image: 'Images/image copy 19.png',
+                images: [
+                    {src: 'Images/image copy 19.png', caption: 'Arunachaleshwar Temple'},
+                    {src: 'Images/image copy 19.png', caption: 'Temple Tower'},
+                    {src: 'Images/image copy 19.png', caption: 'Festival View'}
+                ],
+                description: 'Located at the base of Arunachala Hill, this temple is dedicated to Lord Shiva in Tiruvannamalai.',
+                facts: [
+                    'Location: Tiruvannamalai, Tamil Nadu',
+                    'Deity: Lord Shiva',
+                    'Significance: Represents fire among Pancha Bhoota temples'
+                ]
+            },
+            'nilkanth': {
+                title: 'Nilkanth Mahadev Temple',
+                image: 'Images/image copy 23.png',
+                images: [
+                    {src: 'Images/image copy 23.png', caption: 'Nilkanth Temple'},
+                    {src: 'Images/image copy 23.png', caption: 'Mountain Location'},
+                    {src: 'Images/image copy 23.png', caption: 'Scenic View'}
+                ],
+                description: 'Dedicated to Lord Shiva, Nilkanth Temple is situated near Rishikesh amidst the Himalayas.',
+                facts: [
+                    'Location: Near Rishikesh, Uttarakhand',
+                    'Deity: Lord Shiva',
+                    'Altitude: 1330 meters'
+                ]
+            },
+            'amarnath': {
+                title: 'Amarnath Cave Temple',
+                image: 'Images/image copy 25.png',
+                images: [
+                    {src: 'Images/image copy 25.png', caption: 'Amarnath Cave'},
+                    {src: 'Images/image copy 25.png', caption: 'Ice Lingam'},
+                    {src: 'Images/image copy 25.png', caption: 'Pilgrimage Route'}
+                ],
+                description: 'Amarnath Cave Temple is famous for its naturally forming ice Shiva Lingam.',
+                facts: [
+                    'Location: Jammu and Kashmir',
+                    'Deity: Lord Shiva',
+                    'Altitude: 3,888 meters',
+                    'Open: Only during Shravan month'
+                ]
+            },
+            'lotus': {
+                title: 'Lotus Temple',
+                image: 'Images/image copy 27.png',
+                images: [
+                    {src: 'Images/image copy 27.png', caption: 'Lotus Temple'},
+                    {src: 'Images/image copy 27.png', caption: 'Architectural Detail'},
+                    {src: 'Images/image copy 27.png', caption: 'Interior View'}
+                ],
+                description: 'Lotus Temple in Delhi is a Baháʼí House of Worship famous for its flowerlike architecture.',
+                facts: [
+                    'Location: New Delhi',
+                    'Religion: Baháʼí Faith',
+                    'Built: 1986',
+                    'Symbol of: Unity of all religions'
+                ]
+            },
+            'konark-sun': {
+                title: 'Konark Sun Temple',
+                image: 'Images/image copy 29.png',
+                images: [
+                    {src: 'Images/image copy 29.png', caption: 'Konark Sun Temple'},
+                    {src: 'Images/image copy 29.png', caption: 'Chariot Wheels'},
+                    {src: 'Images/image copy 29.png', caption: 'Architectural Detail'}
+                ],
+                description: 'A UNESCO World Heritage Site dedicated to the Sun God, Surya, built in the form of a chariot.',
+                facts: [
+                    'Location: Konark, Odisha',
+                    'Deity: Surya (Sun God)',
+                    'Built: 13th Century',
+                    'Built by: King Narasimhadeva I'
+                ]
+            },
+            'siddhivinayak': {
+                title: 'Shri Siddhivinayak Temple',
+                image: 'Images/image copy 30.png',
+                images: [
+                    {src: 'Images/image copy 30.png', caption: 'Siddhivinayak Temple'},
+                    {src: 'Images/image copy 30.png', caption: 'Main Deity'},
+                    {src: 'Images/image copy 30.png', caption: 'Temple Entrance'}
+                ],
+                description: 'Famous Ganesh temple located in Mumbai, attracting millions of devotees every year.',
+                facts: [
+                    'Location: Mumbai, Maharashtra',
+                    'Deity: Lord Ganesha',
+                    'Built: 1801'
+                ]
+            },
+            'dwarkadhish': {
+                title: 'Dwarkadhish Temple',
+                image: 'Images/image copy 31.png',
+                images: [
+                    {src: 'Images/image copy 31.png', caption: 'Dwarkadhish Temple'},
+                    {src: 'Images/image copy 31.png', caption: 'Temple Spire'},
+                    {src: 'Images/image copy 31.png', caption: 'Seaside Location'}
+                ],
+                description: 'Dedicated to Lord Krishna, this temple is part of the Char Dham pilgrimage.',
+                facts: [
+                    'Location: Dwarka, Gujarat',
+                    'Deity: Lord Krishna',
+                    'Built: 15th-16th Century'
+                ]
+            },
+            'padmanabhaswamy': {
+                title: 'Shree Padmanabhaswamy Temple',
+                image: 'Images/image copy 32.png',
+                images: [
+                    {src: 'Images/image copy 32.png', caption: 'Padmanabhaswamy Temple'},
+                    {src: 'Images/image copy 32.png', caption: 'Gopuram View'},
+                    {src: 'Images/image copy 32.png', caption: 'Temple Architecture'}
+                ],
+                description: 'Known for its immense wealth, this temple is dedicated to Lord Vishnu.',
+                facts: [
+                    'Location: Thiruvananthapuram, Kerala',
+                    'Deity: Lord Vishnu',
+                    'Style: Dravidian architecture'
+                ]
+            },
+            'tungnath': {
+                title: 'Tungnath Temple',
+                image: 'Images/image copy 39.png',
+                images: [
+                    {src: 'Images/image copy 39.png', caption: 'Tungnath Temple'},
+                    {src: 'Images/image copy 39.png', caption: 'Mountain Location'},
+                    {src: 'Images/image copy 39.png', caption: 'Himalayan View'}
+                ],
+                description: 'Tungnath is the highest Shiva temple in the world and part of the Panch Kedar.',
+                facts: [
+                    'Location: Rudraprayag, Uttarakhand',
+                    'Deity: Lord Shiva',
+                    'Altitude: 3,680 meters'
+                ]
+            },
+            'mansa-devi': {
+                title: 'Mansa Devi Temple',
+                image: 'Images/image copy 40.png',
+                images: [
+                    {src: 'Images/image copy 40.png', caption: 'Mansa Devi Temple'},
+                    {src: 'Images/image copy 40.png', caption: 'Cable Car View'},
+                    {src: 'Images/image copy 40.png', caption: 'Temple Complex'}
+                ],
+                description: 'Located on Bilwa Parvat in Haridwar, Mansa Devi Temple is one of the Siddh Peethas.',
+                facts: [
+                    'Location: Haridwar, Uttarakhand',
+                    'Deity: Goddess Mansa Devi',
+                    'Significance: Wish-fulfilling goddess'
+                ]
+            },
+            'digamber-jain': {
+                title: 'Digamber Jain Temple',
+                image: 'Images/image copy 41.png',
+                images: [
+                    {src: 'Images/image copy 41.png', caption: 'Digamber Jain Temple'},
+                    {src: 'Images/image copy 41.png', caption: 'Temple Interior'},
+                    {src: 'Images/image copy 41.png', caption: 'Architectural Detail'}
+                ],
+                description: 'The Lal Mandir is the oldest Jain temple in Delhi, dedicated to Lord Mahavira.',
+                facts: [
+                    'Location: Chandni Chowk, Delhi',
+                    'Deity: Lord Mahavira',
+                    'Built: 1656 AD'
+                ]
+            },
+            'navgrah': {
+                title: 'Shri Navgrah Temple',
+                image: 'Images/image copy 42.png',
+                images: [
+                    {src: 'https://content.jdmagicbox.com/comp/allahabad/s4/0532px532.x532.180309201118.m8s4/catalogue/shree-navgrah-mandir-rambagh-allahabad-temples-0r9neatob5.jpg', caption: 'Navgrah Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Navagraha_Devalayam_20200211203612.jpg', caption: 'Planetary Deities'},
+                    {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAvwZ6s0QAAq_VQ7guoJOV6MMaeOx9_cXiw&s', caption: 'Temple Architecture'}
+                ],
+                description: 'Dedicated to the nine planetary deities, this temple symbolizes harmony among the celestial bodies.',
+                facts: [
+                    'Location: Ujjain, Madhya Pradesh',
+                    'Deities: Navagrahas (Nine Planetary Gods)',
+                    'Significance: One of few temples dedicated to all Navagrahas'
                 ]
             }
-            // Continue with enhanced details for other temples...
         };
 
         // Slideshow functionality
@@ -570,107 +781,6 @@
                     slideshowHTML = slideshow.html;
                 }
                 
-                // Create additional details HTML
-                let additionalDetailsHTML = '';
-                if (temple.additionalDetails) {
-                    additionalDetailsHTML = `
-                        <div class="additional-details">
-                            <h2>More Information</h2>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <h3>Architecture</h3>
-                                    <p>${temple.additionalDetails.architecture}</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h3>History</h3>
-                                    <p>${temple.additionalDetails.history}</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h3>Significance</h3>
-                                    <p>${temple.additionalDetails.significance}</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h3>Best Time to Visit</h3>
-                                    <p>${temple.additionalDetails.bestTimeToVisit}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // Create timeline HTML
-                let timelineHTML = '';
-                if (temple.timeline && temple.timeline.length > 0) {
-                    timelineHTML = `
-                        <div class="additional-details">
-                            <h2>Historical Timeline</h2>
-                            <div class="timeline">
-                                ${temple.timeline.map(item => `
-                                    <div class="timeline-item">
-                                        <div class="timeline-year">${item.year}</div>
-                                        <div class="timeline-event">${item.event}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // Create festivals HTML
-                let festivalsHTML = '';
-                if (temple.festivals && temple.festivals.length > 0) {
-                    festivalsHTML = `
-                        <div class="festivals">
-                            <h2>Major Festivals</h2>
-                            <div class="festival-list">
-                                ${temple.festivals.map(festival => `
-                                    <div class="festival-item">
-                                        <h3>${festival.name}</h3>
-                                        <p>${festival.description}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // Create how to reach HTML
-                let howToReachHTML = '';
-                if (temple.howToReach) {
-                    howToReachHTML = `
-                        <div class="how-to-reach">
-                            <h2>How to Reach</h2>
-                            <div class="transport-options">
-                                <div class="transport-option">
-                                    <h3>By Air</h3>
-                                    <p>${temple.howToReach.byAir}</p>
-                                </div>
-                                <div class="transport-option">
-                                    <h3>By Train</h3>
-                                    <p>${temple.howToReach.byTrain}</p>
-                                </div>
-                                <div class="transport-option">
-                                    <h3>By Road</h3>
-                                    <p>${temple.howToReach.byRoad}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // Create nearby attractions HTML
-                let nearbyAttractionsHTML = '';
-                if (temple.nearbyAttractions && temple.nearbyAttractions.length > 0) {
-                    nearbyAttractionsHTML = `
-                        <div class="additional-details">
-                            <h2>Nearby Attractions</h2>
-                            <ul>
-                                ${temple.nearbyAttractions.map(attraction => `<li>${attraction}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-                }
-                
                 details.innerHTML = `
                     <div class="temple-image">
                         <img src="${temple.image}" alt="${temple.title}">
@@ -684,11 +794,6 @@
                                 ${temple.facts.map(fact => `<li>${fact}</li>`).join('')}
                             </ul>
                         </div>
-                        ${additionalDetailsHTML}
-                        ${timelineHTML}
-                        ${festivalsHTML}
-                        ${howToReachHTML}
-                        ${nearbyAttractionsHTML}
                         ${slideshowHTML}
                         <a href="index.html" class="back-button">Back to Gallery</a>
                     </div>
