@@ -11,9 +11,10 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f0d0d;
             color: white;
+            line-height: 1.6;
         }
         .temple-details {
             max-width: 1200px;
@@ -40,6 +41,7 @@
             color: #f4a261;
             margin-bottom: 20px;
             font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         .temple-info p {
             line-height: 1.8;
@@ -51,10 +53,13 @@
             background-color: #1a1a1a;
             padding: 20px;
             border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         .temple-facts h2 {
             color: #f4a261;
             margin-bottom: 15px;
+            border-bottom: 2px solid #f4a261;
+            padding-bottom: 5px;
         }
         .temple-facts ul {
             list-style-type: none;
@@ -62,6 +67,15 @@
         .temple-facts li {
             padding: 8px 0;
             border-bottom: 1px solid #333;
+            display: flex;
+        }
+        .temple-facts li:last-child {
+            border-bottom: none;
+        }
+        .fact-label {
+            font-weight: bold;
+            color: #f4a261;
+            min-width: 150px;
         }
         .back-button {
             display: inline-block;
@@ -71,25 +85,96 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
         }
         .back-button:hover {
             background-color: #e76f51;
+            transform: translateY(-2px);
         }
 
-        /* Slideshow Styles */
-        .slideshow-section {
+        /* Enhanced Details Section */
+        .temple-details-section {
             width: 100%;
             margin-top: 40px;
         }
-        
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
+        .detail-card {
+            background-color: #1a1a1a;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
+        .detail-card h2 {
+            color: #f4a261;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f4a261;
+            padding-bottom: 5px;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .detail-item {
+            margin-bottom: 10px;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #f4a261;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #f4a261;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #f4a261;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #f4a261;
+        }
+        .timeline-content {
+            margin-top: 5px;
+        }
+
+        /* Simplified Slideshow Styles */
+.slideshow-section {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;              /* Added */
+    flex-direction: column;     /* Added */
+    align-items: center;        /* Added - This centers the content */
+}
+        
+.slideshow-container {
+    position: relative;
+    max-width: 800px;           /* Changed from 100% to 800px */
+    width: 100%;                /* Added - Makes it responsive within max-width */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
         
         .slideshow {
             position: relative;
@@ -153,509 +238,999 @@
             background-color: #f4a261;
         }
         
-        .slideshow-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-            gap: 10px;
-        }
-        
-        .slideshow-btn {
-            background-color: #1a1a1a;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .slideshow-btn:hover {
-            background-color: #f4a261;
-        }
-        
         @media (max-width: 768px) {
             .slideshow {
                 height: 300px;
+            }
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .temple-details {
+                margin: 20px auto;
+                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <!-- Copy your navbar here -->
-    </nav>
-
     <div class="temple-details" id="templeDetails">
         <!-- Content will load dynamically -->
     </div>
 
-    <footer class="footer">
-        <!-- Copy your footer here -->
-    </footer>
-
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const templeName = urlParams.get('temple');
+        const templeName = urlParams.get('temple') || 'kashi-vishwanath';
 
         const templeDatabase = {
             'kashi-vishwanath': {
                 title: 'Kashi Vishwanath Temple',
-                image: 'Images/image.png',
+                image: 'https://www.namasteindiatrip.com/blog/wp-content/uploads/2024/12/Kashi-Vishwanath-Temple.jpg',
                 images: [
                     {src: 'https://www.namasteindiatrip.com/blog/wp-content/uploads/2024/12/Kashi-Vishwanath-Temple.jpg', caption: 'Main Temple View'},
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJ1r6wBPmk8i4SR_a6v2L26Ipe4sfKcIk_g&s', caption: 'Temple Entrance'},
                     {src: 'https://www.solobackpacker.com/wp-content/uploads/2013/02/IMG_9090.jpg', caption: 'Ganga Aarti'}
                 ],
-                description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga.',
+                description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga. It is believed to be the holiest of all Shiva temples and holds immense spiritual significance for Hindus.',
+                detailedDescription: 'The Kashi Vishwanath Temple, also known as the Golden Temple, is one of the most sacred pilgrimage sites for Hindus. It is believed that a visit to this temple and a bath in the Ganges leads to moksha (liberation). The temple complex consists of a series of smaller shrines, located in a small lane called Vishwanath Gali, near the river. The main deity is Lord Shiva in the form of a lingam, which is housed in the sanctum sanctorum.',
                 facts: [
-                    'Location: Varanasi, Uttar Pradesh',
-                    'Deity: Lord Shiva',
-                    'Architecture: Nagara style',
-                    'Built: 1780 by Ahilyabai Holkar',
-                    'Significance: One of the 12 Jyotirlingas'
-                ]
+                    {label: 'Location', value: 'Varanasi, Uttar Pradesh'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Architecture', value: 'Nagara style'},
+                    {label: 'Built', value: '1780 by Ahilyabai Holkar'},
+                    {label: 'Significance', value: 'One of the 12 Jyotirlingas'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Dev Deepawali'},
+                    {label: 'Temple Timings', value: '4:00 AM to 11:00 PM'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Original temple believed to be established by Lord Shiva himself'},
+                    {date: '1194 CE', event: 'First destruction by Qutb-ud-din Aibak'},
+                    {date: '1585 CE', event: 'Rebuilt by Todar Mal'},
+                    {date: '1669 CE', event: 'Destroyed by Aurangzeb'},
+                    {date: '1780 CE', event: 'Current structure built by Ahilyabai Holkar'},
+                    {date: '1983-2021', event: 'Major renovations and expansion projects'}
+                ],
+                architecture: 'The temple follows the Nagara style of architecture, characterized by its towering shikhara (spire). The current structure has a gold-plated dome and spire, which gives it the name "Golden Temple". The temple complex includes several smaller shrines dedicated to various deities.',
+                significance: 'Kashi Vishwanath Temple is considered one of the most important Jyotirlingas, representing the supreme reality of Lord Shiva. It is believed that Lord Shiva himself whispers the mantra of salvation into the ears of people who die naturally in Kashi.',
+                visitingInfo: {
+                    darshanTimings: '4:00 AM to 11:00 PM',
+                    aartiTimings: 'Mangala Aarti: 3:00-4:00 AM, Bhog Aarti: 11:15 AM-12:20 PM, Sapta Rishi Aarti: 7:00-8:15 PM, Shringar/Bhog Aarti: 9:00-10:15 PM, Shayana Aarti: 10:30-11:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional Indian attire preferred',
+                    specialInstructions: 'Mobile phones and electronic devices are not allowed inside the temple'
+                }
             },
             'somnath': {
                 title: 'Somnath Temple',
-                image: 'Images/image copy.png',
+                image: 'https://c9admin.cottage9.com/uploads/5839/somnath-temple.jpg',
                 images: [
                     {src: 'https://c9admin.cottage9.com/uploads/5839/somnath-temple.jpg', caption: 'Somnath Temple'},
                     {src: 'https://heritage.home.blog/wp-content/uploads/2019/12/photo_20190929_193325.jpg', caption: 'Temple at Night'},
                     {src: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/db/85/e4/somnath-temple-view-from.jpg', caption: 'Seaside View'}
                 ],
-                description: 'The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas of Lord Shiva, rebuilt several times throughout history.',
+                description: 'The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas of Lord Shiva, rebuilt several times throughout history. It stands as a symbol of resilience and faith.',
+                detailedDescription: 'The Somnath Temple, located in Prabhas Patan near Veraval in Gujarat, is one of the most sacred pilgrimage sites for Hindus. It is believed to be the first among the twelve Jyotirlinga shrines of Shiva. The temple has been destroyed and rebuilt several times throughout history, with the current structure completed in 1951.',
                 facts: [
-                    'Location: Veraval, Gujarat',
-                    'Deity: Lord Shiva',
-                    'Architecture: Chalukya style',
-                    'Built: Rebuilt in 1951',
-                    'Significance: First Jyotirlinga'
-                ]
+                    {label: 'Location', value: 'Veraval, Gujarat'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Architecture', value: 'Chalukya style'},
+                    {label: 'Built', value: 'Rebuilt in 1951'},
+                    {label: 'Significance', value: 'First Jyotirlinga'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Kartik Purnima'},
+                    {label: 'Temple Timings', value: '6:00 AM to 9:00 PM'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Original temple believed to be built by Moon God (Soma)'},
+                    {date: '1024 CE', event: 'Destroyed by Mahmud of Ghazni'},
+                    {date: '1169 CE', event: 'Rebuilt by Kumarapala'},
+                    {date: '1297 CE', event: 'Destroyed by Alauddin Khilji\'s army'},
+                    {date: '1706 CE', event: 'Destroyed by Mughal Emperor Aurangzeb'},
+                    {date: '1951 CE', event: 'Rebuilt under initiative of Sardar Vallabhbhai Patel'}
+                ],
+                architecture: 'The present temple is built in the Chalukya style of architecture and reflects the skill of the Sompura Salats, Gujarat\'s master masons. The temple\'s shikhara (main spire) is 155 feet tall, and it has a kalasha at the top that weighs 10 tons.',
+                significance: 'Somnath means "Lord of the Moon" and it is believed that the moon god built this temple in gold. The temple is mentioned in ancient texts like the Rig Veda and is considered a highly sacred site where Lord Shiva appeared as a fiery column of light.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 7:00 AM, Rajbhog Aarti: 12:00 PM, Evening Aarti: 7:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Photography is restricted in certain areas'
+                }
             },
             'kedarnath': {
                 title: 'Kedarnath Temple',
-                image: 'Images/image copy 2 - Copy.png',
+                image: 'https://nomadsaikat.com/wp-content/uploads/2024/03/Best-time-to-visit-Kedarnath.webp',
                 images: [
                     {src: 'https://nomadsaikat.com/wp-content/uploads/2024/03/Best-time-to-visit-Kedarnath.webp', caption: 'Kedarnath Temple'},
                     {src: 'https://cdn.magicdecor.in/com/2024/01/30181307/Kedarnath-Temple-in-Winter-Wallpaper-for-Wall.jpg', caption: 'Temple in Winter'},
                     {src: 'https://www.chardham-pilgrimage-tour.com/assets/images/chardham-banner2.webp', caption: 'Panoramic View'}
                 ],
                 description: 'Located in the Himalayas, Kedarnath Temple is one of the twelve Jyotirlingas and a vital part of the Char Dham Yatra.',
+                detailedDescription: 'Kedarnath Temple is a Hindu temple dedicated to Lord Shiva, located on the Garhwal Himalayan range near the Mandakini river in Uttarakhand. Due to extreme weather conditions, the temple is open to the general public only between April (Akshaya Tritiya) and November (Kartik Purnima). During the winters, the deities from Kedarnath temple are carried down to Ukhimath.',
                 facts: [
-                    'Location: Rudraprayag, Uttarakhand',
-                    'Deity: Lord Shiva',
-                    'Built: 8th Century',
-                    'Style: Nagara architecture',
-                    'Altitude: 3,583 meters above sea level'
-                ]
+                    {label: 'Location', value: 'Rudraprayag, Uttarakhand'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Built', value: '8th Century'},
+                    {label: 'Style', value: 'Nagara architecture'},
+                    {label: 'Altitude', value: '3,583 meters above sea level'},
+                    {label: 'Best Time to Visit', value: 'May to June, September to October'},
+                    {label: 'Festivals', value: 'Maha Shivaratri'},
+                    {label: 'Opening Months', value: 'April to November'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be built by the Pandavas'},
+                    {date: '8th Century', event: 'Adi Shankaracharya is credited with reviving the temple'},
+                    {date: '2013', event: 'Severely affected by flash floods, but the main temple survived'}
+                ],
+                architecture: 'The temple is built from extremely large, heavy and evenly cut grey slabs of stones. It is astonishing how these slabs were moved and assembled at this high altitude. The temple has a Garbha Griha for worship and a Mandap for assemblies of pilgrims and visitors.',
+                significance: 'Kedarnath is one of the four sites in India\'s Chota Char Dham pilgrimage and is the highest among the 12 Jyotirlingas. It is believed that worshipping Lord Shiva here frees one from the cycle of birth and death.',
+                visitingInfo: {
+                    darshanTimings: '4:00 AM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 5:30 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Warm clothing essential',
+                    specialInstructions: 'Trek of 16 km from Gaurikund, ponies and palanquins available'
+                }
             },
             'ramanathaswamy': {
                 title: 'Ramanathaswamy Temple',
-                image: 'Images/image copy 3.png',
+                image: 'https://www.daiwikhotels.com/wp-content/uploads/2024/07/newone.jpg',
                 images: [
                     {src: 'https://www.daiwikhotels.com/wp-content/uploads/2024/07/newone.jpg', caption: 'Ramanathaswamy Temple'},
                     {src: 'https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/The-Ramanathaswamy-Temple.jpg?itok=gBZatnn6', caption: 'Long Corridor'},
                     {src: 'https://www.tirthayatra.org/wp-content/uploads/2025/03/Rameswaram-_-Pilgrim-Centres-1.png', caption: 'Temple Complex'}
                 ],
                 description: 'Located on Rameswaram Island, this temple is dedicated to Lord Shiva and is one of the Char Dhams.',
+                detailedDescription: 'Ramanathaswamy Temple is a Hindu temple dedicated to Lord Shiva, located on Rameswaram island in Tamil Nadu. It is one of the twelve Jyotirlinga temples and is one of the four Char Dham pilgrimage sites. The temple is famous for its long corridors and 22 theerthams (holy water bodies).',
                 facts: [
-                    'Location: Rameswaram, Tamil Nadu',
-                    'Deity: Lord Shiva',
-                    'Famous for: Longest temple corridor in the world',
-                    'Built: 12th Century CE'
-                ]
+                    {label: 'Location', value: 'Rameswaram, Tamil Nadu'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Famous for', value: 'Longest temple corridor in the world'},
+                    {label: 'Built', value: '12th Century CE'},
+                    {label: 'Corridor Length', value: '1,200 meters'},
+                    {label: 'Best Time to Visit', value: 'October to April'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Thirukalyanam'},
+                    {label: 'Temple Timings', value: '5:00 AM to 1:00 PM, 3:00 PM to 9:00 PM'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be established by Lord Rama'},
+                    {date: '12th Century', event: 'Major contributions by Pandya Dynasty'},
+                    {date: '17th Century', event: 'Significant additions by Setupati rulers'}
+                ],
+                architecture: 'The temple is renowned for its magnificent corridors (praharams) with massive sculptured pillars on either side. The third corridor is the longest one in the world. The temple has a 54-meter tall gopuram (tower) and contains 22 holy water bodies where pilgrims take bath.',
+                significance: 'According to Hindu mythology, this is the place where Lord Rama worshipped Shiva to absolve himself of the sin of killing Ravana, a Brahmin. It is believed that a pilgrimage to Varanasi is incomplete without a pilgrimage to Rameswaram.',
+                visitingInfo: {
+                    darshanTimings: '5:00 AM to 1:00 PM, 3:00 PM to 9:00 PM',
+                    aartiTimings: 'Palliyarai Deepa Aradhana: 5:00 AM, Spadigalinga Deepa Aradhana: 5:10 AM, Thiruvananthal Deepa Aradhana: 5:45 AM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Bathing in the 22 theerthams is an important ritual'
+                }
             },
             'badrinath': {
                 title: 'Badrinath Temple',
-                image: 'Images/image copy 4.png',
+                image: 'https://www.peakadventuretour.com/assets/imgs/badrinath-temple-bnr.webp',
                 images: [
                     {src: 'https://www.peakadventuretour.com/assets/imgs/badrinath-temple-bnr.webp', caption: 'Badrinath Temple'},
                     {src: 'https://s7ap1.scene7.com/is/image/incredibleindia/badrinath-temple-badrinath-uttarakhand-2-attr-hero?qlt=82&ts=1726646229028', caption: 'Temple Entrance'},
                     {src: 'https://blog.firstrek.in/wp-content/uploads/2024/02/Badrinath-tourism-with-Firstrek.jpg', caption: 'Scenic Location'}
                 ],
                 description: 'Dedicated to Lord Vishnu, Badrinath Temple is one of the Char Dham and Chota Char Dham pilgrimage sites.',
+                detailedDescription: 'Badrinath Temple, also known as Badrinarayan Temple, is a Hindu temple dedicated to Lord Vishnu. It is situated in the town of Badrinath in Uttarakhand. The temple is one of the four Char Dham and Chota Char Dham pilgrimage sites and is one of the 108 Divya Desams dedicated to Vishnu.',
                 facts: [
-                    'Location: Chamoli, Uttarakhand',
-                    'Deity: Lord Vishnu',
-                    'Built: 9th Century CE',
-                    'Significance: Part of Char Dham Yatra'
-                ]
+                    {label: 'Location', value: 'Chamoli, Uttarakhand'},
+                    {label: 'Deity', value: 'Lord Vishnu'},
+                    {label: 'Built', value: '9th Century CE'},
+                    {label: 'Significance', value: 'Part of Char Dham Yatra'},
+                    {label: 'Altitude', value: '3,133 meters'},
+                    {label: 'Best Time to Visit', value: 'May to June, September to October'},
+                    {label: 'Festivals', value: 'Mata Murti Ka Mela, Badri-Kedar Festival'},
+                    {label: 'Opening Months', value: 'April/May to October/November'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Originally established by Adi Shankaracharya'},
+                    {date: '9th Century', event: 'Reconstructed by the Garhwal kings'},
+                    {date: '16th Century', event: 'Idol of Lord Badrinath recovered by Adi Shankaracharya from Narad Kund'}
+                ],
+                architecture: 'The temple is built in the traditional North Indian style with a brightly painted facade. The main entrance is colorful and imposing. The sanctum houses a 1-meter tall black stone idol of Lord Badrinarayan, which is made of Shaligram stone.',
+                significance: 'Badrinath is considered the holiest of the four Char Dhams. It is believed that Lord Vishnu meditated here for thousands of years. The temple is mentioned in several ancient Hindu scriptures including the Vishnu Purana and Skanda Purana.',
+                visitingInfo: {
+                    darshanTimings: '4:30 AM to 1:00 PM, 4:00 PM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 7:30 AM, Evening Aarti: 8:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Warm clothing essential',
+                    specialInstructions: 'The temple remains closed during winter months (November to April)'
+                }
             },
             'haridwar': {
                 title: 'Haridwar Temple',
-                image: 'Images/image copy 5.png',
+                image: 'https://s7ap1.scene7.com/is/image/incredibleindia/har-ki-pauri-haridwar-uttarakhand-2-attr-hero?qlt=82&ts=1726645843640',
                 images: [
                     {src: 'https://s7ap1.scene7.com/is/image/incredibleindia/har-ki-pauri-haridwar-uttarakhand-2-attr-hero?qlt=82&ts=1726645843640', caption: 'Har Ki Pauri'},
                     {src: 'https://utsav.gov.in/public/uploads/darshan_picture/darshan_93/16615119891987332780.jpeg', caption: 'Ganga Aarti'},
                     {src: 'https://staybook.in/_next/image?url=https%3A%2F%2Fimages.staybook.in%2Fthings-to-do%2Fspiritual-haridwar-and-rishikesh-day-tour%2F0.webp&w=1080&q=75', caption: 'Temple View'}
                 ],
                 description: 'Haridwar is one of the seven holiest places in Hinduism, located on the banks of the River Ganga.',
+                detailedDescription: 'Haridwar, meaning "Gateway to God", is an ancient city and important Hindu pilgrimage site in Uttarakhand. It is one of the seven holiest places in Hinduism, where the River Ganga exits the Himalayan foothills. The city is famous for the Kumbh Mela, which is held every 12 years.',
                 facts: [
-                    'Location: Uttarakhand, India',
-                    'Famous for: Har Ki Pauri Ghat and Ganga Aarti',
-                    'Significance: Entry point to Char Dham Yatra'
-                ]
+                    {label: 'Location', value: 'Uttarakhand, India'},
+                    {label: 'Famous for', value: 'Har Ki Pauri Ghat and Ganga Aarti'},
+                    {label: 'Significance', value: 'Entry point to Char Dham Yatra'},
+                    {label: 'Best Time to Visit', value: 'February to April, August to October'},
+                    {label: 'Festivals', value: 'Kumbh Mela, Ardh Kumbh Mela, Kanwar Mela'},
+                    {label: 'Main Attractions', value: 'Har Ki Pauri, Mansa Devi Temple, Chandi Devi Temple'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures as Mayapuri'},
+                    {date: 'Medieval Period', event: 'Important center for learning and spirituality'},
+                    {date: 'Modern Era', event: 'Developed as a major pilgrimage center'}
+                ],
+                architecture: 'Haridwar features a mix of ancient and modern temple architecture. The ghats (riverfront steps) are the main architectural feature, with Har Ki Pauri being the most famous. The city has numerous temples with traditional North Indian architectural styles.',
+                significance: 'Haridwar is considered one of the seven holiest places in Hinduism. It is believed that a dip in the Ganga at Haridwar washes away sins and helps attain salvation. The city is also the starting point for the Char Dham Yatra.',
+                visitingInfo: {
+                    darshanTimings: 'Temples generally open from 5:00 AM to 9:00 PM',
+                    aartiTimings: 'Ganga Aarti at Har Ki Pauri: 6:00 PM (Summer), 5:30 PM (Winter)',
+                    entryFee: 'Free for most temples',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Be prepared for large crowds, especially during festivals'
+                }
             },
             'adiyogi': {
                 title: 'Adiyogi Temple',
-                image: 'Images/image copy 6.png',
+                image: 'https://www.ishafoundation.org/static/images/adiyogi/adiyogi-sculpture.jpg',
                 images: [
-                    {src: 'Images/image copy 6.png', caption: 'Main Statue'},
-                    {src: 'Images/image copy 6.png', caption: 'Night View'},
-                    {src: 'Images/image copy 6.png', caption: 'Temple Grounds'}
+                    {src: 'https://www.ishafoundation.org/static/images/adiyogi/adiyogi-sculpture.jpg', caption: 'Main Statue'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/adiyogi1_20190219140549.jpg', caption: 'Night View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/800px-Adiyogi_Divya_KS_20190219140606.jpg', caption: 'Temple Grounds'}
                 ],
                 description: 'Adiyogi Shiva statue at Isha Yoga Center, Coimbatore, represents the first yogi and the origin of yoga.',
+                detailedDescription: 'The Adiyogi Shiva statue is a 112-foot tall statue of Shiva at the Isha Yoga Center in Coimbatore, Tamil Nadu. It was inaugurated in 2017 and is recognized by the Guinness World Records as the "Largest Bust Sculpture" in the world. The statue symbolizes Shiva as the first yogi and the origin of yoga.',
                 facts: [
-                    'Location: Coimbatore, Tamil Nadu',
-                    'Height: 112 feet',
-                    'Built: 2017 by Isha Foundation',
-                    'Significance: Symbol of yoga and meditation'
-                ]
+                    {label: 'Location', value: 'Coimbatore, Tamil Nadu'},
+                    {label: 'Height', value: '112 feet'},
+                    {label: 'Built', value: '2017 by Isha Foundation'},
+                    {label: 'Significance', value: 'Symbol of yoga and meditation'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Events', value: 'Yoga programs, Mahashivratri celebrations'}
+                ],
+                history: [
+                    {date: '2017', event: 'Inauguration of Adiyogi statue by Prime Minister Narendra Modi'},
+                    {date: '2018', event: 'Awarded Guinness World Record for largest bust sculpture'}
+                ],
+                architecture: 'The Adiyogi statue is made of steel and weighs around 500 tonnes. It depicts Shiva as the first yogi, with his hair flowing and eyes closed in meditation. The statue faces south, representing Shiva as Dakshinamurthy, the first guru.',
+                significance: 'Adiyogi represents Shiva as the originator of yoga and the first guru. The statue is designed to inspire people towards inner well-being through yoga and meditation. It serves as a center for various yoga programs and spiritual activities.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 8:00 PM',
+                    aartiTimings: 'Linga Consecration: 6:20 AM, 6:20 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Photography allowed, but respect the spiritual atmosphere'
+                }
             },
             'omkareshwar': {
                 title: 'Omkareshwar Temple',
-                image: 'Images/image copy 7.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/640px-Omkareshwar_20190219140845.jpg',
                 images: [
-                    {src: 'Images/image copy 7.png', caption: 'Omkareshwar Temple'},
-                    {src: 'Images/image copy 7.png', caption: 'Island View'},
-                    {src: 'Images/image copy 7.png', caption: 'Temple Complex'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/640px-Omkareshwar_20190219140845.jpg', caption: 'Omkareshwar Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Omkareshwar2_20190219140858.jpg', caption: 'Island View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Omkareshwar3_20190219140911.jpg', caption: 'Temple Complex'}
                 ],
                 description: 'Omkareshwar Temple is dedicated to Lord Shiva and is one of the twelve Jyotirlingas located on the island of Mandhata.',
+                detailedDescription: 'Omkareshwar Temple is a Hindu temple dedicated to Lord Shiva, located on the island of Mandhata in the Narmada River in Madhya Pradesh. It is one of the twelve Jyotirlingas and is shaped like the Hindu Om symbol, which gives it its name.',
                 facts: [
-                    'Location: Khandwa, Madhya Pradesh',
-                    'Deity: Lord Shiva',
-                    'Built: Ancient era',
-                    'Significance: One of the 12 Jyotirlingas'
-                ]
+                    {label: 'Location', value: 'Khandwa, Madhya Pradesh'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Built', value: 'Ancient era'},
+                    {label: 'Significance', value: 'One of the 12 Jyotirlingas'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Narmada Jayanti'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures'},
+                    {date: 'Medieval Period', event: 'Renovated by various dynasties'}
+                ],
+                architecture: 'The temple features traditional Hindu architecture with intricate carvings. The main shrine houses the Jyotirlinga and there are several smaller shrines within the complex.',
+                significance: 'Omkareshwar is one of the 12 Jyotirlingas, which are considered the most sacred abodes of Shiva. The island itself is considered sacred due to its natural formation in the shape of Om.',
+                visitingInfo: {
+                    darshanTimings: '5:00 AM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 5:30 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Boat ride required to reach the island temple'
+                }
             },
             'kangra': {
                 title: 'Kangra Temple',
-                image: 'Images/image copy 8.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple_20190219141023.jpg',
                 images: [
-                    {src: 'Images/image copy 8.png', caption: 'Brajeshwari Devi Temple'},
-                    {src: 'Images/image copy 8.png', caption: 'Temple Entrance'},
-                    {src: 'Images/image copy 8.png', caption: 'Mountain View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple_20190219141023.jpg', caption: 'Brajeshwari Devi Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple2_20190219141036.jpg', caption: 'Temple Entrance'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple3_20190219141049.jpg', caption: 'Mountain View'}
                 ],
                 description: 'The Brajeshwari Devi Temple in Kangra is dedicated to Goddess Vajreshwari and is a Shakti Peetha.',
+                detailedDescription: 'The Brajeshwari Devi Temple, also known as Kangra Devi Temple, is a Hindu temple dedicated to Goddess Vajreshwari, located in Kangra, Himachal Pradesh. It is one of the 51 Shakti Peethas and is highly revered by devotees.',
                 facts: [
-                    'Location: Kangra, Himachal Pradesh',
-                    'Deity: Goddess Vajreshwari',
-                    'Significance: One of the 51 Shakti Peethas'
-                ]
+                    {label: 'Location', value: 'Kangra, Himachal Pradesh'},
+                    {label: 'Deity', value: 'Goddess Vajreshwari'},
+                    {label: 'Significance', value: 'One of the 51 Shakti Peethas'},
+                    {label: 'Best Time to Visit', value: 'March to June, September to November'},
+                    {label: 'Festivals', value: 'Navratri, Vasant Panchami'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be a Shakti Peetha where Sati\'s right breast fell'},
+                    {date: '1905', event: 'Severely damaged in Kangra earthquake'},
+                    {date: 'Modern Era', event: 'Rebuilt and remains an important pilgrimage site'}
+                ],
+                architecture: 'The temple features traditional Himalayan architecture with intricate wood carvings. The main shrine houses the idol of Goddess Vajreshwari.',
+                significance: 'As a Shakti Peetha, the temple is believed to be where parts of Sati\'s body fell when Shiva carried her corpse. It is considered highly powerful for fulfilling wishes.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 6:30 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Located in the Kangra Valley, surrounded by beautiful scenery'
+                }
             },
             'vaishno-devi': {
                 title: 'Vaishno Devi Temple',
-                image: 'Images/image copy 9.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi_20190219141212.jpg',
                 images: [
-                    {src: 'Images/image copy 9.png', caption: 'Vaishno Devi Temple'},
-                    {src: 'Images/image copy 9.png', caption: 'Cave Entrance'},
-                    {src: 'Images/image copy 9.png', caption: 'Mountain Trek'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi_20190219141212.jpg', caption: 'Vaishno Devi Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi2_20190219141225.jpg', caption: 'Cave Entrance'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi3_20190219141238.jpg', caption: 'Mountain Trek'}
                 ],
                 description: 'One of the most visited pilgrimage centers, the Vaishno Devi Temple is dedicated to Goddess Vaishnavi.',
+                detailedDescription: 'The Vaishno Devi Temple is a Hindu temple dedicated to the Hindu Goddess Mahalakshmi, located in the Trikuta Mountains in Jammu and Kashmir. It is one of the most visited pilgrimage sites in India, with millions of devotees visiting each year.',
                 facts: [
-                    'Location: Trikuta Hills, Jammu & Kashmir',
-                    'Deity: Goddess Vaishno Devi',
-                    'Altitude: 5,200 feet',
-                    'Significance: One of the 108 Shakti Peethas'
-                ]
+                    {label: 'Location', value: 'Trikuta Hills, Jammu & Kashmir'},
+                    {label: 'Deity', value: 'Goddess Vaishno Devi'},
+                    {label: 'Altitude', value: '5,200 feet'},
+                    {label: 'Significance', value: 'One of the 108 Shakti Peethas'},
+                    {label: 'Best Time to Visit', value: 'March to October'},
+                    {label: 'Trek Distance', value: '13 km from Katra'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures'},
+                    {date: 'Modern Era', event: 'Developed into a major pilgrimage center with modern facilities'}
+                ],
+                architecture: 'The temple is located inside a cave in the Trikuta Mountains. The natural cave formation is the main shrine, with the three pindis (rock formations) representing the three forms of the Goddess.',
+                significance: 'Vaishno Devi is believed to be a wish-fulfilling goddess. The pilgrimage to her shrine is considered highly auspicious and is believed to be completed only when the devotee visits the Bhairon Temple after the main darshan.',
+                visitingInfo: {
+                    darshanTimings: '24 hours (with brief closures for cleaning)',
+                    aartiTimings: 'Morning Aarti: 6:30 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Comfortable clothing for trekking',
+                    specialInstructions: '13 km trek from Katra, ponies and palanquins available'
+                }
             },
             'jwala-devi': {
                 title: 'Jwala Devi Temple',
-                image: 'Images/image copy 10.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi_20190219141401.jpg',
                 images: [
-                    {src: 'Images/image copy 10.png', caption: 'Jwala Devi Temple'},
-                    {src: 'Images/image copy 10.png', caption: 'Eternal Flame'},
-                    {src: 'Images/image copy 10.png', caption: 'Temple Interior'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi_20190219141401.jpg', caption: 'Jwala Devi Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi2_20190219141414.jpg', caption: 'Eternal Flame'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi3_20190219141427.jpg', caption: 'Temple Interior'}
                 ],
                 description: 'Famous for its eternal flame, the Jwala Devi Temple is dedicated to Goddess Jwalamukhi.',
+                detailedDescription: 'The Jwala Devi Temple is a Hindu temple dedicated to Goddess Jwalamukhi, located in Kangra, Himachal Pradesh. It is famous for the eternal flames that burn continuously from the rock fissures, which are worshipped as manifestations of the Goddess.',
                 facts: [
-                    'Location: Kangra, Himachal Pradesh',
-                    'Deity: Goddess Jwalamukhi',
-                    'Significance: Eternal flame represents the goddess'
-                ]
+                    {label: 'Location', value: 'Kangra, Himachal Pradesh'},
+                    {label: 'Deity', value: 'Goddess Jwalamukhi'},
+                    {label: 'Significance', value: 'Eternal flame represents the goddess'},
+                    {label: 'Best Time to Visit', value: 'March to June, September to November'},
+                    {label: 'Festivals', value: 'Navratri, Chaitra and Ashwin periods'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures including Mahabharata'},
+                    {date: 'Modern Era', event: 'Visited by many historical figures including Mughal emperors'}
+                ],
+                architecture: 'The temple features traditional Himalayan architecture. The main shrine has a square tank where the eternal flames burn from rock fissures. There is no idol, as the flames themselves are worshipped.',
+                significance: 'Jwala Devi is one of the 51 Shakti Peethas. It is believed that Sati\'s tongue fell here. The eternal flames are considered a natural miracle and are worshipped as the Goddess herself.',
+                visitingInfo: {
+                    darshanTimings: '5:00 AM to 10:00 PM',
+                    aartiTimings: 'Morning Aarti: 6:00 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'The eternal flames are a natural phenomenon, no photography of flames allowed'
+                }
             },
             'ram-mandir': {
                 title: 'Ram Mandir',
-                image: 'Images/image copy 11.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir_20190219141603.jpg',
                 images: [
-                    {src: 'Images/image copy 11.png', caption: 'Ram Mandir'},
-                    {src: 'Images/image copy 11.png', caption: 'Construction View'},
-                    {src: 'Images/image copy 11.png', caption: 'Architectural Detail'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir_20190219141603.jpg', caption: 'Ram Mandir'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir2_20190219141616.jpg', caption: 'Construction View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir3_20190219141629.jpg', caption: 'Architectural Detail'}
                 ],
                 description: 'The Ram Mandir in Ayodhya is dedicated to Lord Rama and symbolizes the return of dharma.',
+                detailedDescription: 'The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama. The temple is dedicated to Lord Rama and is being built by the Shri Ram Janmabhoomi Teerth Kshetra trust.',
                 facts: [
-                    'Location: Ayodhya, Uttar Pradesh',
-                    'Deity: Lord Rama',
-                    'Completed: 2024',
-                    'Architecture: Nagara style'
-                ]
+                    {label: 'Location', value: 'Ayodhya, Uttar Pradesh'},
+                    {label: 'Deity', value: 'Lord Rama'},
+                    {label: 'Completed', value: '2024'},
+                    {label: 'Architecture', value: 'Nagara style'},
+                    {label: 'Significance', value: 'Birthplace of Lord Rama'},
+                    {label: 'Area', value: '2.7 acres'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be the birthplace of Lord Rama'},
+                    {date: '1528', event: 'Babri Masjid built on the site'},
+                    {date: '1992', event: 'Babri Masjid demolished'},
+                    {date: '2019', event: 'Supreme Court verdict allowing temple construction'},
+                    {date: '2020', event: 'Bhoomi Pujan ceremony performed'},
+                    {date: '2024', event: 'Temple consecration ceremony'}
+                ],
+                architecture: 'The temple is being built in the Nagara style of architecture, which is characteristic of North Indian temples. It will have a grand shikhara (spire), multiple mandapas (halls), and intricate carvings depicting scenes from the Ramayana.',
+                significance: 'The Ram Mandir holds immense religious significance for Hindus as it marks the birthplace of Lord Rama, the seventh avatar of Vishnu. The temple symbolizes the restoration of Hindu cultural and religious heritage.',
+                visitingInfo: {
+                    darshanTimings: 'To be announced',
+                    aartiTimings: 'To be announced',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional Indian attire preferred',
+                    specialInstructions: 'Check official website for latest visiting guidelines'
+                }
             },
             'ujjain': {
                 title: 'Ujjain Temple',
-                image: 'Images/image copy 12.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple_20190219141805.jpg',
                 images: [
-                    {src: 'Images/image copy 12.png', caption: 'Mahakaleshwar Temple'},
-                    {src: 'Images/image copy 12.png', caption: 'Bhasma Aarti'},
-                    {src: 'Images/image copy 12.png', caption: 'Temple Complex'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple_20190219141805.jpg', caption: 'Mahakaleshwar Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple2_20190219141818.jpg', caption: 'Bhasma Aarti'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple3_20190219141831.jpg', caption: 'Temple Complex'}
                 ],
                 description: 'Mahakaleshwar Temple in Ujjain is one of the twelve Jyotirlingas of Lord Shiva.',
+                detailedDescription: 'The Mahakaleshwar Temple in Ujjain, Madhya Pradesh, is one of the twelve Jyotirlingas dedicated to Lord Shiva. The temple is famous for its Bhasma Aarti, where the Shiva Linga is adorned with ash from funeral pyres.',
                 facts: [
-                    'Location: Ujjain, Madhya Pradesh',
-                    'Deity: Lord Shiva (Mahakal)',
-                    'Significance: Jyotirlinga representing time (Kala)'
-                ]
+                    {label: 'Location', value: 'Ujjain, Madhya Pradesh'},
+                    {label: 'Deity', value: 'Lord Shiva (Mahakal)'},
+                    {label: 'Significance', value: 'Jyotirlinga representing time (Kala)'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Nag Panchami'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in ancient Hindu texts'},
+                    {date: '1235', event: 'Destroyed by Iltutmish'},
+                    {date: '18th Century', event: 'Rebuilt by Maratha general Ranoji Shinde'}
+                ],
+                architecture: 'The temple features a five-story structure with intricate Maratha-style architecture. The main shrine is located underground and houses the Mahakaleshwar Jyotirlinga.',
+                significance: 'Mahakaleshwar is one of the 12 Jyotirlingas and is considered the lord of time. The temple is particularly famous for its Bhasma Aarti, which is performed early in the morning using sacred ashes.',
+                visitingInfo: {
+                    darshanTimings: '4:00 AM to 11:00 PM',
+                    aartiTimings: 'Bhasma Aarti: 4:00 AM, Other Aartis: 7:00 AM, 10:00 AM, 5:00 PM, 7:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Bhasma Aarti requires special passes, apply in advance'
+                }
             },
             'vrindavan-chandrodaya': {
                 title: 'Vrindavan Chandrodaya Temple',
-                image: 'Images/image copy 13.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya_20190219142007.jpg',
                 images: [
-                    {src: 'Images/image copy 13.png', caption: 'Vrindavan Temple'},
-                    {src: 'Images/image copy 13.png', caption: 'Construction Progress'},
-                    {src: 'Images/image copy 13.png', caption: 'Architectural Design'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya_20190219142007.jpg', caption: 'Vrindavan Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya2_20190219142020.jpg', caption: 'Construction Progress'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya3_20190219142033.jpg', caption: 'Architectural Design'}
                 ],
                 description: 'The tallest temple in the world dedicated to Lord Krishna, located in Vrindavan.',
+                detailedDescription: 'The Vrindavan Chandrodaya Temple is a temple under construction in Vrindavan, Uttar Pradesh, by ISKCON. When completed, it will be the tallest religious monument in the world, dedicated to Lord Krishna and his pastimes in Vrindavan.',
                 facts: [
-                    'Location: Vrindavan, Uttar Pradesh',
-                    'Deity: Lord Krishna',
-                    'Height: 700 feet',
-                    'Under construction by ISKCON'
-                ]
+                    {label: 'Location', value: 'Vrindavan, Uttar Pradesh'},
+                    {label: 'Deity', value: 'Lord Krishna'},
+                    {label: 'Height', value: '700 feet'},
+                    {label: 'Under construction by', value: 'ISKCON'},
+                    {label: 'Expected Completion', value: '2026'},
+                    {label: 'Features', value: 'Elevator ride to top, cultural exhibits'}
+                ],
+                history: [
+                    {date: '2014', event: 'Foundation stone laid'},
+                    {date: '2016', event: 'Construction began'},
+                    {date: 'Ongoing', event: 'Construction in progress'}
+                ],
+                architecture: 'The temple is designed as a modern architectural marvel combining traditional temple elements with contemporary design. It will feature a grand elevator that takes visitors to the top for panoramic views of Vrindavan.',
+                significance: 'The temple aims to showcase the teachings and pastimes of Lord Krishna to the modern world. It will serve as a major pilgrimage and tourist attraction, promoting Krishna consciousness globally.',
+                visitingInfo: {
+                    darshanTimings: 'To be announced after completion',
+                    aartiTimings: 'To be announced after completion',
+                    entryFee: 'To be announced',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Check official website for construction progress and visiting details'
+                }
             },
             'meenakshi-amman': {
                 title: 'Meenakshi Amman Temple',
-                image: 'Images/image copy 16.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman_20190219142209.jpg',
                 images: [
-                    {src: 'Images/image copy 16.png', caption: 'Meenakshi Temple'},
-                    {src: 'Images/image copy 16.png', caption: 'Gopuram View'},
-                    {src: 'Images/image copy 16.png', caption: 'Temple Corridor'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman_20190219142209.jpg', caption: 'Meenakshi Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman2_20190219142222.jpg', caption: 'Gopuram View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman3_20190219142235.jpg', caption: 'Temple Corridor'}
                 ],
                 description: 'Located in Madurai, this temple is dedicated to Goddess Meenakshi and Lord Sundareswarar.',
+                detailedDescription: 'The Meenakshi Amman Temple is a historic Hindu temple located on the southern bank of the Vaigai River in Madurai, Tamil Nadu. It is dedicated to Meenakshi, a form of Parvati, and her consort Sundareswarar, a form of Shiva.',
                 facts: [
-                    'Location: Madurai, Tamil Nadu',
-                    'Deities: Goddess Meenakshi & Lord Shiva',
-                    'Built: 12th-17th Century',
-                    'Famous for: 14 Gopurams (towers)'
-                ]
+                    {label: 'Location', value: 'Madurai, Tamil Nadu'},
+                    {label: 'Deities', value: 'Goddess Meenakshi & Lord Shiva'},
+                    {label: 'Built', value: '12th-17th Century'},
+                    {label: 'Famous for', value: '14 Gopurams (towers)'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Meenakshi Tirukalyanam, Chithirai Festival'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Original temple believed to be built by Indra'},
+                    {date: '14th Century', event: 'Destroyed by Muslim invader Malik Kafur'},
+                    {date: '16th-17th Century', event: 'Rebuilt by Nayak rulers'}
+                ],
+                architecture: 'The temple complex is famous for its 14 gopurams (gateway towers) ranging from 45-50 meters in height. The southern gopuram is the tallest at 51.9 meters. The temple has approximately 33,000 sculptures.',
+                significance: 'The Meenakshi Temple is one of the most important Shiva temples in South India and a major pilgrimage site. The annual Meenakshi Tirukalyanam festival attracts over a million visitors.',
+                visitingInfo: {
+                    darshanTimings: '5:00 AM to 12:30 PM, 4:00 PM to 9:30 PM',
+                    aartiTimings: 'Morning Aarti: 5:00 AM, Evening Aarti: 5:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Non-Hindus allowed only up to certain points in the temple'
+                }
             },
             'golden-temple': {
                 title: 'Golden Temple',
-                image: 'Images/image copy 17.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple_20190219142411.jpg',
                 images: [
-                    {src: 'Images/image copy 17.png', caption: 'Golden Temple'},
-                    {src: 'Images/image copy 17.png', caption: 'Reflection in Water'},
-                    {src: 'Images/image copy 17.png', caption: 'Night View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple_20190219142411.jpg', caption: 'Golden Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple2_20190219142424.jpg', caption: 'Reflection in Water'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple3_20190219142437.jpg', caption: 'Night View'}
                 ],
                 description: 'The Golden Temple, also known as Harmandir Sahib, is the holiest gurdwara of Sikhism located in Amritsar.',
+                detailedDescription: 'The Golden Temple, officially known as Harmandir Sahib, is the holiest Gurdwara and the most important pilgrimage site of Sikhism. Located in Amritsar, Punjab, it is known for its stunning gold-plated exterior and serene sarovar (holy tank).',
                 facts: [
-                    'Location: Amritsar, Punjab',
-                    'Religion: Sikhism',
-                    'Built: 1589',
-                    'Significance: Central shrine of Sikh faith'
-                ]
+                    {label: 'Location', value: 'Amritsar, Punjab'},
+                    {label: 'Religion', value: 'Sikhism'},
+                    {label: 'Built', value: '1589'},
+                    {label: 'Significance', value: 'Central shrine of Sikh faith'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Architecture', value: 'Combination of Hindu and Islamic styles'}
+                ],
+                history: [
+                    {date: '1577', event: 'Land donated by Mughal Emperor Akbar'},
+                    {date: '1589', event: 'Foundation laid by Guru Ram Das'},
+                    {date: '1604', event: 'Guru Granth Sahib installed by Guru Arjan'},
+                    {date: '19th Century', event: 'Maharaja Ranjit Singh gold-plated the exterior'}
+                ],
+                architecture: 'The temple features a unique blend of Hindu and Islamic architectural styles. The main structure is gold-plated and sits in the center of a sarovar (holy tank). It has four entrances, symbolizing openness to all people.',
+                significance: 'The Golden Temple is the spiritual and cultural center of Sikhism. It symbolizes equality, humility, and service, with the community kitchen (langar) serving free meals to all visitors regardless of background.',
+                visitingInfo: {
+                    darshanTimings: '24 hours',
+                    aartiTimings: 'Sukhmani Sahib Path: 5:00 AM, Asa Di Var: 6:00 AM, Rehras Sahib: 6:30 PM, Kirtan Sohila: 9:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Cover head, remove shoes, modest clothing',
+                    specialInstructions: 'All visitors must cover their head and wash their feet before entering'
+                }
             },
             'virupaksha': {
                 title: 'Virupaksha Temple',
-                image: 'Images/image copy 18.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple_20190219142613.jpg',
                 images: [
-                    {src: 'Images/image copy 18.png', caption: 'Virupaksha Temple'},
-                    {src: 'Images/image copy 18.png', caption: 'Ancient Architecture'},
-                    {src: 'Images/image copy 18.png', caption: 'Temple Complex'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple_20190219142613.jpg', caption: 'Virupaksha Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple2_20190219142626.jpg', caption: 'Ancient Architecture'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple3_20190219142639.jpg', caption: 'Temple Complex'}
                 ],
                 description: 'Located in Hampi, Karnataka, the Virupaksha Temple is dedicated to Lord Shiva and is part of the Group of Monuments at Hampi.',
+                detailedDescription: 'The Virupaksha Temple is the main center of pilgrimage at Hampi and has been considered the most sacred sanctuary over the centuries. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site.',
                 facts: [
-                    'Location: Hampi, Karnataka',
-                    'Deity: Lord Shiva',
-                    'Built: 7th Century',
-                    'UNESCO World Heritage Site'
-                ]
+                    {label: 'Location', value: 'Hampi, Karnataka'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Built', value: '7th Century'},
+                    {label: 'UNESCO World Heritage Site', value: 'Yes'},
+                    {label: 'Best Time to Visit', value: 'October to February'},
+                    {label: 'Architecture', value: 'Vijayanagara style'}
+                ],
+                history: [
+                    {date: '7th Century', event: 'Original shrine built'},
+                    {date: '14th-16th Century', event: 'Significant additions by Vijayanagara Empire'},
+                    {date: '1565', event: 'Hampi destroyed after Battle of Talikota'},
+                    {date: '19th Century', event: 'Restoration efforts began'}
+                ],
+                architecture: 'The temple exhibits the classic Vijayanagara style of architecture with intricate carvings, massive gopurams, and pillared halls. The main gopuram is 50 meters tall and features elaborate sculptures.',
+                significance: 'Virupaksha Temple is one of the oldest functioning temples in India, with uninterrupted worship for over 1,300 years. It was the center of religious activities during the Vijayanagara Empire.',
+                visitingInfo: {
+                    darshanTimings: '9:00 AM to 1:00 PM, 5:00 PM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 9:00 AM, Evening Aarti: 7:00 PM',
+                    entryFee: 'INR 50 for adults, free for children',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Part of Hampi UNESCO World Heritage Site, combined tickets available'
+                }
             },
             'arunachaleshwar': {
                 title: 'Arunachaleshwar Temple',
-                image: 'Images/image copy 19.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple_20190219142815.jpg',
                 images: [
-                    {src: 'Images/image copy 19.png', caption: 'Arunachaleshwar Temple'},
-                    {src: 'Images/image copy 19.png', caption: 'Temple Tower'},
-                    {src: 'Images/image copy 19.png', caption: 'Festival View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple_20190219142815.jpg', caption: 'Arunachaleshwar Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple2_20190219142828.jpg', caption: 'Temple Tower'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple3_20190219142841.jpg', caption: 'Festival View'}
                 ],
                 description: 'Located at the base of Arunachala Hill, this temple is dedicated to Lord Shiva in Tiruvannamalai.',
+                detailedDescription: 'The Arunachaleshwar Temple, also known as Annamalaiyar Temple, is a Hindu temple dedicated to Lord Shiva, located at the base of Arunachala Hill in Tiruvannamalai, Tamil Nadu. It is one of the largest temple complexes in India.',
                 facts: [
-                    'Location: Tiruvannamalai, Tamil Nadu',
-                    'Deity: Lord Shiva',
-                    'Significance: Represents fire among Pancha Bhoota temples'
-                ]
+                    {label: 'Location', value: 'Tiruvannamalai, Tamil Nadu'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Significance', value: 'Represents fire among Pancha Bhoota temples'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Karthigai Deepam, Maha Shivaratri'},
+                    {label: 'Temple Area', value: '25 acres'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Tamil scriptures of 7th-8th century'},
+                    {date: '9th Century', event: 'Significant contributions by Chola kings'},
+                    {date: '17th Century', event: 'Expanded by Vijayanagara and Nayak rulers'}
+                ],
+                architecture: 'The temple features classic Dravidian architecture with massive gopurams. The eastern gopuram is the tallest at 66 meters. The complex has numerous halls, shrines, and tanks spread over 25 acres.',
+                significance: 'Arunachaleshwar Temple is one of the Pancha Bhoota Stalam (five element temples) representing the fire element. The temple is associated with the saint Ramana Maharshi who lived at its base.',
+                visitingInfo: {
+                    darshanTimings: '5:30 AM to 12:30 PM, 3:30 PM to 9:30 PM',
+                    aartiTimings: 'Kaala Sandhi: 8:00 AM, Uchikala Pooja: 10:00 AM, Sayarakshai: 6:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Girivalam (circumambulation of Arunachala Hill) is a popular ritual'
+                }
             },
             'nilkanth': {
                 title: 'Nilkanth Mahadev Temple',
-                image: 'Images/image copy 23.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev_20190219143017.jpg',
                 images: [
-                    {src: 'Images/image copy 23.png', caption: 'Nilkanth Temple'},
-                    {src: 'Images/image copy 23.png', caption: 'Mountain Location'},
-                    {src: 'Images/image copy 23.png', caption: 'Scenic View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev_20190219143017.jpg', caption: 'Nilkanth Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev2_20190219143030.jpg', caption: 'Mountain Location'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev3_20190219143043.jpg', caption: 'Scenic View'}
                 ],
                 description: 'Dedicated to Lord Shiva, Nilkanth Temple is situated near Rishikesh amidst the Himalayas.',
+                detailedDescription: 'The Nilkanth Mahadev Temple is a Hindu temple dedicated to Lord Shiva, located at a height of 1,330 meters in the Pauri Garhwal district of Uttarakhand. It is situated at the confluence of the Pankaj and Madhumati rivers.',
                 facts: [
-                    'Location: Near Rishikesh, Uttarakhand',
-                    'Deity: Lord Shiva',
-                    'Altitude: 1330 meters'
-                ]
+                    {label: 'Location', value: 'Near Rishikesh, Uttarakhand'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Altitude', value: '1330 meters'},
+                    {label: 'Best Time to Visit', value: 'March to June, September to November'},
+                    {label: 'Festivals', value: 'Maha Shivaratri, Shravan month'},
+                    {label: 'Trek Distance', value: '12 km from Rishikesh'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be the place where Shiva consumed poison during Samudra Manthan'},
+                    {date: 'Modern Era', event: 'Developed as a popular pilgrimage site'}
+                ],
+                architecture: 'The temple features traditional Himalayan architecture with a white shikhara. The main shrine houses a natural rock formation worshipped as Shiva Linga.',
+                significance: 'According to Hindu mythology, this is the place where Lord Shiva consumed the poison (halahala) that emerged during the Samudra Manthan (churning of the ocean), turning his throat blue, hence the name Nilkanth (blue-throated).',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 7:00 PM',
+                    aartiTimings: 'Morning Aarti: 6:30 AM, Evening Aarti: 6:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Comfortable clothing for trekking',
+                    specialInstructions: '12 km trek from Rishikesh, vehicles available up to certain point'
+                }
             },
             'amarnath': {
                 title: 'Amarnath Cave Temple',
-                image: 'Images/image copy 25.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave_20190219143219.jpg',
                 images: [
-                    {src: 'Images/image copy 25.png', caption: 'Amarnath Cave'},
-                    {src: 'Images/image copy 25.png', caption: 'Ice Lingam'},
-                    {src: 'Images/image copy 25.png', caption: 'Pilgrimage Route'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave_20190219143219.jpg', caption: 'Amarnath Cave'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave2_20190219143232.jpg', caption: 'Ice Lingam'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave3_20190219143245.jpg', caption: 'Pilgrimage Route'}
                 ],
                 description: 'Amarnath Cave Temple is famous for its naturally forming ice Shiva Lingam.',
+                detailedDescription: 'The Amarnath Cave is a Hindu shrine located in Jammu and Kashmir. The cave is situated at an altitude of 3,888 meters and is famous for the natural formation of an ice stalagmite that resembles a Shiva Linga, which waxes and wanes with the moon.',
                 facts: [
-                    'Location: Jammu and Kashmir',
-                    'Deity: Lord Shiva',
-                    'Altitude: 3,888 meters',
-                    'Open: Only during Shravan month'
-                ]
+                    {label: 'Location', value: 'Jammu and Kashmir'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Altitude', value: '3,888 meters'},
+                    {label: 'Open', value: 'Only during Shravan month'},
+                    {label: 'Best Time to Visit', value: 'July to August'},
+                    {label: 'Trek Distance', value: '46 km from Pahalgam'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures'},
+                    {date: 'Modern Era', event: 'Organized pilgrimage started in 19th century'}
+                ],
+                architecture: 'The shrine is a natural cave formation in the Himalayas. There is no man-made structure, with the naturally formed ice lingam being the main object of worship.',
+                significance: 'Amarnath is one of the most important pilgrimage sites for Hindus. It is believed that this is the cave where Shiva revealed the secret of life and eternity to his consort Parvati.',
+                visitingInfo: {
+                    darshanTimings: 'Open during daylight hours in pilgrimage season',
+                    aartiTimings: 'Performed by priests at specific times',
+                    entryFee: 'Free, but registration required for pilgrimage',
+                    dressCode: 'Warm clothing essential',
+                    specialInstructions: 'Annual pilgrimage during July-August, requires registration and medical certificate'
+                }
             },
             'lotus': {
                 title: 'Lotus Temple',
-                image: 'Images/image copy 27.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple_20190219143421.jpg',
                 images: [
-                    {src: 'Images/image copy 27.png', caption: 'Lotus Temple'},
-                    {src: 'Images/image copy 27.png', caption: 'Architectural Detail'},
-                    {src: 'Images/image copy 27.png', caption: 'Interior View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple_20190219143421.jpg', caption: 'Lotus Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple2_20190219143434.jpg', caption: 'Architectural Detail'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple3_20190219143447.jpg', caption: 'Interior View'}
                 ],
                 description: 'Lotus Temple in Delhi is a Baháʼí House of Worship famous for its flowerlike architecture.',
+                detailedDescription: 'The Lotus Temple, located in Delhi, is a Baháʼí House of Worship notable for its flowerlike shape. It has become one of the most visited buildings in the world, known for its architectural beauty and message of unity.',
                 facts: [
-                    'Location: New Delhi',
-                    'Religion: Baháʼí Faith',
-                    'Built: 1986',
-                    'Symbol of: Unity of all religions'
-                ]
+                    {label: 'Location', value: 'New Delhi'},
+                    {label: 'Religion', value: 'Baháʼí Faith'},
+                    {label: 'Built', value: '1986'},
+                    {label: 'Symbol of', value: 'Unity of all religions'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Architect', value: 'Fariborz Sahba'}
+                ],
+                history: [
+                    {date: '1976', event: 'Design competition won by Fariborz Sahba'},
+                    {date: '1980', event: 'Construction began'},
+                    {date: '1986', event: 'Temple completed and opened to public'}
+                ],
+                architecture: 'The temple is composed of 27 free-standing marble-clad "petals" arranged in clusters of three to form nine sides. The structure has no straight lines, with all surfaces either curved or spherical.',
+                significance: 'The Lotus Temple is open to all people regardless of religion. It serves as a place for prayer and meditation, emphasizing the Baháʼí principle of the oneness of religion and the unity of humankind.',
+                visitingInfo: {
+                    darshanTimings: 'Summer: 9:00 AM to 7:00 PM, Winter: 9:00 AM to 5:30 PM',
+                    aartiTimings: 'No specific rituals, silent prayer and meditation',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Maintain silence inside the prayer hall, photography allowed outside only'
+                }
             },
             'konark-sun': {
                 title: 'Konark Sun Temple',
-                image: 'Images/image copy 29.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple_20190219143623.jpg',
                 images: [
-                    {src: 'Images/image copy 29.png', caption: 'Konark Sun Temple'},
-                    {src: 'Images/image copy 29.png', caption: 'Chariot Wheels'},
-                    {src: 'Images/image copy 29.png', caption: 'Architectural Detail'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple_20190219143623.jpg', caption: 'Konark Sun Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple2_20190219143636.jpg', caption: 'Chariot Wheels'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple3_20190219143649.jpg', caption: 'Architectural Detail'}
                 ],
                 description: 'A UNESCO World Heritage Site dedicated to the Sun God, Surya, built in the form of a chariot.',
+                detailedDescription: 'The Konark Sun Temple is a 13th-century Hindu temple dedicated to the sun god Surya, located in Konark, Odisha. The temple is built in the form of a giant chariot with elaborately carved stone wheels, pillars, and walls.',
                 facts: [
-                    'Location: Konark, Odisha',
-                    'Deity: Surya (Sun God)',
-                    'Built: 13th Century',
-                    'Built by: King Narasimhadeva I'
-                ]
+                    {label: 'Location', value: 'Konark, Odisha'},
+                    {label: 'Deity', value: 'Surya (Sun God)'},
+                    {label: 'Built', value: '13th Century'},
+                    {label: 'Built by', value: 'King Narasimhadeva I'},
+                    {label: 'UNESCO Status', value: 'World Heritage Site (1984)'},
+                    {label: 'Architecture', value: 'Kalinga style'}
+                ],
+                history: [
+                    {date: '13th Century', event: 'Built by King Narasimhadeva I of Eastern Ganga Dynasty'},
+                    {date: '15th-17th Century', event: 'Gradual decline and damage'},
+                    {date: '19th Century', event: 'Rediscovery and conservation efforts began'}
+                ],
+                architecture: 'The temple is designed as a gigantic chariot of the Sun God, with 12 pairs of elaborately carved stone wheels pulled by seven horses. The main temple was 229 feet tall, though the main tower has collapsed.',
+                significance: 'Konark Sun Temple is an architectural marvel and represents the highest point of Kalinga architecture. It is famous for its intricate stone carvings depicting various aspects of life, mythology, and erotic scenes.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 8:00 PM',
+                    aartiTimings: 'No regular rituals as it is a protected monument',
+                    entryFee: 'INR 40 for Indians, INR 600 for foreigners',
+                    dressCode: 'Comfortable clothing for exploring',
+                    specialInstructions: 'Protected archaeological site, photography allowed'
+                }
             },
             'siddhivinayak': {
                 title: 'Shri Siddhivinayak Temple',
-                image: 'Images/image copy 30.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple_20190219143825.jpg',
                 images: [
-                    {src: 'Images/image copy 30.png', caption: 'Siddhivinayak Temple'},
-                    {src: 'Images/image copy 30.png', caption: 'Main Deity'},
-                    {src: 'Images/image copy 30.png', caption: 'Temple Entrance'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple_20190219143825.jpg', caption: 'Siddhivinayak Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple2_20190219143838.jpg', caption: 'Main Deity'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple3_20190219143851.jpg', caption: 'Temple Entrance'}
                 ],
                 description: 'Famous Ganesh temple located in Mumbai, attracting millions of devotees every year.',
+                detailedDescription: 'Shri Siddhivinayak Temple is a Hindu temple dedicated to Lord Ganesha, located in Mumbai, Maharashtra. It is one of the most famous and wealthy temples in Mumbai, visited by thousands of devotees daily.',
                 facts: [
-                    'Location: Mumbai, Maharashtra',
-                    'Deity: Lord Ganesha',
-                    'Built: 1801'
-                ]
+                    {label: 'Location', value: 'Mumbai, Maharashtra'},
+                    {label: 'Deity', value: 'Lord Ganesha'},
+                    {label: 'Built', value: '1801'},
+                    {label: 'Best Time to Visit', value: 'Throughout the year'},
+                    {label: 'Festivals', value: 'Ganesh Chaturthi, Angarki Chaturthi'},
+                    {label: 'Special Feature', value: 'The idol has its trunk curved to the right'}
+                ],
+                history: [
+                    {date: '1801', event: 'Original temple built by contractor Laxman Vithu Patil'},
+                    {date: '1952', event: 'Major renovation and expansion'},
+                    {date: '1990s', event: 'Further development and modernization'}
+                ],
+                architecture: 'The temple features a combination of traditional and contemporary architecture. The main sanctum houses the black stone idol of Ganesha, and the temple complex includes additional shrines and facilities for devotees.',
+                significance: 'Siddhivinayak is considered particularly powerful for fulfilling wishes. The temple is especially crowded on Tuesdays, which is considered an auspicious day for Ganesha worship.',
+                visitingInfo: {
+                    darshanTimings: '5:30 AM to 9:50 PM',
+                    aartiTimings: 'Kakad Aarti: 5:30 AM, Shree Darshan: 6:00 AM, Naivedya: 12:00 PM, Aarti: 7:30 PM, Shej Aarti: 9:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Long queues common, online booking available for special darshan'
+                }
             },
             'dwarkadhish': {
                 title: 'Dwarkadhish Temple',
-                image: 'Images/image copy 31.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple_20190219144027.jpg',
                 images: [
-                    {src: 'Images/image copy 31.png', caption: 'Dwarkadhish Temple'},
-                    {src: 'Images/image copy 31.png', caption: 'Temple Spire'},
-                    {src: 'Images/image copy 31.png', caption: 'Seaside Location'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple_20190219144027.jpg', caption: 'Dwarkadhish Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple2_20190219144040.jpg', caption: 'Temple Spire'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple3_20190219144053.jpg', caption: 'Seaside Location'}
                 ],
                 description: 'Dedicated to Lord Krishna, this temple is part of the Char Dham pilgrimage.',
+                detailedDescription: 'The Dwarkadhish Temple, also known as Jagat Mandir, is a Hindu temple dedicated to Lord Krishna, located in Dwarka, Gujarat. It is one of the four Char Dham pilgrimage sites and one of the 108 Divya Desams.',
                 facts: [
-                    'Location: Dwarka, Gujarat',
-                    'Deity: Lord Krishna',
-                    'Built: 15th-16th Century'
-                ]
+                    {label: 'Location', value: 'Dwarka, Gujarat'},
+                    {label: 'Deity', value: 'Lord Krishna'},
+                    {label: 'Built', value: '15th-16th Century'},
+                    {label: 'Significance', value: 'Part of Char Dham Yatra'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Janmashtami, Holi'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be built by Vajranabha, Krishna\'s grandson'},
+                    {date: '15th-16th Century', event: 'Current structure built by various rulers'},
+                    {date: '19th-20th Century', event: 'Renovations and preservation efforts'}
+                ],
+                architecture: 'The temple is built in the Chalukyan style of architecture with a five-story main spire supported by 72 pillars. The temple rises to a height of 51.8 meters and is located at the confluence of the Gomti River and the Arabian Sea.',
+                significance: 'Dwarka is considered the ancient kingdom of Lord Krishna and one of the Sapta Puri (seven sacred cities) of Hinduism. The temple is an important pilgrimage site for Vaishnavites.',
+                visitingInfo: {
+                    darshanTimings: '6:30 AM to 9:30 PM',
+                    aartiTimings: 'Mangla Aarti: 6:30 AM, Shringar Aarti: 10:30 AM, Sandhya Aarti: 7:30 PM, Shayan Aarti: 8:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Located near the Arabian Sea, beach visits possible'
+                }
             },
             'padmanabhaswamy': {
                 title: 'Shree Padmanabhaswamy Temple',
-                image: 'Images/image copy 32.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple_20190219144229.jpg',
                 images: [
-                    {src: 'Images/image copy 32.png', caption: 'Padmanabhaswamy Temple'},
-                    {src: 'Images/image copy 32.png', caption: 'Gopuram View'},
-                    {src: 'Images/image copy 32.png', caption: 'Temple Architecture'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple_20190219144229.jpg', caption: 'Padmanabhaswamy Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple2_20190219144242.jpg', caption: 'Gopuram View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple3_20190219144255.jpg', caption: 'Temple Architecture'}
                 ],
                 description: 'Known for its immense wealth, this temple is dedicated to Lord Vishnu.',
+                detailedDescription: 'The Shree Padmanabhaswamy Temple is a Hindu temple dedicated to Lord Vishnu, located in Thiruvananthapuram, Kerala. The temple is known for its architectural splendor and the immense wealth discovered in its underground vaults.',
                 facts: [
-                    'Location: Thiruvananthapuram, Kerala',
-                    'Deity: Lord Vishnu',
-                    'Style: Dravidian architecture'
-                ]
+                    {label: 'Location', value: 'Thiruvananthapuram, Kerala'},
+                    {label: 'Deity', value: 'Lord Vishnu'},
+                    {label: 'Style', value: 'Dravidian architecture'},
+                    {label: 'Best Time to Visit', value: 'October to February'},
+                    {label: 'Festivals', value: 'Alpashi Utsavam, Panguni Utsavam'},
+                    {label: 'Special Feature', value: 'Wealthiest temple in the world'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in several ancient texts'},
+                    {date: '18th Century', event: 'Rebuilt by Marthanda Varma of Travancore'},
+                    {date: '2011', event: 'Discovery of immense wealth in temple vaults'}
+                ],
+                architecture: 'The temple features a blend of Kerala and Dravidian architectural styles. The main deity is Lord Vishnu in the Anantha Shayana posture (reclining on the serpent Ananta). The temple has a seven-story gopuram.',
+                significance: 'Padmanabhaswamy Temple is one of the 108 Divya Desams and is considered one of the wealthiest religious institutions in the world. The temple is maintained by the erstwhile royal family of Travancore.',
+                visitingInfo: {
+                    darshanTimings: '3:30 AM to 12:00 PM, 5:00 PM to 7:20 PM',
+                    aartiTimings: 'Nirmalya Darshan: 3:30 AM, Usha Pooja: 4:30 AM, Ethirettu Pooja: 6:30 AM',
+                    entryFee: 'Free',
+                    dressCode: 'Strict dress code: Men must wear mundu (dhoti), women must wear saree or salwar kameez',
+                    specialInstructions: 'Non-Hindus not allowed inside the temple'
+                }
             },
             'tungnath': {
                 title: 'Tungnath Temple',
-                image: 'Images/image copy 39.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple_20190219144431.jpg',
                 images: [
-                    {src: 'Images/image copy 39.png', caption: 'Tungnath Temple'},
-                    {src: 'Images/image copy 39.png', caption: 'Mountain Location'},
-                    {src: 'Images/image copy 39.png', caption: 'Himalayan View'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple_20190219144431.jpg', caption: 'Tungnath Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple2_20190219144444.jpg', caption: 'Mountain Location'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple3_20190219144457.jpg', caption: 'Himalayan View'}
                 ],
                 description: 'Tungnath is the highest Shiva temple in the world and part of the Panch Kedar.',
+                detailedDescription: 'Tungnath is the highest Shiva temple in the world and the highest of the five Panch Kedar temples. It is located in the Rudraprayag district of Uttarakhand, at an altitude of 3,680 meters in the Garhwal Himalayan range.',
                 facts: [
-                    'Location: Rudraprayag, Uttarakhand',
-                    'Deity: Lord Shiva',
-                    'Altitude: 3,680 meters'
-                ]
+                    {label: 'Location', value: 'Rudraprayag, Uttarakhand'},
+                    {label: 'Deity', value: 'Lord Shiva'},
+                    {label: 'Altitude', value: '3,680 meters'},
+                    {label: 'Best Time to Visit', value: 'April to November'},
+                    {label: 'Trek Distance', value: '4 km from Chopta'},
+                    {label: 'Significance', value: 'Highest Shiva temple in the world'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Believed to be built by the Pandavas'},
+                    {date: 'Modern Era', event: 'Maintained by local priests and the forest department'}
+                ],
+                architecture: 'The temple is a small stone structure built in the North Indian style of architecture. It is the smallest among the Panch Kedar temples but holds great religious significance.',
+                significance: 'Tungnath is part of the Panch Kedar pilgrimage, which includes five temples dedicated to Shiva. According to legend, the Pandavas built these temples to atone for their sins after the Kurukshetra war.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 7:00 PM',
+                    aartiTimings: 'Morning Aarti: 6:30 AM, Evening Aarti: 6:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Warm clothing essential',
+                    specialInstructions: '4 km trek from Chopta, temple closed during winter months'
+                }
             },
             'mansa-devi': {
                 title: 'Mansa Devi Temple',
-                image: 'Images/image copy 40.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple_20190219144633.jpg',
                 images: [
-                    {src: 'Images/image copy 40.png', caption: 'Mansa Devi Temple'},
-                    {src: 'Images/image copy 40.png', caption: 'Cable Car View'},
-                    {src: 'Images/image copy 40.png', caption: 'Temple Complex'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple_20190219144633.jpg', caption: 'Mansa Devi Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple2_20190219144646.jpg', caption: 'Cable Car View'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple3_20190219144659.jpg', caption: 'Temple Complex'}
                 ],
                 description: 'Located on Bilwa Parvat in Haridwar, Mansa Devi Temple is one of the Siddh Peethas.',
+                detailedDescription: 'Mansa Devi Temple is a Hindu temple dedicated to Goddess Mansa Devi, located on the Bilwa Parvat in Haridwar, Uttarakhand. It is one of the Siddh Peethas, meaning "places where wishes get fulfilled".',
                 facts: [
-                    'Location: Haridwar, Uttarakhand',
-                    'Deity: Goddess Mansa Devi',
-                    'Significance: Wish-fulfilling goddess'
-                ]
+                    {label: 'Location', value: 'Haridwar, Uttarakhand'},
+                    {label: 'Deity', value: 'Goddess Mansa Devi'},
+                    {label: 'Significance', value: 'Wish-fulfilling goddess'},
+                    {label: 'Best Time to Visit', value: 'Throughout the year'},
+                    {label: 'Festivals', value: 'Navratri, Kumbh Mela'},
+                    {label: 'Access', value: 'Cable car available'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Mentioned in Hindu scriptures'},
+                    {date: 'Modern Era', event: 'Developed as a major pilgrimage site with cable car facility'}
+                ],
+                architecture: 'The temple features traditional North Indian architecture. The main shrine houses the idol of Mansa Devi, and there are two idols of the goddess - one with eight arms and another with five arms.',
+                significance: 'Mansa Devi is believed to fulfill the wishes of her devotees. The practice of tying threads on the sacred tree in the temple complex is common, with devotees believing that when the thread breaks, their wish will be fulfilled.',
+                visitingInfo: {
+                    darshanTimings: '5:00 AM to 9:00 PM',
+                    aartiTimings: 'Morning Aarti: 5:30 AM, Evening Aarti: 7:30 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Cable car available to reach the temple, or 3 km trek'
+                }
             },
             'digamber-jain': {
                 title: 'Digamber Jain Temple',
-                image: 'Images/image copy 41.png',
+                image: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple_20190219144835.jpg',
                 images: [
-                    {src: 'Images/image copy 41.png', caption: 'Digamber Jain Temple'},
-                    {src: 'Images/image copy 41.png', caption: 'Temple Interior'},
-                    {src: 'Images/image copy 41.png', caption: 'Architectural Detail'}
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple_20190219144835.jpg', caption: 'Digamber Jain Temple'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple2_20190219144848.jpg', caption: 'Temple Interior'},
+                    {src: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple3_20190219144901.jpg', caption: 'Architectural Detail'}
                 ],
                 description: 'The Lal Mandir is the oldest Jain temple in Delhi, dedicated to Lord Mahavira.',
+                detailedDescription: 'The Digamber Jain Temple, also known as Lal Mandir, is the oldest and best-known Jain temple in Delhi. It is located just opposite the Red Fort in Chandni Chowk and is dedicated to Lord Mahavira, the 24th Tirthankara.',
                 facts: [
-                    'Location: Chandni Chowk, Delhi',
-                    'Deity: Lord Mahavira',
-                    'Built: 1656 AD'
-                ]
+                    {label: 'Location', value: 'Chandni Chowk, Delhi'},
+                    {label: 'Deity', value: 'Lord Mahavira'},
+                    {label: 'Built', value: '1656 AD'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Mahavir Jayanti, Paryushan'},
+                    {label: 'Special Feature', value: 'Bird hospital attached to temple'}
+                ],
+                history: [
+                    {date: '1656', event: 'Original temple built during Mughal era'},
+                    {date: '19th Century', event: 'Major renovations and expansions'},
+                    {date: '1957', event: 'Bird hospital established'}
+                ],
+                architecture: 'The temple is built in the traditional Jain architectural style with intricate marble carvings. The main shrine houses the idol of Lord Mahavira, and the temple complex includes additional shrines and a bird hospital.',
+                significance: 'Lal Mandir is an important Jain pilgrimage site and is famous for its bird hospital, which treats injured birds. The temple exemplifies the Jain principle of ahimsa (non-violence).',
+                visitingInfo: {
+                    darshanTimings: '5:30 AM to 11:30 AM, 6:00 PM to 9:30 PM',
+                    aartiTimings: 'Morning Aarti: 5:45 AM, Evening Aarti: 6:15 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Modest clothing preferred',
+                    specialInstructions: 'Bird hospital attached to temple, donations accepted for bird care'
+                }
             },
             'navgrah': {
                 title: 'Shri Navgrah Temple',
-                image: 'Images/image copy 42.png',
+                image: 'https://content.jdmagicbox.com/comp/allahabad/s4/0532px532.x532.180309201118.m8s4/catalogue/shree-navgrah-mandir-rambagh-allahabad-temples-0r9neatob5.jpg',
                 images: [
                     {src: 'https://content.jdmagicbox.com/comp/allahabad/s4/0532px532.x532.180309201118.m8s4/catalogue/shree-navgrah-mandir-rambagh-allahabad-temples-0r9neatob5.jpg', caption: 'Navgrah Temple'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Navagraha_Devalayam_20200211203612.jpg', caption: 'Planetary Deities'},
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAvwZ6s0QAAq_VQ7guoJOV6MMaeOx9_cXiw&s', caption: 'Temple Architecture'}
                 ],
                 description: 'Dedicated to the nine planetary deities, this temple symbolizes harmony among the celestial bodies.',
+                detailedDescription: 'The Shri Navgrah Temple is a Hindu temple dedicated to the nine planetary deities (Navagrahas). Located in Ujjain, Madhya Pradesh, it is one of the few temples where all nine planetary deities are worshipped together.',
                 facts: [
-                    'Location: Ujjain, Madhya Pradesh',
-                    'Deities: Navagrahas (Nine Planetary Gods)',
-                    'Significance: One of few temples dedicated to all Navagrahas'
-                ]
+                    {label: 'Location', value: 'Ujjain, Madhya Pradesh'},
+                    {label: 'Deities', value: 'Navagrahas (Nine Planetary Gods)'},
+                    {label: 'Significance', value: 'One of few temples dedicated to all Navagrahas'},
+                    {label: 'Best Time to Visit', value: 'October to March'},
+                    {label: 'Festivals', value: 'Grah Shanti Pooja, Graha Dosh Nivaran'},
+                    {label: 'Special Feature', value: 'Separate shrines for each planetary deity'}
+                ],
+                history: [
+                    {date: 'Ancient Times', event: 'Ujjain has been an important center for astronomy and astrology'},
+                    {date: 'Modern Era', event: 'Temple developed to facilitate planetary worship'}
+                ],
+                architecture: 'The temple features nine separate shrines arranged in a specific pattern, each dedicated to one of the Navagrahas. The architecture follows traditional Hindu temple style with intricate carvings.',
+                significance: 'The Navgrah Temple is believed to help mitigate the malefic effects of planets in one\'s horoscope. Devotees visit to perform rituals for planetary peace and to seek blessings for a harmonious life.',
+                visitingInfo: {
+                    darshanTimings: '6:00 AM to 8:00 PM',
+                    aartiTimings: 'Morning Aarti: 6:30 AM, Evening Aarti: 7:00 PM',
+                    entryFee: 'Free',
+                    dressCode: 'Traditional attire preferred',
+                    specialInstructions: 'Special poojas can be arranged for planetary peace'
+                }
             }
         };
 
-        // Slideshow functionality
+        // Simplified Slideshow functionality
         function createSlideshow(images) {
             let currentSlide = 0;
             
@@ -681,12 +1256,6 @@
                             `).join('')}
                         </div>
                     </div>
-                    
-                    <div class="slideshow-controls">
-                        <button class="slideshow-btn prev">Previous</button>
-                        <button class="slideshow-btn next">Next</button>
-                        <button class="slideshow-btn pause">Pause</button>
-                    </div>
                 </div>
             `;
             
@@ -695,11 +1264,7 @@
                 init: function(container) {
                     const slides = container.querySelectorAll('.slide');
                     const dots = container.querySelectorAll('.dot');
-                    const prevBtn = container.querySelector('.prev');
-                    const nextBtn = container.querySelector('.next');
-                    const pauseBtn = container.querySelector('.pause');
                     
-                    let isPlaying = true;
                     let slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
                     
                     function showSlide(index) {
@@ -719,56 +1284,21 @@
                         showSlide(nextIndex);
                     }
                     
-                    function prevSlide() {
-                        let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-                        showSlide(prevIndex);
-                    }
-                    
-                    function togglePlayPause() {
-                        if (isPlaying) {
-                            clearInterval(slideInterval);
-                            pauseBtn.textContent = 'Play';
-                        } else {
-                            slideInterval = setInterval(nextSlide, 5000);
-                            pauseBtn.textContent = 'Pause';
-                        }
-                        isPlaying = !isPlaying;
-                    }
-                    
-                    // Event listeners
-                    nextBtn.addEventListener('click', () => {
-                        nextSlide();
-                        if (isPlaying) {
-                            clearInterval(slideInterval);
-                            slideInterval = setInterval(nextSlide, 5000);
-                        }
-                    });
-                    
-                    prevBtn.addEventListener('click', () => {
-                        prevSlide();
-                        if (isPlaying) {
-                            clearInterval(slideInterval);
-                            slideInterval = setInterval(nextSlide, 5000);
-                        }
-                    });
-                    
-                    pauseBtn.addEventListener('click', togglePlayPause);
-                    
+                    // Event listeners for dots
                     dots.forEach(dot => {
                         dot.addEventListener('click', () => {
                             const index = parseInt(dot.getAttribute('data-index'));
                             showSlide(index);
-                            if (isPlaying) {
-                                clearInterval(slideInterval);
-                                slideInterval = setInterval(nextSlide, 5000);
-                            }
+                            // Reset the interval when manually changing slides
+                            clearInterval(slideInterval);
+                            slideInterval = setInterval(nextSlide, 5000);
                         });
                     });
                 }
             };
         }
 
-        function displaytempleDetails() {
+        function displayTempleDetails() {
             const temple = templeDatabase[templeName];
             if (temple) {
                 document.title = `${temple.title} | SANATANI`;
@@ -791,11 +1321,71 @@
                         <div class="temple-facts">
                             <h2>Key Facts</h2>
                             <ul>
-                                ${temple.facts.map(fact => `<li>${fact}</li>`).join('')}
+                                ${temple.facts.map(fact => `
+                                    <li>
+                                        <span class="fact-label">${fact.label}:</span>
+                                        <span class="fact-value">${fact.value}</span>
+                                    </li>
+                                `).join('')}
                             </ul>
                         </div>
-                        ${slideshowHTML}
+                        
                         <a href="index.html" class="back-button">Back to Gallery</a>
+                    </div>
+                    ${slideshowHTML}
+                    <div class="temple-details-section">
+                        <div class="detail-card">
+                            <h2>Detailed Description</h2>
+                            <p>${temple.detailedDescription}</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h2>History</h2>
+                            <div class="timeline">
+                                ${temple.history.map(item => `
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">${item.date}</div>
+                                        <div class="timeline-content">${item.event}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h2>Architecture</h2>
+                            <p>${temple.architecture}</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h2>Spiritual Significance</h2>
+                            <p>${temple.significance}</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h2>Visiting Information</h2>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Darshan Timings:</span>
+                                    <span>${temple.visitingInfo.darshanTimings}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Aarti Timings:</span>
+                                    <span>${temple.visitingInfo.aartiTimings}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Entry Fee:</span>
+                                    <span>${temple.visitingInfo.entryFee}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Dress Code:</span>
+                                    <span>${temple.visitingInfo.dressCode}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Special Instructions:</span>
+                                    <span>${temple.visitingInfo.specialInstructions}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
                 
@@ -815,7 +1405,7 @@
             }
         }
 
-        displaytempleDetails();
+        displayTempleDetails();
     </script>
 </body>
 </html>
