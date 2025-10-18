@@ -159,22 +159,22 @@
         }
 
         /* Simplified Slideshow Styles */
-.slideshow-section {
-    width: 100%;
-    margin-top: 40px;
-    display: flex;              /* Added */
-    flex-direction: column;     /* Added */
-    align-items: center;        /* Added - This centers the content */
-}
+        .slideshow-section {
+            width: 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         
-.slideshow-container {
-    position: relative;
-    max-width: 800px;           /* Changed from 100% to 800px */
-    width: 100%;                /* Added - Makes it responsive within max-width */
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
         
         .slideshow {
             position: relative;
@@ -259,7 +259,7 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const templeName = urlParams.get('temple') || 'kashi-vishwanath';
+        let templeName = urlParams.get('temple') || 'kashi-vishwanath';
 
         const templeDatabase = {
             'kashi-vishwanath': {
@@ -1230,16 +1230,14 @@
             }
         };
 
-        // Simplified Slideshow functionality
+        // Fixed Slideshow functionality
         function createSlideshow(images) {
-            let currentSlide = 0;
-            
             // Create slideshow HTML structure
             const slideshowHTML = `
                 <div class="slideshow-section">
                     <h2 style="color: #f4a261; margin-bottom: 15px;">Temple Gallery</h2>
                     <div class="slideshow-container">
-                        <div class="slideshow">
+                        <div class="slideshow" id="slideshow-${Date.now()}">
                             ${images.map((image, index) => `
                                 <div class="slide ${index === 0 ? 'active' : ''}">
                                     <img src="${image.src}" alt="${image.caption}">
@@ -1259,43 +1257,41 @@
                 </div>
             `;
             
-            return {
-                html: slideshowHTML,
-                init: function(container) {
-                    const slides = container.querySelectorAll('.slide');
-                    const dots = container.querySelectorAll('.dot');
-                    
-                    let slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-                    
-                    function showSlide(index) {
-                        // Hide all slides
-                        slides.forEach(slide => slide.classList.remove('active'));
-                        dots.forEach(dot => dot.classList.remove('active'));
-                        
-                        // Show the selected slide
-                        slides[index].classList.add('active');
-                        dots[index].classList.add('active');
-                        
-                        currentSlide = index;
-                    }
-                    
-                    function nextSlide() {
-                        let nextIndex = (currentSlide + 1) % slides.length;
-                        showSlide(nextIndex);
-                    }
-                    
-                    // Event listeners for dots
-                    dots.forEach(dot => {
-                        dot.addEventListener('click', () => {
-                            const index = parseInt(dot.getAttribute('data-index'));
-                            showSlide(index);
-                            // Reset the interval when manually changing slides
-                            clearInterval(slideInterval);
-                            slideInterval = setInterval(nextSlide, 5000);
-                        });
-                    });
-                }
-            };
+            return slideshowHTML;
+        }
+
+        // Initialize slideshow separately
+        function initSlideshow(container) {
+            const slides = container.querySelectorAll('.slide');
+            const dots = container.querySelectorAll('.dot');
+            
+            if (slides.length === 0) return;
+            
+            let currentSlide = 0;
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.getAttribute('data-index'));
+                    showSlide(index);
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
         }
 
         function displayTempleDetails() {
@@ -1307,8 +1303,7 @@
                 // Create slideshow if multiple images exist
                 let slideshowHTML = '';
                 if (temple.images && temple.images.length > 1) {
-                    const slideshow = createSlideshow(temple.images);
-                    slideshowHTML = slideshow.html;
+                    slideshowHTML = createSlideshow(temple.images);
                 }
                 
                 details.innerHTML = `
@@ -1392,7 +1387,9 @@
                 // Initialize slideshow if it exists
                 if (temple.images && temple.images.length > 1) {
                     const slideshowContainer = details.querySelector('.slideshow-section');
-                    createSlideshow(temple.images).init(slideshowContainer);
+                    setTimeout(() => {
+                        initSlideshow(slideshowContainer);
+                    }, 100);
                 }
             } else {
                 document.getElementById('templeDetails').innerHTML = `
@@ -1407,5 +1404,44 @@
 
         displayTempleDetails();
     </script>
+    <!-- Google Translate -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'en', // your website's main language
+        includedLanguages: 'en,hi,ta,bn,gu,fr,es', // add or remove as needed
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+      },
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+  #google_translate_element {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: white;
+  }
+  .goog-logo-link, .goog-te-gadget span {
+    display: none !important;
+  }
+  .goog-te-gadget {
+    color: white !important;
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+
 </body>
 </html>
