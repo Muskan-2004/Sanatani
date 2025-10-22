@@ -238,6 +238,43 @@
             background-color: #f4a261;
         }
         
+        /* YouTube Video Section - REDUCED SIZE */
+        .video-section {
+            width: 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 70%; /* Reduced from 100% to 70% */
+            height: 0;
+            padding-bottom: 39.375%; /* 16:9 aspect ratio for 70% width */
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #f4a261;
+            font-style: italic;
+            max-width: 70%; /* Match video width */
+        }
+        
         @media (max-width: 768px) {
             .slideshow {
                 height: 300px;
@@ -248,6 +285,23 @@
             .temple-details {
                 margin: 20px auto;
                 padding: 10px;
+            }
+            .video-container {
+                width: 90%; /* Slightly wider on mobile */
+                padding-bottom: 50.625%; /* 16:9 aspect ratio for 90% width */
+            }
+            .video-caption {
+                max-width: 90%; /* Match video width on mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-container {
+                width: 95%; /* Almost full width on very small screens */
+                padding-bottom: 53.4375%; /* 16:9 aspect ratio for 95% width */
+            }
+            .video-caption {
+                max-width: 95%; /* Match video width on very small screens */
             }
         }
     </style>
@@ -270,6 +324,8 @@
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJ1r6wBPmk8i4SR_a6v2L26Ipe4sfKcIk_g&s', caption: 'Temple Entrance'},
                     {src: 'https://www.solobackpacker.com/wp-content/uploads/2013/02/IMG_9090.jpg', caption: 'Ganga Aarti'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/live/63LLdfW_ELM?si=BbrULQcdWgEOwGPY',
+                youtubeCaption: 'Live darshan of  Kashi Vishwanath Temple',
                 description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga. It is believed to be the holiest of all Shiva temples and holds immense spiritual significance for Hindus.',
                 detailedDescription: 'The Kashi Vishwanath Temple, also known as the Golden Temple, is one of the most sacred pilgrimage sites for Hindus. It is believed that a visit to this temple and a bath in the Ganges leads to moksha (liberation). The temple complex consists of a series of smaller shrines, located in a small lane called Vishwanath Gali, near the river. The main deity is Lord Shiva in the form of a lingam, which is housed in the sanctum sanctorum.',
                 facts: [
@@ -308,6 +364,8 @@
                     {src: 'https://heritage.home.blog/wp-content/uploads/2019/12/photo_20190929_193325.jpg', caption: 'Temple at Night'},
                     {src: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/db/85/e4/somnath-temple-view-from.jpg', caption: 'Seaside View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/5Hj-b7fB8f0',
+                youtubeCaption: 'The resilient Somnath Temple by the Arabian Sea',
                 description: 'The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas of Lord Shiva, rebuilt several times throughout history. It stands as a symbol of resilience and faith.',
                 detailedDescription: 'The Somnath Temple, located in Prabhas Patan near Veraval in Gujarat, is one of the most sacred pilgrimage sites for Hindus. It is believed to be the first among the twelve Jyotirlinga shrines of Shiva. The temple has been destroyed and rebuilt several times throughout history, with the current structure completed in 1951.',
                 facts: [
@@ -346,6 +404,8 @@
                     {src: 'https://cdn.magicdecor.in/com/2024/01/30181307/Kedarnath-Temple-in-Winter-Wallpaper-for-Wall.jpg', caption: 'Temple in Winter'},
                     {src: 'https://www.chardham-pilgrimage-tour.com/assets/images/chardham-banner2.webp', caption: 'Panoramic View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/7l5L6_b7V4w',
+                youtubeCaption: 'Journey to the sacred Kedarnath Temple in the Himalayas',
                 description: 'Located in the Himalayas, Kedarnath Temple is one of the twelve Jyotirlingas and a vital part of the Char Dham Yatra.',
                 detailedDescription: 'Kedarnath Temple is a Hindu temple dedicated to Lord Shiva, located on the Garhwal Himalayan range near the Mandakini river in Uttarakhand. Due to extreme weather conditions, the temple is open to the general public only between April (Akshaya Tritiya) and November (Kartik Purnima). During the winters, the deities from Kedarnath temple are carried down to Ukhimath.',
                 facts: [
@@ -381,6 +441,8 @@
                     {src: 'https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/The-Ramanathaswamy-Temple.jpg?itok=gBZatnn6', caption: 'Long Corridor'},
                     {src: 'https://www.tirthayatra.org/wp-content/uploads/2025/03/Rameswaram-_-Pilgrim-Centres-1.png', caption: 'Temple Complex'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Exploring the sacred corridors of Ramanathaswamy Temple',
                 description: 'Located on Rameswaram Island, this temple is dedicated to Lord Shiva and is one of the Char Dhams.',
                 detailedDescription: 'Ramanathaswamy Temple is a Hindu temple dedicated to Lord Shiva, located on Rameswaram island in Tamil Nadu. It is one of the twelve Jyotirlinga temples and is one of the four Char Dham pilgrimage sites. The temple is famous for its long corridors and 22 theerthams (holy water bodies).',
                 facts: [
@@ -416,6 +478,8 @@
                     {src: 'https://s7ap1.scene7.com/is/image/incredibleindia/badrinath-temple-badrinath-uttarakhand-2-attr-hero?qlt=82&ts=1726646229028', caption: 'Temple Entrance'},
                     {src: 'https://blog.firstrek.in/wp-content/uploads/2024/02/Badrinath-tourism-with-Firstrek.jpg', caption: 'Scenic Location'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Divine journey to Badrinath, the abode of Lord Vishnu',
                 description: 'Dedicated to Lord Vishnu, Badrinath Temple is one of the Char Dham and Chota Char Dham pilgrimage sites.',
                 detailedDescription: 'Badrinath Temple, also known as Badrinarayan Temple, is a Hindu temple dedicated to Lord Vishnu. It is situated in the town of Badrinath in Uttarakhand. The temple is one of the four Char Dham and Chota Char Dham pilgrimage sites and is one of the 108 Divya Desams dedicated to Vishnu.',
                 facts: [
@@ -451,6 +515,8 @@
                     {src: 'https://utsav.gov.in/public/uploads/darshan_picture/darshan_93/16615119891987332780.jpeg', caption: 'Ganga Aarti'},
                     {src: 'https://staybook.in/_next/image?url=https%3A%2F%2Fimages.staybook.in%2Fthings-to-do%2Fspiritual-haridwar-and-rishikesh-day-tour%2F0.webp&w=1080&q=75', caption: 'Temple View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Experience the divine Ganga Aarti at Haridwar',
                 description: 'Haridwar is one of the seven holiest places in Hinduism, located on the banks of the River Ganga.',
                 detailedDescription: 'Haridwar, meaning "Gateway to God", is an ancient city and important Hindu pilgrimage site in Uttarakhand. It is one of the seven holiest places in Hinduism, where the River Ganga exits the Himalayan foothills. The city is famous for the Kumbh Mela, which is held every 12 years.',
                 facts: [
@@ -484,6 +550,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/adiyogi1_20190219140549.jpg', caption: 'Night View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/800px-Adiyogi_Divya_KS_20190219140606.jpg', caption: 'Temple Grounds'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The magnificent Adiyogi Shiva statue at Isha Yoga Center',
                 description: 'Adiyogi Shiva statue at Isha Yoga Center, Coimbatore, represents the first yogi and the origin of yoga.',
                 detailedDescription: 'The Adiyogi Shiva statue is a 112-foot tall statue of Shiva at the Isha Yoga Center in Coimbatore, Tamil Nadu. It was inaugurated in 2017 and is recognized by the Guinness World Records as the "Largest Bust Sculpture" in the world. The statue symbolizes Shiva as the first yogi and the origin of yoga.',
                 facts: [
@@ -516,6 +584,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Omkareshwar2_20190219140858.jpg', caption: 'Island View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Omkareshwar3_20190219140911.jpg', caption: 'Temple Complex'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Sacred Omkareshwar Temple on the Narmada River',
                 description: 'Omkareshwar Temple is dedicated to Lord Shiva and is one of the twelve Jyotirlingas located on the island of Mandhata.',
                 detailedDescription: 'Omkareshwar Temple is a Hindu temple dedicated to Lord Shiva, located on the island of Mandhata in the Narmada River in Madhya Pradesh. It is one of the twelve Jyotirlingas and is shaped like the Hindu Om symbol, which gives it its name.',
                 facts: [
@@ -548,6 +618,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple2_20190219141036.jpg', caption: 'Temple Entrance'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Kangra_Temple3_20190219141049.jpg', caption: 'Mountain View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Sacred Brajeshwari Devi Temple in Kangra Valley',
                 description: 'The Brajeshwari Devi Temple in Kangra is dedicated to Goddess Vajreshwari and is a Shakti Peetha.',
                 detailedDescription: 'The Brajeshwari Devi Temple, also known as Kangra Devi Temple, is a Hindu temple dedicated to Goddess Vajreshwari, located in Kangra, Himachal Pradesh. It is one of the 51 Shakti Peethas and is highly revered by devotees.',
                 facts: [
@@ -580,6 +652,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi2_20190219141225.jpg', caption: 'Cave Entrance'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vaishno_Devi3_20190219141238.jpg', caption: 'Mountain Trek'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Pilgrimage to the sacred Vaishno Devi Shrine',
                 description: 'One of the most visited pilgrimage centers, the Vaishno Devi Temple is dedicated to Goddess Vaishnavi.',
                 detailedDescription: 'The Vaishno Devi Temple is a Hindu temple dedicated to the Hindu Goddess Mahalakshmi, located in the Trikuta Mountains in Jammu and Kashmir. It is one of the most visited pilgrimage sites in India, with millions of devotees visiting each year.',
                 facts: [
@@ -612,6 +686,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi2_20190219141414.jpg', caption: 'Eternal Flame'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Jwala_Devi3_20190219141427.jpg', caption: 'Temple Interior'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The eternal flames of Jwala Devi Temple',
                 description: 'Famous for its eternal flame, the Jwala Devi Temple is dedicated to Goddess Jwalamukhi.',
                 detailedDescription: 'The Jwala Devi Temple is a Hindu temple dedicated to Goddess Jwalamukhi, located in Kangra, Himachal Pradesh. It is famous for the eternal flames that burn continuously from the rock fissures, which are worshipped as manifestations of the Goddess.',
                 facts: [
@@ -643,6 +719,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir2_20190219141616.jpg', caption: 'Construction View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ram_Mandir3_20190219141629.jpg', caption: 'Architectural Detail'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The grand Ram Mandir in Ayodhya',
                 description: 'The Ram Mandir in Ayodhya is dedicated to Lord Rama and symbolizes the return of dharma.',
                 detailedDescription: 'The Ram Mandir is a Hindu temple under construction in Ayodhya, Uttar Pradesh, at the site of Ram Janmabhoomi, the hypothesized birthplace of Rama. The temple is dedicated to Lord Rama and is being built by the Shri Ram Janmabhoomi Teerth Kshetra trust.',
                 facts: [
@@ -679,6 +757,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple2_20190219141818.jpg', caption: 'Bhasma Aarti'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Ujjain_Temple3_20190219141831.jpg', caption: 'Temple Complex'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Mahakaleshwar Temple and the sacred Bhasma Aarti',
                 description: 'Mahakaleshwar Temple in Ujjain is one of the twelve Jyotirlingas of Lord Shiva.',
                 detailedDescription: 'The Mahakaleshwar Temple in Ujjain, Madhya Pradesh, is one of the twelve Jyotirlingas dedicated to Lord Shiva. The temple is famous for its Bhasma Aarti, where the Shiva Linga is adorned with ash from funeral pyres.',
                 facts: [
@@ -711,6 +791,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya2_20190219142020.jpg', caption: 'Construction Progress'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Vrindavan_Chandrodaya3_20190219142033.jpg', caption: 'Architectural Design'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The magnificent Vrindavan Chandrodaya Temple',
                 description: 'The tallest temple in the world dedicated to Lord Krishna, located in Vrindavan.',
                 detailedDescription: 'The Vrindavan Chandrodaya Temple is a temple under construction in Vrindavan, Uttar Pradesh, by ISKCON. When completed, it will be the tallest religious monument in the world, dedicated to Lord Krishna and his pastimes in Vrindavan.',
                 facts: [
@@ -744,6 +826,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman2_20190219142222.jpg', caption: 'Gopuram View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Meenakshi_Amman3_20190219142235.jpg', caption: 'Temple Corridor'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The magnificent Meenakshi Amman Temple in Madurai',
                 description: 'Located in Madurai, this temple is dedicated to Goddess Meenakshi and Lord Sundareswarar.',
                 detailedDescription: 'The Meenakshi Amman Temple is a historic Hindu temple located on the southern bank of the Vaigai River in Madurai, Tamil Nadu. It is dedicated to Meenakshi, a form of Parvati, and her consort Sundareswarar, a form of Shiva.',
                 facts: [
@@ -777,6 +861,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple2_20190219142424.jpg', caption: 'Reflection in Water'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Golden_Temple3_20190219142437.jpg', caption: 'Night View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Harmandir Sahib - The Golden Temple of Amritsar',
                 description: 'The Golden Temple, also known as Harmandir Sahib, is the holiest gurdwara of Sikhism located in Amritsar.',
                 detailedDescription: 'The Golden Temple, officially known as Harmandir Sahib, is the holiest Gurdwara and the most important pilgrimage site of Sikhism. Located in Amritsar, Punjab, it is known for its stunning gold-plated exterior and serene sarovar (holy tank).',
                 facts: [
@@ -811,6 +897,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple2_20190219142626.jpg', caption: 'Ancient Architecture'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Virupaksha_Temple3_20190219142639.jpg', caption: 'Temple Complex'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Ancient Virupaksha Temple at Hampi UNESCO site',
                 description: 'Located in Hampi, Karnataka, the Virupaksha Temple is dedicated to Lord Shiva and is part of the Group of Monuments at Hampi.',
                 detailedDescription: 'The Virupaksha Temple is the main center of pilgrimage at Hampi and has been considered the most sacred sanctuary over the centuries. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site.',
                 facts: [
@@ -845,6 +933,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple2_20190219142828.jpg', caption: 'Temple Tower'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Arunachaleshwar_Temple3_20190219142841.jpg', caption: 'Festival View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Arunachaleshwar Temple and the sacred fire element',
                 description: 'Located at the base of Arunachala Hill, this temple is dedicated to Lord Shiva in Tiruvannamalai.',
                 detailedDescription: 'The Arunachaleshwar Temple, also known as Annamalaiyar Temple, is a Hindu temple dedicated to Lord Shiva, located at the base of Arunachala Hill in Tiruvannamalai, Tamil Nadu. It is one of the largest temple complexes in India.',
                 facts: [
@@ -878,6 +968,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev2_20190219143030.jpg', caption: 'Mountain Location'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Nilkanth_Mahadev3_20190219143043.jpg', caption: 'Scenic View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Nilkanth Mahadev Temple in the Himalayan foothills',
                 description: 'Dedicated to Lord Shiva, Nilkanth Temple is situated near Rishikesh amidst the Himalayas.',
                 detailedDescription: 'The Nilkanth Mahadev Temple is a Hindu temple dedicated to Lord Shiva, located at a height of 1,330 meters in the Pauri Garhwal district of Uttarakhand. It is situated at the confluence of the Pankaj and Madhumati rivers.',
                 facts: [
@@ -910,6 +1002,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave2_20190219143232.jpg', caption: 'Ice Lingam'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Amarnath_Cave3_20190219143245.jpg', caption: 'Pilgrimage Route'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The sacred Amarnath Cave pilgrimage',
                 description: 'Amarnath Cave Temple is famous for its naturally forming ice Shiva Lingam.',
                 detailedDescription: 'The Amarnath Cave is a Hindu shrine located in Jammu and Kashmir. The cave is situated at an altitude of 3,888 meters and is famous for the natural formation of an ice stalagmite that resembles a Shiva Linga, which waxes and wanes with the moon.',
                 facts: [
@@ -942,6 +1036,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple2_20190219143434.jpg', caption: 'Architectural Detail'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Lotus_Temple3_20190219143447.jpg', caption: 'Interior View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The architectural marvel of Lotus Temple',
                 description: 'Lotus Temple in Delhi is a Baháʼí House of Worship famous for its flowerlike architecture.',
                 detailedDescription: 'The Lotus Temple, located in Delhi, is a Baháʼí House of Worship notable for its flowerlike shape. It has become one of the most visited buildings in the world, known for its architectural beauty and message of unity.',
                 facts: [
@@ -975,6 +1071,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple2_20190219143636.jpg', caption: 'Chariot Wheels'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Konark_Sun_Temple3_20190219143649.jpg', caption: 'Architectural Detail'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Konark Sun Temple - The magnificent chariot of the Sun God',
                 description: 'A UNESCO World Heritage Site dedicated to the Sun God, Surya, built in the form of a chariot.',
                 detailedDescription: 'The Konark Sun Temple is a 13th-century Hindu temple dedicated to the sun god Surya, located in Konark, Odisha. The temple is built in the form of a giant chariot with elaborately carved stone wheels, pillars, and walls.',
                 facts: [
@@ -1008,6 +1106,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple2_20190219143838.jpg', caption: 'Main Deity'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Siddhivinayak_Temple3_20190219143851.jpg', caption: 'Temple Entrance'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Shri Siddhivinayak Temple - The wish-fulfilling Ganesha',
                 description: 'Famous Ganesh temple located in Mumbai, attracting millions of devotees every year.',
                 detailedDescription: 'Shri Siddhivinayak Temple is a Hindu temple dedicated to Lord Ganesha, located in Mumbai, Maharashtra. It is one of the most famous and wealthy temples in Mumbai, visited by thousands of devotees daily.',
                 facts: [
@@ -1041,6 +1141,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple2_20190219144040.jpg', caption: 'Temple Spire'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Dwarkadhish_Temple3_20190219144053.jpg', caption: 'Seaside Location'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Dwarkadhish Temple - The ancient kingdom of Lord Krishna',
                 description: 'Dedicated to Lord Krishna, this temple is part of the Char Dham pilgrimage.',
                 detailedDescription: 'The Dwarkadhish Temple, also known as Jagat Mandir, is a Hindu temple dedicated to Lord Krishna, located in Dwarka, Gujarat. It is one of the four Char Dham pilgrimage sites and one of the 108 Divya Desams.',
                 facts: [
@@ -1074,6 +1176,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple2_20190219144242.jpg', caption: 'Gopuram View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Padmanabhaswamy_Temple3_20190219144255.jpg', caption: 'Temple Architecture'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'The legendary wealth of Padmanabhaswamy Temple',
                 description: 'Known for its immense wealth, this temple is dedicated to Lord Vishnu.',
                 detailedDescription: 'The Shree Padmanabhaswamy Temple is a Hindu temple dedicated to Lord Vishnu, located in Thiruvananthapuram, Kerala. The temple is known for its architectural splendor and the immense wealth discovered in its underground vaults.',
                 facts: [
@@ -1107,6 +1211,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple2_20190219144444.jpg', caption: 'Mountain Location'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Tungnath_Temple3_20190219144457.jpg', caption: 'Himalayan View'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Tungnath - The highest Shiva temple in the world',
                 description: 'Tungnath is the highest Shiva temple in the world and part of the Panch Kedar.',
                 detailedDescription: 'Tungnath is the highest Shiva temple in the world and the highest of the five Panch Kedar temples. It is located in the Rudraprayag district of Uttarakhand, at an altitude of 3,680 meters in the Garhwal Himalayan range.',
                 facts: [
@@ -1139,6 +1245,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple2_20190219144646.jpg', caption: 'Cable Car View'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Mansa_Devi_Temple3_20190219144659.jpg', caption: 'Temple Complex'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Mansa Devi Temple - The wish-fulfilling goddess',
                 description: 'Located on Bilwa Parvat in Haridwar, Mansa Devi Temple is one of the Siddh Peethas.',
                 detailedDescription: 'Mansa Devi Temple is a Hindu temple dedicated to Goddess Mansa Devi, located on the Bilwa Parvat in Haridwar, Uttarakhand. It is one of the Siddh Peethas, meaning "places where wishes get fulfilled".',
                 facts: [
@@ -1171,6 +1279,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple2_20190219144848.jpg', caption: 'Temple Interior'},
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Digamber_Jain_Temple3_20190219144901.jpg', caption: 'Architectural Detail'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Digamber Jain Temple - The ancient Lal Mandir of Delhi',
                 description: 'The Lal Mandir is the oldest Jain temple in Delhi, dedicated to Lord Mahavira.',
                 detailedDescription: 'The Digamber Jain Temple, also known as Lal Mandir, is the oldest and best-known Jain temple in Delhi. It is located just opposite the Red Fort in Chandni Chowk and is dedicated to Lord Mahavira, the 24th Tirthankara.',
                 facts: [
@@ -1204,6 +1314,8 @@
                     {src: 'https://www.holidify.com/images/cmsuploads/compressed/Navagraha_Devalayam_20200211203612.jpg', caption: 'Planetary Deities'},
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAvwZ6s0QAAq_VQ7guoJOV6MMaeOx9_cXiw&s', caption: 'Temple Architecture'}
                 ],
+                youtubeVideo: 'https://www.youtube.com/embed/9hJdZ7L8B_s',
+                youtubeCaption: 'Navgrah Temple - Worship of the nine planetary deities',
                 description: 'Dedicated to the nine planetary deities, this temple symbolizes harmony among the celestial bodies.',
                 detailedDescription: 'The Shri Navgrah Temple is a Hindu temple dedicated to the nine planetary deities (Navagrahas). Located in Ujjain, Madhya Pradesh, it is one of the few temples where all nine planetary deities are worshipped together.',
                 facts: [
@@ -1306,6 +1418,25 @@
                     slideshowHTML = createSlideshow(temple.images);
                 }
                 
+                // Create YouTube video section if video exists
+                let youtubeHTML = '';
+                if (temple.youtubeVideo) {
+                    youtubeHTML = `
+                        <div class="video-section">
+                            <h2 style="color: #f4a261; margin-bottom: 15px;">Temple Video</h2>
+                            <div class="video-container">
+                                <iframe src="${temple.youtubeVideo}" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-caption">${temple.youtubeCaption || 'Temple video'}</div>
+                        </div>
+                    `;
+                }
+                
                 details.innerHTML = `
                     <div class="temple-image">
                         <img src="${temple.image}" alt="${temple.title}">
@@ -1381,8 +1512,8 @@
                             </div>
                         </div>
                     </div>
-                               <a href="index.html" class="back-button">Back to Gallery</a>
-
+                    ${youtubeHTML}
+                    <a href="index.html" class="back-button">Back to Gallery</a>
                 `;
                 
                 // Initialize slideshow if it exists
