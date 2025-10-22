@@ -1,0 +1,148 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Brijrama Palace",
+      "location": "Varanasi",
+      "category": "luxury",
+      "price": 12000,
+      "per": "night",
+      "image": "https://www.veloso.com/media/9963258/brijrama-palace-17.jpeg?width=1200&height=630&mode=crop&anchor=%27center%27&format=jpg",
+      "amenities": ["Free WiFi", "Swimming Pool", "Spa", "Restaurant", "Parking"],
+      "nearby": "Kashi Vishwanath Temple (0.5 km)",
+      "rating": 4.8
+    },
+    {
+      "id": 2,
+      "name": "Hotel Ganga View",
+      "location": "Haridwar",
+      "category": "standard",
+      "price": 2500,
+      "per": "night",
+      "image": "https://media.licdn.com/dms/image/v2/C4D1BAQGFImbj8HOZng/company-background_10000/company-background_10000/0/1583106652909?e=2147483647&v=beta&t=r7WLJ4C7xlE4Vz_z5Wr25h9MS9uvVw25IskhJ7ye3iU",
+      "amenities": ["Free WiFi", "Restaurant", "River View", "Parking"],
+      "nearby": "Har Ki Pauri (0.2 km)",
+      "rating": 4.2
+    },
+    {
+      "id": 3,
+      "name": "Taj Golden Temple",
+      "location": "Amritsar",
+      "category": "premium",
+      "price": 4500,
+      "per": "night",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/85011621.jpg?k=8eced7857d8410e1434cab76a76047561ec49ff5e9c5d66ce7d596fee704ab70&o=&hp=1",
+      "amenities": ["Free WiFi", "Breakfast", "Spa", "24/7 Room Service", "Parking"],
+      "nearby": "Golden Temple (0.3 km)",
+      "rating": 4.6
+    },
+    {
+      "id": 4,
+      "name": "TTD Guest House",
+      "location": "Tirupati",
+      "category": "budget",
+      "price": 800,
+      "per": "night",
+      "image": "https://content.jdmagicbox.com/comp/east_godavari/u3/9999px883.x883.190402100032.k3u3/catalogue/t-t-d-guest-house-east-godavari-guest-house-bwgqalzj9t.jpg",
+      "amenities": ["Free Parking", "Pilgrimage Assistance"],
+      "nearby": "Tirupati Balaji (1 km)",
+      "rating": 3.9
+    },
+    {
+      "id": 5,
+      "name": "Mayfair Gangtok",
+      "location": "Gangtok",
+      "category": "luxury",
+      "price": 8500,
+      "per": "night",
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/0a/e1/af/caption.jpg?w=900&h=500&s=1",
+      "amenities": ["Free WiFi", "Spa", "Mountain View", "Restaurant", "Pool", "Parking"],
+      "nearby": "Rumtek Monastery (5 km)",
+      "rating": 4.7
+    },
+    {
+      "id": 6,
+      "name": "Vaishno Devi Dham",
+      "location": "Jammu",
+      "category": "dharamshala",
+      "price": 500,
+      "per": "night",
+      "image": "https://content.jdmagicbox.com/comp/jammu/r3/9999px191.x191.150427164926.t3r3/catalogue/vaishno-dham-dharamshala-trikuta-nagar-jammu-dharamshalas-bjtxvo5ase.jpg",
+      "amenities": ["Simple Accommodation", "Pilgrimage Assistance"],
+      "nearby": "Vaishno Devi Base Camp (0.1 km)",
+      "rating": 3.8
+    },
+    {
+      "id": 7,
+      "name": "The Fern Residency",
+      "location": "Varanasi",
+      "category": "premium",
+      "price": 3800,
+      "per": "night",
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/8e/ce/79/getlstd-property-photo.jpg?w=900&h=500&s=1",
+      "amenities": ["Free WiFi", "Swimming Pool", "Restaurant", "Parking"],
+      "nearby": "Sankat Mochan Temple (2 km)",
+      "rating": 4.3
+    },
+    {
+      "id": 8,
+      "name": "Haveli Hari Ganga",
+      "location": "Haridwar",
+      "category": "luxury",
+      "price": 9500,
+      "per": "night",
+      "image": "https://www.haridwarrishikeshtourism.com/haridwar-hotels/hotel-haveli-hari-ganga-haridwar.jpg",
+      "amenities": ["Free WiFi", "Spa", "Yoga Classes", "River View", "Restaurant", "Parking"],
+      "nearby": "Mansa Devi Temple (3 km)",
+      "rating": 4.9
+    },
+    {
+      "id": 9,
+      "name": "Shree Krishna Heritage",
+      "location": "Dwarka",
+      "category": "heritage",
+      "price": 3200,
+      "per": "night",
+      "image": "https://dyimg1.realestateindia.com/proj_images/project43026/proj_img-43026-52715_8-770x400.jpg",
+      "amenities": ["Free WiFi", "Restaurant", "Cultural Events", "Parking"],
+      "nearby": "Dwarkadhish Temple (0.8 km)",
+      "rating": 4.4
+    },
+    {
+      "id": 10,
+      "name": "Maa Sharda Dham",
+      "location": "Puri",
+      "category": "boutique",
+      "price": 2800,
+      "per": "night",
+      "image": "https://media-cdn.tripadvisor.com/media/photo-s/2b/44/0c/c5/front-facade.jpg",
+      "amenities": ["Free WiFi", "Beach Access", "Restaurant", "Parking"],
+      "nearby": "Jagannath Temple (1.2 km)",
+      "rating": 4.1
+    },
+    {
+      "id": 11,
+      "name": "Mahakaleshwar Guest House",
+      "location": "Ujjain",
+      "category": "budget",
+      "price": 1200,
+      "per": "night",
+      "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/66/e5/25/excellent-stayvery-hygienic.jpg?w=900&h=500&s=1",
+      "amenities": ["Basic Amenities", "Temple Guidance", "Parking"],
+      "nearby": "Mahakaleshwar Temple (0.5 km)",
+      "rating": 3.7
+    },
+    {
+      "id": 12,
+      "name": "Divine Stay",
+      "location": "Tirupati",
+      "category": "standard",
+      "price": 1800,
+      "per": "night",
+      "image": "https://gos3.ibcdn.com/c57fc7e7-00b8-4086-a8b1-d2b81ac1ace9.jpg",
+      "amenities": ["Free WiFi", "Breakfast", "Parking"],
+      "nearby": "Tirupati Balaji (2 km)",
+      "rating": 4.0
+    }
+  ]
+}
