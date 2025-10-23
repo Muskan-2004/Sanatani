@@ -324,7 +324,7 @@
                     {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJ1r6wBPmk8i4SR_a6v2L26Ipe4sfKcIk_g&s', caption: 'Temple Entrance'},
                     {src: 'https://www.solobackpacker.com/wp-content/uploads/2013/02/IMG_9090.jpg', caption: 'Ganga Aarti'}
                 ],
-                youtubeVideo: 'https://www.youtube.com/live/63LLdfW_ELM?si=BbrULQcdWgEOwGPY',
+                youtubeVideo: 'https://youtu.be/9hWMjYeV28Q?si=nao_8LNYnJk6zhM7',
                 youtubeCaption: 'Live darshan of  Kashi Vishwanath Temple',
                 description: 'The Kashi Vishwanath Temple in Varanasi is one of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the river Ganga. It is believed to be the holiest of all Shiva temples and holds immense spiritual significance for Hindus.',
                 detailedDescription: 'The Kashi Vishwanath Temple, also known as the Golden Temple, is one of the most sacred pilgrimage sites for Hindus. It is believed that a visit to this temple and a bath in the Ganges leads to moksha (liberation). The temple complex consists of a series of smaller shrines, located in a small lane called Vishwanath Gali, near the river. The main deity is Lord Shiva in the form of a lingam, which is housed in the sanctum sanctorum.',
@@ -1419,23 +1419,36 @@
                 }
                 
                 // Create YouTube video section if video exists
-                let youtubeHTML = '';
-                if (temple.youtubeVideo) {
-                    youtubeHTML = `
-                        <div class="video-section">
-                            <h2 style="color: #f4a261; margin-bottom: 15px;">Temple Video</h2>
-                            <div class="video-container">
-                                <iframe src="${temple.youtubeVideo}" 
-                                        title="YouTube video player" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="video-caption">${temple.youtubeCaption || 'Temple video'}</div>
-                        </div>
-                    `;
-                }
+// Create YouTube video section if video exists
+let youtubeHTML = '';
+if (temple.youtubeVideo) {
+    // Extract video ID from different YouTube URL formats
+    let videoId = '';
+    if (temple.youtubeVideo.includes('youtu.be/')) {
+        videoId = temple.youtubeVideo.split('youtu.be/')[1].split('?')[0];
+    } else if (temple.youtubeVideo.includes('youtube.com/watch?v=')) {
+        videoId = temple.youtubeVideo.split('v=')[1].split('&')[0];
+    } else if (temple.youtubeVideo.includes('youtube.com/embed/')) {
+        videoId = temple.youtubeVideo.split('embed/')[1].split('?')[0];
+    }
+    
+    if (videoId) {
+        youtubeHTML = `
+            <div class="video-section">
+                <h2 style="color: #f4a261; margin-bottom: 15px;">Temple Video</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/${videoId}" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-caption">${temple.youtubeCaption || 'Temple video'}</div>
+            </div>
+        `;
+    }
+}
                 
                 details.innerHTML = `
                     <div class="temple-image">
